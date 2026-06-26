@@ -2,13 +2,18 @@ import pygame
 import sys
 import random
 import time
-
+import os
+import camera_system
+import button_module
+import office_module
 
 def main():
     # turn on pygame
     pygame.init()
     pygame.display.set_caption("One Night at Catapult")
-    screen = pygame.display.set_mode((800, 600), pygame.FULLSCREEN | pygame.SCALED)
+    screen = pygame.display.set_mode(800,600)
+    #screen = pygame.display.set_mode((800, 600), pygame.FULLSCREEN | pygame.SCALED)
+    camera_sys = camera_system.Camera_System(screen,False)
 
     # let's set the framerate
     clock = pygame.time.Clock()
@@ -22,8 +27,10 @@ def main():
         screen.fill((255, 255, 255))
 
 
+
         # don't forget the update, otherwise nothing will show up!
         pygame.display.update()
+
 main()
 
 
