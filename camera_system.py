@@ -34,7 +34,7 @@ class Camera_System:
     def Looking_at_Which_Camera(self, camera_to_switch_to):
         self.cameras[camera_to_switch_to].draw()
         camera_module.camera_module.draw((camera_to_switch_to))
-    def Counselors_in_Camera(self,current_camera, ):
+    def Counselors_in_Camera(self,current_camera):
         #current_camera 0 corresponds to camera 1
         if current_camera == 0:
 
