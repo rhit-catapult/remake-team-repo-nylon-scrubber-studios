@@ -13,18 +13,32 @@ class Camera_System:
         self.camera_image_folders = ["","","","","",""]
 
     def Make_Cameras(self):
-        self.camera_1 = camera_module.Camera(self.screen, "*image*", "*image folder*", )
-        self.camera_2 = camera_module.Camera(self.screen, "*image*", "*image folder*, ")
-        self.camera_3 = camera_module.Camera(self.screen,)
-        self.camera_4 = camera_module.Camera(self.screen,)
-        self._5 = camera_module.Camera(self.screen,)
-        self.camera_6 = camera_module.Camera(self.screen,)
+        self.camera_1 = camera_module.Camera(self.screen, "*image*", "*image folder*")
+        self.camera_2 = camera_module.Camera(self.screen, "*image*", "*image folder*")
+        self.camera_3 = camera_module.Camera(self.screen, "*image*", "*image folder*")
+        self.camera_4 = camera_module.Camera(self.screen, "*image*", "*image folder*")
+        self._5 = camera_module.Camera(self.screen, "*image*", "*image folder*")
+        self.camera_6 = camera_module.Camera(self.screen, "*image*", "*image folder*")
 
     def Draw_Minimap(self, minimap_x, minimap_y):
         self.screen.blit(self.minimap_image, (minimap_x, minimap_y))
     def Camera_On_or_Off(self):
         if self.camera_on:
-            self.Draw_Minimap
+            self.Draw_Minimap(400,400)
     def Switch_Camera(self, camera_to_switch_to):
         self.current_camera = camera_to_switch_to
         camera_module.camera_module.draw((camera_to_switch_to))
+    def Counselors_in_Camera(self):
+        #current_camera 0 corresponds to camera 1
+        if self.current_camera == 0:
+            
+        elif self.current_camera == 1:
+            
+        elif self.current_camera == 2:
+        
+        elif self.current_camera == 3:
+        
+        elif self.current_camera == 4:
+        
+        else:
+            
