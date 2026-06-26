@@ -42,35 +42,41 @@ class Camera_System:
 
     def draw_counselors_in_camera(self,current_camera):
         #current_camera 0 corresponds to camera 1
-        if current_camera == 0:
+        if current_camera == 0: #cam 1
             if counselor_module.carp.location == "":
                 self.camera_1.draw_counselor("jj", (30,30))
             if counselor_module.ethan.location == "":
                 self.camera_1.draw_counselor("ethan", (50,50))
             if counselor_module.andrew.location == "":
                 self.camera_1.draw_counselor("andrew", (70,70))
-        elif current_camera == 1:
-            if counselor_module.carp.location == "":
+                
+        elif current_camera == 1: #cam 2
+            if counselor_module.carp.location == "livingroom":
                 self.camera_2.draw_counselor("carp", (50,50))
             if counselor_module.ethan.location == "":
                 self.camera_2.draw_counselor("ethan", (50,50))
-        elif current_camera == 2:
+
+        elif current_camera == 2: #cam 3
             if counselor_module.ethan.location == "":
                 self.camera_3.draw_counselor("ethan", (50,50))
-            if counselor_module.carp.location == "":
+            if counselor_module.carp.location == "left_hallway":
                 self.camera_3.draw_counselor("carp", (50,50))
-        elif current_camera == 3:
+            if counselor_module.carp.location == "peek":
+                self.camera_3.draw_counselor("carp", (100,100))
+
+        elif current_camera == 3: #cam 4
             if counselor_module.ethan.location == "":
                 self.camera_4.draw_counselor("ethan", (50,50))
             if counselor_module.andrew.location == "":
                 self.camera_4.draw_counselor("andrew", (70,70))
-        elif current_camera == 4:
-            if counselor_module.carp.location == "":
+
+        elif current_camera == 4: #cam 5
+            if counselor_module.carp.location == "pos5":
                 self.camera_5.draw_counselor("carp", (100,100))
             if counselor_module.ethan.location == "":
                 self.camera_5.draw_counselor("ethan", (40,40))
 
-        else:
+        else: #cam 6
             if counselor_module.aiman.location == "":
                 self.camera_6.draw_counselor("aiman", (100,100))
     def draw(self):
