@@ -37,5 +37,6 @@ def main():
         # don't forget the update, otherwise nothing will show up!
         pygame.display.update()
         print('hello world')
+        print("asdfjak;lsdjfaksldjf")
 
 main()
