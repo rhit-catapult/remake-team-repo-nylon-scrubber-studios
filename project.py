@@ -8,7 +8,7 @@ def main():
     # turn on pygame
     pygame.init()
     pygame.display.set_caption("One Night at Catapult")
-    screen = pygame.display.set_mode((1280, 720))
+    screen = pygame.display.set_mode((800, 600), pygame.FULLSCREEN | pygame.SCALED)
 
     # let's set the framerate
     clock = pygame.time.Clock()
