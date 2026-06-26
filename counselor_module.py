@@ -29,10 +29,9 @@ class Counselor_System:
                 
     def get_counselor(self):
         return self.path[self.location]
-                    
 
 carp = Counselor_System(None,'Carp',0,300,10)
 clock = pygame.time.Clock()
 while True:
     clock.tick(60)
-    carp.movement()
+    
