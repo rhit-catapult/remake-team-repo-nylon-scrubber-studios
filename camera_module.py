@@ -4,6 +4,8 @@ import os
 import counselor_module
 
 class Camera:
+
+    #creates a camera
     def __init__(self, screen: pygame.Surface, camera_image,image_folder):
         self.screen = screen
         self.camera_image = pygame.image.load(camera_image)
@@ -12,6 +14,7 @@ class Camera:
         for image in os.listdir(image_folder):
             self.folder.append(image)
 
+    #loads the image files into a variable
     def load_images(self):
         self.ethan = pygame.image.load("cam1_images/")
         self.carp = pygame.image.load()
@@ -19,9 +22,11 @@ class Camera:
         self.jj = pygame.image.load()
         self.andrew = pygame.image.load()
 
+    #draws the camera
     def draw(self):
         self.screen.blit(self.camera_image,(0,0))
 
+    #draws the counselors
     def draw_counselor(self,name,pos):
         if name == "ethan":
             self.screen.blit(self.ethan,pos)
