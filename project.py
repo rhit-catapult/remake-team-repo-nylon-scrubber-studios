@@ -24,20 +24,11 @@ def main():
             if event.type == pygame.QUIT:
                 sys.exit()
 
-            # TODO: Add you events code
 
-        # TODO: Fill the screen with whatever background color you like!
+
         screen.fill((255, 255, 255))
 
-        # draws the character every frame
-        character.draw()
-
-        # TODO: Add your project code
 
         # don't forget the update, otherwise nothing will show up!
         pygame.display.update()
-        print('hello world')
-        print("YOYOYO AIDEN PLZ WORK")
-        print("test test")
-        print('aiden is selling lol')
 main()
