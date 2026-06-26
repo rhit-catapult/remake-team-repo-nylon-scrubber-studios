@@ -36,11 +36,11 @@ class Camera_System:
         if self.camera_on:
             self.draw_minimap(400,400)
 
-    def looking_at_which_camera(self, camera_to_switch_to):
-        self.cameras[camera_to_switch_to].draw(self.screen)
+    def switch_camera(self, camera_to_switch_to):
+        self.current_camera = self.cameras[camera_to_switch_to]
         camera_module.camera_module.draw((camera_to_switch_to))
 
-    def counselors_in_camera(self,current_camera, ):
+    def draw_counselors_in_camera(self,current_camera):
         #current_camera 0 corresponds to camera 1
         if current_camera == 0:
             if counselor_module.carp.location == "":
@@ -52,16 +52,26 @@ class Camera_System:
         elif current_camera == 1:
             if counselor_module.carp.location == "":
                 self.camera_2.draw_counselor("carp", (50,50))
+            if counselor_module.ethan.location == "":
+                self.camera_2.draw_counselor("ethan", (50,50))
         elif current_camera == 2:
-        
+            if counselor_module.ethan.location == "":
+                self.camera_3.draw_counselor("ethan", (50,50))
+            if counselor_module.carp.location == "":
+                self.camera_3.draw_counselor("carp", (50,50))
         elif current_camera == 3:
-        
+            if counselor_module.ethan.location == "":
+                self.camera_4.draw_counselor("ethan", (50,50))
+            if counselor_module.andrew.location == "":
+                self.camera_4.draw_counselor("andrew", (70,70))
         elif current_camera == 4:
             if counselor_module.carp.location == "":
                 self.camera_5.draw_counselor("carp", (100,100))
             if counselor_module.ethan.location == "":
                 self.camera_5.draw_counselor("ethan", (40,40))
-                    
 
         else:
-            
+            if counselor_module.aiman.location == "":
+                self.camera_6.draw_counselor("aiman", (100,100))
+    def draw(self):
+        self.draw_counselors_in_camera()
