@@ -2,7 +2,7 @@ import pygame
 import sys
 import random
 import time
-
+import os
 
 def main():
     # turn on pygame
@@ -22,8 +22,10 @@ def main():
         screen.fill((255, 255, 255))
 
 
+
         # don't forget the update, otherwise nothing will show up!
         pygame.display.update()
+
 main()
 
 

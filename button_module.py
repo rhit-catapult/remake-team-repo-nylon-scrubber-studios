@@ -22,7 +22,7 @@ class Button:
         self.button_pushed = False
 
     #determine what the button will do if pushed
-    def function(self):
+    def button_function(self):
         if self.button_pushed == False:
             #will not run if button was not pushed
             return
