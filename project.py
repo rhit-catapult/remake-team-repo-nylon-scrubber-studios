@@ -19,10 +19,11 @@ def main():
                 sys.exit()
 
 
-
         screen.fill((255, 255, 255))
 
 
         # don't forget the update, otherwise nothing will show up!
         pygame.display.update()
 main()
+
+
