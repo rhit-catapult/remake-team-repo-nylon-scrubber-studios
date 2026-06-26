@@ -9,16 +9,21 @@ class Counselor_System:
         self.time_delay = time_delay
         self.difficulty = difficulty
         self.last_moved = 0
+        self.path = []
+
     def movement(self):
         if self.movenment_type == 'Carp':
-            carp_path = [0,1,2,3,4]
+            self.path = ["pos1","pos2","pos3","pos4","pos5"]
             if self.last_moved == self.time_delay:
                 movement_chance = random.randint(1,20)
-                if self.location == 5:
+                if self.location == 4:
                     self.location = 0
                 if movement_chance > self.difficulty:
                     self.location = self.location+1
-                    return carp_path[self.location]
+                    return self.path[self.location]
+                
+    def get_counselor(self):
+        return self.path[self.location]
                     
 
 carp = Counselor_System(None,'Carp',0,0,10)
