@@ -1,6 +1,6 @@
 import sys
 import pygame
-import camera
+import camera_module
 import counselor_module
 
 class Camera_System:
@@ -13,12 +13,12 @@ class Camera_System:
         self.camera_image_folders = ["","","","","",""]
 
     def Make_Cameras(self):
-        self.camera_1 = camera.Camera(self.screen, "*image*", "*image folder*", )
-        self.camera_2 = camera.Camera(self.screen, "*image*", "*image folder*, ")
-        self.camera_3 = camera.Camera(self.screen,)
-        self.camera_4 = camera.Camera(self.screen,)
-        self.camera_5 = camera.Camera(self.screen,)
-        self.camera_6 = camera.Camera(self.screen,)
+        self.camera_1 = camera_module.Camera(self.screen, "*image*", "*image folder*", )
+        self.camera_2 = camera_module.Camera(self.screen, "*image*", "*image folder*, ")
+        self.camera_3 = camera_module.Camera(self.screen,)
+        self.camera_4 = camera_module.Camera(self.screen,)
+        self._5 = camera_module.Camera(self.screen,)
+        self.camera_6 = camera_module.Camera(self.screen,)
 
     def Draw_Minimap(self, minimap_x, minimap_y):
         self.screen.blit(self.minimap_image, (minimap_x, minimap_y))
@@ -27,4 +27,4 @@ class Camera_System:
             self.Draw_Minimap
     def Switch_Camera(self, camera_to_switch_to):
         self.current_camera = camera_to_switch_to
-        camera.Camera.draw((camera_to_switch_to))
+        camera_module.camera_module.draw((camera_to_switch_to))

@@ -17,5 +17,6 @@ class Camera:
 
     def is_counselor_there(self):
         counselor_module.get_counselor()
+        
 
 
