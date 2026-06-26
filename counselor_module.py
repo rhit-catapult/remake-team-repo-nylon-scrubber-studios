@@ -2,7 +2,7 @@ import pygame
 import random
 import time
 
-class Counselor_System:
+class Counselor:
     def __init__(self,screen, movement_type,location,time_delay,difficulty):
         self.screen = screen
         self.movenment_type = movement_type
@@ -14,7 +14,7 @@ class Counselor_System:
 
     def movement(self):
         #checks if the animatronic is Carp
-        if self.movenment_type == 'Carp':
+        if self.movenment_type == 'carp':
             #Carp's movement path
             self.path = ["pos1","pos2","pos3","pos4","pos5"]
             #if carp has stayed in his location for as long as his movement time
@@ -30,7 +30,7 @@ class Counselor_System:
     def get_counselor(self):
         return self.path[self.location]
 
-carp = Counselor_System(None,'Carp',0,300,10)
+carp = Counselor(None,'carp',0,300,10)
 clock = pygame.time.Clock()
 while True:
     clock.tick(60)
