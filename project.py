@@ -7,13 +7,8 @@ import time
 def main():
     # turn on pygame
     pygame.init()
-
-    # create a screen
-    pygame.display.set_caption("Cool Project")
-    # TODO: Change the size of the screen as you see fit!
-    screen = pygame.display.set_mode((640, 480))
-    # creates a Character from the my_character.py file
-    character = my_character.Character(screen, 100, 100)
+    pygame.display.set_caption("One Night at Catapult")
+    screen = pygame.display.set_mode((1280, 720))
 
     # let's set the framerate
     clock = pygame.time.Clock()
