@@ -38,4 +38,5 @@ def main():
         pygame.display.update()
         print('hello world')
         print("YOYOYO AIDEN PLZ WORK")
+        print("test test")
 main()
