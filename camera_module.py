@@ -15,8 +15,8 @@ class Camera:
     def draw(self):
         self.screen.blit(self.camera_image,(0,0))
 
-    def is_counselor_there(self):
-        counselor_module.get_counselor()
+    def is_counselor_there(self,name):
+        self.screen.blit(name,(40,40))
         
 
 
