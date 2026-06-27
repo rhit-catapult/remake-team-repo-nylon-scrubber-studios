@@ -67,6 +67,7 @@ class Counselor:
                         self.running = True
                         print('Its Funishment Time')
                         print(self.running)
+                        return 'running'
                         #pygame.mixer.Sound("its_funishment_time.wav").play()
                         
                         
