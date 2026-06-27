@@ -14,6 +14,7 @@ def main():
     screen = pygame.display.set_mode((800,600))
     #screen = pygame.display.set_mode((800, 600), pygame.FULLSCREEN | pygame.SCALED)
     camera_sys = camera_system_module.Camera_System(screen,False)
+    camera_sys.load_everything()
     office = office_module.Office(screen,"images/office.jpg",True)
     left_rect = pygame.Rect(0,0,40,600)
     right_rect = pygame.Rect(760,0,40,600)
@@ -32,8 +33,7 @@ def main():
                     print("clicked")
             if camera_button.rect.collidepoint(pygame.mouse.get_pos()):
                 if event.type == pygame.MOUSEBUTTONDOWN and camera_sys.camera_on == False:
-                    camera_sys.load_everything()
-                    camera_sys.draw()
+                    camera_sys.camera_on = True
                 
 
         #office side scrolling
@@ -50,6 +50,7 @@ def main():
         office.draw()
         aiman_button.draw()
         camera_button.draw()
+        camera_sys.camera_on_or_off()
 
 
 

@@ -25,6 +25,7 @@ class Camera:
 
     #draws the camera
     def draw(self):
+        self.camera_image = pygame.transform.scale(self.camera_image,(800,600))
         self.screen.blit(self.camera_image,(0,0))
 
     #draws the counselors
