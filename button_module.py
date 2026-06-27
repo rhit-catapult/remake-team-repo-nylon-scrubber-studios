@@ -18,7 +18,7 @@ class Buttons:
     def is_pressed(self,pos):
         posx = pos[0]
         posy = pos[1]
-        return (self.x < posx < self.width and self.y < posy < self.height)
+        return (self.x < posx < self.image.get_width() and self.y < posy < self.image.get_height)
     
 def main():
     pygame.init()
