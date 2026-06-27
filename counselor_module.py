@@ -129,6 +129,7 @@ def main():
                 sys.exit()
             if carp_button.is_pressed(pygame.mouse.get_pos()) == True:
                 if event.type == pygame.MOUSEBUTTONDOWN:
+                    print('was pressed')
                     carp.carp_button_pushed(carp_button)
 
         
@@ -137,11 +138,11 @@ def main():
 
         screen.fill((255, 255, 255))
         carp_button.draw()
-    
+        pygame.draw.rect(screen,'black',(carp_button.x,carp_button.y, carp_button.image.get_width(),carp_button.image.get_height()))
     
     
         
-        carp.movement()
+        print(carp.movement())
         pygame.display.update()
 if __name__ == '__main__':
     main()
