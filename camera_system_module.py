@@ -8,17 +8,17 @@ class Camera_System:
         self.screen = screen
         self.current_camera = 0
         self.camera_on = camera_on
-        #self.minimap_image = pygame.image.load("")
+        self.minimap_image = pygame.image.load("images/test_picture.png")
         self.cameras = []
         self.camera_image_folders = ["images/cam1_images","images/cam2_images","images/cam3_images","images/cam4_images","images/cam5_images","images/cam6_images"]
 
     def load_everything(self):
-        self.camera_1 = camera_module.Camera(self.screen, "*image*", self.camera_image_folders[0])
-        self.camera_2 = camera_module.Camera(self.screen, "*image*", self.camera_image_folders[1])
-        self.camera_3 = camera_module.Camera(self.screen, "*image*", self.camera_image_folders[2])
-        self.camera_4 = camera_module.Camera(self.screen, "*image*", self.camera_image_folders[3])
-        self.camera_5 = camera_module.Camera(self.screen, "*image*", self.camera_image_folders[4])
-        self.camera_6 = camera_module.Camera(self.screen, "*image*", self.camera_image_folders[5])
+        self.camera_1 = camera_module.Camera(self.screen, "images/cam2_main.jpg", self.camera_image_folders[0])
+        self.camera_2 = camera_module.Camera(self.screen, "images/cam2_main.jpg", self.camera_image_folders[1])
+        self.camera_3 = camera_module.Camera(self.screen, "images/cam2_main.jpg", self.camera_image_folders[2])
+        self.camera_4 = camera_module.Camera(self.screen, "images/cam2_main.jpg", self.camera_image_folders[3])
+        self.camera_5 = camera_module.Camera(self.screen, "images/cam2_main.jpg", self.camera_image_folders[4])
+        self.camera_6 = camera_module.Camera(self.screen, "images/cam2_main.jpg", self.camera_image_folders[5])
         self.cameras.append(self.camera_1)
         self.cameras.append(self.camera_2)
         self.cameras.append(self.camera_3)
@@ -39,11 +39,11 @@ class Camera_System:
     def switch_camera(self, camera_to_switch_to):
         self.current_camera = camera_to_switch_to
 
-    def draw_cameras(self,current_camera):
+    def draw_cameras(self):
         #current_camera 0 corresponds to camera 1
         
-        if current_camera == 0: #cam 1
-            camera_module.camera_1.draw()
+        if self.current_camera == 0: #cam 1
+            self.camera_1.draw()
             if counselor_module.jj.location == "kitchen(start)":
                 self.camera_1.draw_counselor("jj", (30,30))
             if counselor_module.jj.location == "kitchen(middle)":
@@ -55,15 +55,15 @@ class Camera_System:
             if counselor_module.andrew.location == "":
                 self.camera_1.draw_counselor("andrew", (70,70))
 
-        elif current_camera == 1: #cam 2
-            camera_module.camera_2.draw()
+        elif self.current_camera == 1: #cam 2
+            self.camera_2.draw()
             if counselor_module.carp.location == "livingroom":
                 self.camera_2.draw_counselor("carp", (50,50))
             if counselor_module.ethan.location == "":
                 self.camera_2.draw_counselor("ethan", (50,50))
 
-        elif current_camera == 2: #cam 3
-            camera_module.camera_3.draw()
+        elif self.current_camera == 2: #cam 3
+            self.camera_3.draw()
             if counselor_module.ethan.location == "":
                 self.camera_3.draw_counselor("ethan", (50,50))
             if counselor_module.carp.location == "left_hallway":
@@ -71,22 +71,22 @@ class Camera_System:
             if counselor_module.carp.location == "peek":
                 self.camera_3.draw_counselor("carp", (100,100))
 
-        elif current_camera == 3: #cam 4
-            camera_module.camera_4.draw()
+        elif self.current_camera == 3: #cam 4
+            self.camera_4.draw()
             if counselor_module.ethan.location == "":
                 self.camera_4.draw_counselor("ethan", (50,50))
             if counselor_module.andrew.location == "":
                 self.camera_4.draw_counselor("andrew", (70,70))
 
-        elif current_camera == 4: #cam 5
-            camera_module.camera_5.draw()
+        elif self.current_camera == 4: #cam 5
+            self.camera_5.draw()
             if counselor_module.carp.location == "left_doorway":
                 self.camera_5.draw_counselor("carp", (100,100))
             if counselor_module.ethan.location == "":
                 self.camera_5.draw_counselor("ethan", (40,40))
 
         else: #cam 6
-            camera_module.camera_6.draw()
+            self.camera_6.draw()
             if counselor_module.aiman.location == "":
                 self.camera_6.draw_counselor("aiman", (100,100))
     def draw(self):

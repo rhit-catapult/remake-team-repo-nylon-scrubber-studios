@@ -20,16 +20,18 @@ class Buttons:
         posy = pos[1]
         return (self.x < posx < self.x + self.image.get_width() and self.y < posy < self.y+self.image.get_height())
     
+
+
+
 def main():
     pygame.init()
     pygame.display.set_caption("One Night at Catapult")
     screen = pygame.display.set_mode((800,600))
     aiman_button = Buttons(screen,50,400,"images/button_test.png")
 
-    # let's set the framerate
     clock = pygame.time.Clock()
     while True:
-        clock.tick(60)  # this sets the framerate of your game
+        clock.tick(60)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 sys.exit()
@@ -37,16 +39,9 @@ def main():
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     print("clicked")
 
-        
-
-        
-
         screen.fill((255, 255, 255))
         aiman_button.draw()
 
-
-
-        # don't forget the update, otherwise nothing will show up!
         pygame.display.update()
     
 if __name__ == "__main__":

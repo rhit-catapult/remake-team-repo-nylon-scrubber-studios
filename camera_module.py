@@ -11,16 +11,17 @@ class Camera:
         self.camera_image = pygame.image.load(camera_image)
         self.counselors_in_camera = []
         self.folder = []
+        camera_num = 0
         for image in os.listdir(image_folder):
-            self.folder.append(image)
+            camera_num+=1
+            self.folder.append(f"images/cam{camera_num}_images/{image}")
 
     #loads the image files into a variable
     def load_images(self):
-        self.ethan = pygame.image.load("cam1_images/")
-        self.carp = pygame.image.load()
-        self.aiman = pygame.image.load()
-        self.jj = pygame.image.load()
-        self.andrew = pygame.image.load()
+        self.ethan = pygame.image.load(self.folder[2])
+        self.carp = pygame.image.load(self.folder[1])
+        self.jj = pygame.image.load(self.folder[3])
+        self.andrew = pygame.image.load(self.folder[0])
 
     #draws the camera
     def draw(self):

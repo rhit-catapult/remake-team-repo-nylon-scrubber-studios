@@ -14,10 +14,11 @@ def main():
     screen = pygame.display.set_mode((800,600))
     #screen = pygame.display.set_mode((800, 600), pygame.FULLSCREEN | pygame.SCALED)
     camera_sys = camera_system_module.Camera_System(screen,False)
-    office = office_module.Office(screen,"images/test_picture.png",True)
+    office = office_module.Office(screen,"images/office.jpg",True)
     left_rect = pygame.Rect(0,0,40,600)
     right_rect = pygame.Rect(760,0,40,600)
     aiman_button = button_module.Buttons(screen,50,450,"images/button_test.png")
+    camera_button = button_module.Buttons(screen,screen.get_width()/2,500,"images/button_test.png")
 
     # let's set the framerate
     clock = pygame.time.Clock()
@@ -29,7 +30,11 @@ def main():
             if aiman_button.rect.collidepoint(pygame.mouse.get_pos()):
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     print("clicked")
-
+            if camera_button.rect.collidepoint(pygame.mouse.get_pos()):
+                if event.type == pygame.MOUSEBUTTONDOWN and camera_sys.camera_on == False:
+                    camera_sys.load_everything()
+                    camera_sys.draw()
+                
 
         #office side scrolling
         if left_rect.collidepoint(pygame.mouse.get_pos()):
@@ -44,6 +49,7 @@ def main():
 
         office.draw()
         aiman_button.draw()
+        camera_button.draw()
 
 
 
