@@ -25,7 +25,7 @@ class Counselor:
             #if carp has stayed in his location for as long as his movement time
             if seconds == self.time_delay:
                 #subtracts 5 seconds from seconds to prevent rerunning until next 5 seconds
-                self.times_ran +=5
+                self.times_ran += self.time_delay
                 movement_chance = random.randint(1,20)
                 #return carp to his starting location if he has finished his path
                 if self.location == 4:
@@ -103,7 +103,7 @@ class Counselor:
                 if self.location == 4:
                     self.location = 1
                 #if carp as succeeded his movement chance
-                if ethan.path[ethan.location] == self.path[self.location]:
+                if ethan == self.path[self.location]:
                     self.location = self.location + 1
                     return self.path[self.location]
                 
@@ -116,7 +116,9 @@ class Counselor:
             # if failed his movement chance, he stays where he was
             return self.path[self.location]
         
-
+    def ethan_movement(self):
+        milli_seconds = pygame.time.get_ticks()
+        seconds = milli_seconds//1000-self.times_ran
         if self.movenment_type == 'ethan':
             #Carp's movement path
             self.path = ["livingroom","kitchen","right_hall","left_hall","restroom"]
@@ -154,6 +156,7 @@ def main():
     carp_button = button_module.Buttons(screen,50,400,"images/button_test.png")
 
     # let's set the framerate
+    ethan = Counselor(None,'ethan',0,5,20)
     carp = Counselor(None,'carp',2,5,20)
     clock = pygame.time.Clock()
     while True:
@@ -173,8 +176,9 @@ def main():
         carp_button.draw()
     
     
-        
-        print(carp.movement())
+        print('ethan is here: ', ethan.ethan_movement())
+        print('carp is in the:',carp.movement(ethan))
+
         pygame.display.update()
 if __name__ == '__main__':
     main()
