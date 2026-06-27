@@ -10,15 +10,15 @@ class Camera_System:
         self.camera_on = camera_on
         #self.minimap_image = pygame.image.load("")
         self.cameras = []
-        self.camera_image_folders = ["","","","","",""]
+        self.camera_image_folders = ["images/cam1_images","images/cam2_images","images/cam3_images","images/cam4_images","images/cam5_images","images/cam6_images"]
 
     def load_everything(self):
-        self.camera_1 = camera_module.Camera(self.screen, "*image*", "*image folder*")
-        self.camera_2 = camera_module.Camera(self.screen, "*image*", "*image folder*")
-        self.camera_3 = camera_module.Camera(self.screen, "*image*", "*image folder*")
-        self.camera_4 = camera_module.Camera(self.screen, "*image*", "*image folder*")
-        self.camera_5 = camera_module.Camera(self.screen, "*image*", "*image folder*")
-        self.camera_6 = camera_module.Camera(self.screen, "*image*", "*image folder*")
+        self.camera_1 = camera_module.Camera(self.screen, "*image*", self.camera_image_folders[0])
+        self.camera_2 = camera_module.Camera(self.screen, "*image*", self.camera_image_folders[1])
+        self.camera_3 = camera_module.Camera(self.screen, "*image*", self.camera_image_folders[2])
+        self.camera_4 = camera_module.Camera(self.screen, "*image*", self.camera_image_folders[3])
+        self.camera_5 = camera_module.Camera(self.screen, "*image*", self.camera_image_folders[4])
+        self.camera_6 = camera_module.Camera(self.screen, "*image*", self.camera_image_folders[5])
         self.cameras.append(self.camera_1)
         self.cameras.append(self.camera_2)
         self.cameras.append(self.camera_3)
@@ -44,8 +44,12 @@ class Camera_System:
         
         if current_camera == 0: #cam 1
             camera_module.camera_1.draw()
-            if counselor_module.carp.location == "":
+            if counselor_module.jj.location == "kitchen(start)":
                 self.camera_1.draw_counselor("jj", (30,30))
+            if counselor_module.jj.location == "kitchen(middle)":
+                self.camera_1.draw_counselor("jj", (60,60))
+            if counselor_module.jj.location == "kitchen(end)":
+                self.camera_1.draw_counselor("jj", (90,90))
             if counselor_module.ethan.location == "":
                 self.camera_1.draw_counselor("ethan", (50,50))
             if counselor_module.andrew.location == "":
@@ -85,3 +89,7 @@ class Camera_System:
             camera_module.camera_6.draw()
             if counselor_module.aiman.location == "":
                 self.camera_6.draw_counselor("aiman", (100,100))
+    def draw(self):
+        self.draw_cameras()
+        self.draw_minimap()
+        
