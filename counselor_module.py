@@ -5,7 +5,7 @@ import time
 import button_module
 
 class Counselor:
-    def __init__(self,screen, movement_type,location,time_delay,difficulty,ethan):
+    def __init__(self,screen, movement_type,location,time_delay,difficulty):
         self.screen = screen
         self.movenment_type = movement_type
         self.location = location
@@ -14,8 +14,7 @@ class Counselor:
         self.path = []
         self.times_ran = 0
         self.running = False
-        self.ethan = ethan
-    def movement(self):
+    def movement(self,ethan):
         milli_seconds = pygame.time.get_ticks()
         seconds = milli_seconds//1000-self.times_ran
         #checks if the animatronic is Carp
@@ -32,7 +31,7 @@ class Counselor:
                 if self.location == 4:
                     self.location = 0
                 #if carp as succeeded his movement chance
-                if self.ethan.path[self.ethan.location] == self.path[self.location]:
+                if ethan.path[ethan.location] == self.path[self.location]:
                     self.location = self.location + 1
                     return self.path[self.location]
                 if movement_chance <= self.difficulty:
@@ -69,7 +68,7 @@ class Counselor:
                 if self.location == 3:
                     self.location = 0
                 #if carp as succeeded his movement chance
-                if self.ethan.path[self.ethan.location] == self.path[self.location] and self.location !=2:
+                if ethan.path[ethan.location] == self.path[self.location] and self.location !=2:
                     self.location = self.location + 1
                     return self.path[self.location]
                 
@@ -104,7 +103,7 @@ class Counselor:
                 if self.location == 4:
                     self.location = 1
                 #if carp as succeeded his movement chance
-                if self.ethan.path[self.ethan.location] == self.path[self.location]:
+                if ethan.path[ethan.location] == self.path[self.location]:
                     self.location = self.location + 1
                     return self.path[self.location]
                 
@@ -155,7 +154,6 @@ def main():
     carp_button = button_module.Buttons(screen,50,400,"images/button_test.png")
 
     # let's set the framerate
-
     carp = Counselor(None,'carp',2,5,20)
     clock = pygame.time.Clock()
     while True:
