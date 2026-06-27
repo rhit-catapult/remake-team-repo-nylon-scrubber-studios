@@ -20,7 +20,7 @@ class Counselor:
         #checks if the animatronic is Carp
         if self.movenment_type == 'carp':
             #Carp's movement path
-            self.path = ["livingroom","left_hallway","restroom","peek","left_doorway"]
+            self.path = ["livingroom","left_hall","restroom","peek","left_doorway"]
             print(seconds)
             #if carp has stayed in his location for as long as his movement time
             if seconds == self.time_delay:
@@ -92,7 +92,7 @@ class Counselor:
                 movement_chance = random.randint(1,20)
                 #return carp to his starting location if he has finished his path
                 if self.location == 4:
-                    self.location = 0
+                    self.location = 1
                 #if carp as succeeded his movement chance
                 if movement_chance <= self.difficulty:
                     #move to next position in list
@@ -100,8 +100,30 @@ class Counselor:
                     #return his new location
                     return self.path[self.location]
                 
-            # if cou failed his movement chance, he stays where he was
+            # if failed his movement chance, he stays where he was
             return self.path[self.location]
+        
+
+        if self.movenment_type == 'ethan':
+            #Carp's movement path
+            self.path = ["livingroom","kitchen","right_hall","left_hall","restroom"]
+            print(seconds)
+            #if carp has stayed in his location for as long as his movement time
+            if seconds == self.time_delay:
+                #subtracts 5 seconds from seconds to prevent rerunning until next 5 seconds
+                self.times_ran +=5
+                movement_chance = random.randint(1,20)
+                #return carp to his starting location if he has finished his path
+                #if carp as succeeded his movement chance
+                if movement_chance <= self.difficulty:
+                    #move to next position in list
+                    self.location = random.randint(0,4)
+                    #return his new location
+                    return self.path[self.location]
+                
+            # if failed his movement chance, he stays where he was
+            return self.path[self.location]
+
 
     def carp_button_pushed(self,button):
         if self.location > 2:
@@ -129,7 +151,6 @@ def main():
                 sys.exit()
             if carp_button.is_pressed(pygame.mouse.get_pos()) == True:
                 if event.type == pygame.MOUSEBUTTONDOWN:
-                    print('was pressed')
                     carp.carp_button_pushed(carp_button)
 
         
@@ -138,7 +159,6 @@ def main():
 
         screen.fill((255, 255, 255))
         carp_button.draw()
-        pygame.draw.rect(screen,'black',(carp_button.x,carp_button.y, carp_button.image.get_width(),carp_button.image.get_height()))
     
     
         
