@@ -5,7 +5,7 @@ import time
 import button_module
 
 class Counselor:
-    def __init__(self,screen, movement_type,location,time_delay,difficulty):
+    def __init__(self,screen, movement_type,location,time_delay,difficulty,ethan):
         self.screen = screen
         self.movenment_type = movement_type
         self.location = location
@@ -14,6 +14,7 @@ class Counselor:
         self.path = []
         self.times_ran = 0
         self.running = False
+        self.ethan = ethan
     def movement(self):
         milli_seconds = pygame.time.get_ticks()
         seconds = milli_seconds//1000-self.times_ran
@@ -31,6 +32,9 @@ class Counselor:
                 if self.location == 4:
                     self.location = 0
                 #if carp as succeeded his movement chance
+                if self.ethan.path[self.ethan.location] == self.path[self.location]:
+                    self.location = self.location + 1
+                    return self.path[self.location]
                 if movement_chance <= self.difficulty:
                     #move to next position in list
                     self.location = self.location+1
@@ -50,10 +54,12 @@ class Counselor:
                     return self.location
                 else:
                     return 'running'
-
+            
 
             self.path = ["kitchen(start)","kitchen(middle)","kitchen(end)","left_door"]
             print(seconds)
+
+            
             #if carp has stayed in his location for as long as his movement time
             if seconds == self.time_delay:
                 #subtracts 5 seconds from seconds to prevent rerunning until next 5 seconds
@@ -63,6 +69,10 @@ class Counselor:
                 if self.location == 3:
                     self.location = 0
                 #if carp as succeeded his movement chance
+                if self.ethan.path[self.ethan.location] == self.path[self.location] and self.location !=2:
+                    self.location = self.location + 1
+                    return self.path[self.location]
+                
                 if movement_chance <= self.difficulty:
                     if self.location == 2:
                         self.running = True
@@ -94,6 +104,10 @@ class Counselor:
                 if self.location == 4:
                     self.location = 1
                 #if carp as succeeded his movement chance
+                if self.ethan.path[self.ethan.location] == self.path[self.location]:
+                    self.location = self.location + 1
+                    return self.path[self.location]
+                
                 if movement_chance <= self.difficulty:
                     #move to next position in list
                     self.location = self.location+1
@@ -125,7 +139,7 @@ class Counselor:
             return self.path[self.location]
 
 
-    def carp_button_pushed(self,button):
+    def carp_button_pushed(self):
         if self.location > 2:
             self.location = 0
 
