@@ -2,23 +2,32 @@ import sys
 import pygame
 import camera_module
 import counselor_module
+import button_module
+import time
+
+from settings import *
 
 class Camera_System:
     def __init__(self, screen: pygame.Surface, camera_on):
+
         self.screen = screen
         self.current_camera = 0
+        self.count =0
         self.camera_on = camera_on
         self.minimap_image = pygame.image.load("images/test_picture.png")
         self.cameras = []
+        self.last_click = 0
+        self.delay = 200
+        self.button = button_module.Buttons(screen,screen.get_width()/2-40,500,"images/button_test.png")
         self.camera_image_folders = ["images/cam1_images","images/cam2_images","images/cam3_images","images/cam4_images","images/cam5_images","images/cam6_images"]
 
     def load_everything(self):
-        self.camera_1 = camera_module.Camera(self.screen, "images/cam2_main.jpg", self.camera_image_folders[0])
-        self.camera_2 = camera_module.Camera(self.screen, "images/cam2_main.jpg", self.camera_image_folders[1])
-        self.camera_3 = camera_module.Camera(self.screen, "images/cam2_main.jpg", self.camera_image_folders[2])
-        self.camera_4 = camera_module.Camera(self.screen, "images/cam2_main.jpg", self.camera_image_folders[3])
-        self.camera_5 = camera_module.Camera(self.screen, "images/cam2_main.jpg", self.camera_image_folders[4])
-        self.camera_6 = camera_module.Camera(self.screen, "images/cam2_main.jpg", self.camera_image_folders[5])
+        self.camera_1 = camera_module.Camera(self.screen, "images/cam1_main.jpg", self.camera_image_folders[0],20,20)
+        self.camera_2 = camera_module.Camera(self.screen, "images/cam2_main.jpg", self.camera_image_folders[1],60,20)
+        self.camera_3 = camera_module.Camera(self.screen, "images/cam3_main.jpg", self.camera_image_folders[2],100,20)
+        self.camera_4 = camera_module.Camera(self.screen, "images/cam4_main.jpg", self.camera_image_folders[3],140,20)
+        self.camera_5 = camera_module.Camera(self.screen, "images/cam5_main.jpg", self.camera_image_folders[4],180,20)
+        self.camera_6 = camera_module.Camera(self.screen, "images/cam6_main.jpg", self.camera_image_folders[5],220,20)
         self.cameras.append(self.camera_1)
         self.cameras.append(self.camera_2)
         self.cameras.append(self.camera_3)
@@ -36,11 +45,56 @@ class Camera_System:
 
     def draw_minimap(self, minimap_x, minimap_y):
         self.screen.blit(self.minimap_image, (minimap_x, minimap_y))
+        self.camera_1.button.draw(40,40)
+        self.camera_2.button.draw(40,40)
+        self.camera_3.button.draw(40,40)
+        self.camera_4.button.draw(40,40)
+        self.camera_5.button.draw(40,40)
+        self.camera_6.button.draw(40,40)
+
 
     def camera_on_or_off(self):
         if self.camera_on:
             self.draw_cameras()
             self.draw_minimap(400,400)
+            self.button.draw(200,50)
+
+    def update(self):
+        self.draw()
+        print(self.last_click)
+
+        #Cam 1
+        if self.camera_1.button.is_pressed_display() and pygame.time.get_ticks() - self.last_click > self.delay:
+            self.last_click = pygame.time.get_ticks()
+            self.switch_camera(0)
+
+        #cam 2
+        elif self.camera_2.button.is_pressed_display() and pygame.time.get_ticks() - self.last_click > self.delay:
+            self.last_click = pygame.time.get_ticks()
+            self.switch_camera(1)
+
+        #cam 3
+        elif self.camera_3.button.is_pressed_display() and pygame.time.get_ticks() - self.last_click > self.delay:
+            self.last_click = pygame.time.get_ticks()
+            self.switch_camera(2)
+
+        elif self.camera_4.button.is_pressed_display() and pygame.time.get_ticks() - self.last_click > self.delay:
+            self.last_click = pygame.time.get_ticks()
+            self.switch_camera(3)
+
+        elif self.camera_5.button.is_pressed_display() and pygame.time.get_ticks() - self.last_click > self.delay:
+            self.last_click = pygame.time.get_ticks()
+            self.switch_camera(4)
+
+        elif self.camera_6.button.is_pressed_display() and pygame.time.get_ticks() - self.last_click > self.delay:
+            self.last_click = pygame.time.get_ticks()
+            self.switch_camera(5)
+
+        if self.button.is_pressed_display() and pygame.time.get_ticks() - self.last_click > self.delay:
+            self.last_click = pygame.time.get_ticks()
+            self.camera_on = False
+                    
+            
 
     def switch_camera(self, camera_to_switch_to):
         self.current_camera = camera_to_switch_to
@@ -61,7 +115,7 @@ class Camera_System:
             if self.andrew.location == "":
                 self.camera_1.draw_counselor("andrew", (70,70))
 
-        elif self.current_camera == 1: #cam 2
+        if self.current_camera == 1: #cam 2
             self.camera_2.draw()
             if self.carp.location == "livingroom":
                 self.camera_2.draw_counselor("carp", (50,50))
@@ -91,11 +145,13 @@ class Camera_System:
             if self.ethan.location == "":
                 self.camera_5.draw_counselor("ethan", (40,40))
 
-        else: #cam 6
+        elif self.current_camera == 5: #cam 6
             self.camera_6.draw()
             if self.aiman.location == "":
                 self.camera_6.draw_counselor("aiman", (100,100))
+
     def draw(self):
-        #self.draw_cameras()
+        self.draw_cameras()
         self.draw_minimap(400,400)
+        self.button.draw(200,50)
         

@@ -106,7 +106,12 @@ class Counselor:
                 
             # if failed his movement chance, he stays where he was
             return self.path[self.location]
-        
+    
+    def carp_button_pushed(self):
+        if self.location > 2:
+            self.location = 0
+
+
     def ethan_movement(self):
         milli_seconds = pygame.time.get_ticks()
         seconds = milli_seconds//1000-self.times_ran
@@ -130,42 +135,59 @@ class Counselor:
             # if failed his movement chance, he stays where he was
             return self.path[self.location]
 
-
+    
+        
+        
+            
     def get_counselor(self):
         return self.path[self.location]
 
 
+class Aimen:
+    def __init__(self,timer):
+        self.seconds = 0
+        self.awake = False
+        self.timer = timer
+        self.start_time =0
+
+    def aimen_clock(self):
+        print(self.seconds)
+        self.seconds = pygame.time.get_ticks()//1000 - self.start_time
+        if self.seconds >= self.timer:
+            aimen_awake = True
+            print('dead')
+            return aimen_awake
+        else:
+            aimen_awake = False
+            return aimen_awake
+    def aimen_button_pushed(self):
+        self.start_time = self.seconds
 
 def main():
     pygame.init()
     pygame.display.set_caption("One Night at Catapult")
     screen = pygame.display.set_mode((800,600))
-    carp_button = button_module.Buttons(screen,50,400,"images/button_test.png")
+    aimen_button = button_module.Buttons(screen,50,400,"images/button_test.png")
 
     # let's set the framerate
-    ethan = Counselor(None,'ethan',0,5,20)
-    carp = Counselor(None,'carp',2,5,20)
+    aimen = Aimen(20)
     clock = pygame.time.Clock()
-    end = 0
     while True:
         clock.tick(60)  # this sets the framerate of your game
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 sys.exit()
-            if carp_button.is_pressed(pygame.mouse.get_pos()) == True:
+            if aimen_button.is_pressed(pygame.mouse.get_pos()) == True:
                 if event.type == pygame.MOUSEBUTTONDOWN:
-                    carp.carp_button_pushed(carp_button)
+                    aimen.aimen_button_pushed()
 
         
 
         
 
         screen.fill((255, 255, 255))
-        carp_button.draw()
-    
-    
-        print('ethan is here: ', ethan.ethan_movement())
-        print('carp is in the:',carp.movement(ethan))
+        aimen_button.draw()
+        aimen.aimen_clock()
 
         pygame.display.update()
 if __name__ == '__main__':
