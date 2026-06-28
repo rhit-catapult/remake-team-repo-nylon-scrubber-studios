@@ -14,7 +14,8 @@ class Camera_System:
         self.current_camera = 0
         self.count =0
         self.camera_on = camera_on
-        self.minimap_image = pygame.image.load("images/test_picture.png")
+        self.minimap_image = pygame.image.load("images/minimap.png")
+        self.minimap_image = pygame.transform.scale(self.minimap_image,(300,300))
         self.cameras = []
         self.last_click = 0
         self.delay = 200
@@ -38,7 +39,7 @@ class Camera_System:
             i.load_images()
         self.jj = counselor_module.Counselor(None,'jj',2,5,20)
         self.carp = counselor_module.Counselor(None,'carp',2,5,20)
-        self.aiman = counselor_module.Counselor(None,'aiman',2,5,20)
+        self.aiman = counselor_module.Counselor(None,'aiman',6,10,1)
         self.ethan = counselor_module.Counselor(None,'ethan',2,5,20)
         self.andrew = counselor_module.Counselor(None,'andrew',2,5,20)
 
@@ -56,7 +57,7 @@ class Camera_System:
     def camera_on_or_off(self):
         if self.camera_on:
             self.draw_cameras()
-            self.draw_minimap(400,400)
+            self.draw_minimap(500,300)
             self.button.draw(200,50)
 
     def update(self):
@@ -155,3 +156,54 @@ class Camera_System:
         self.draw_minimap(400,400)
         self.button.draw(200,50)
         
+
+def main():
+    # turn on pygame
+    pygame.init()
+    pygame.display.set_caption("One Night at Catapult")
+    screen = pygame.display.set_mode((800,600))
+
+    #screen = pygame.display.set_mode((800, 600), pygame.FULLSCREEN | pygame.SCALED)
+    camera_sys = Camera_System(screen,False)
+    camera_sys.load_everything()
+    aiman_button = button_module.Buttons(screen,50,450,"images/button_test.png")
+    camera_button_office = button_module.Buttons(screen,screen.get_width()/2,500,"images/button_test.png")
+
+    # let's set the framerate
+    clock = pygame.time.Clock()
+    while True:
+        clock.tick(60)  # this sets the framerate of your game
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                sys.exit()
+            mouse_pos = pygame.mouse.get_pos()
+            if camera_sys.camera_on == False:
+                if aiman_button.rect.collidepoint(mouse_pos):
+                    if event.type == pygame.MOUSEBUTTONDOWN:
+                        print("clicked")
+                if camera_button_office.rect.collidepoint(mouse_pos):
+                    if event.type == pygame.MOUSEBUTTONDOWN:
+                        camera_sys.camera_on = True
+                        print("cam click")  
+        
+        screen.fill((255, 255, 255))
+
+        #draws the office if cameras are off
+        if camera_sys.camera_on == False:
+            aiman_button.draw(40,40)
+            camera_button_office.draw(100,50)
+            camera_sys.last_click = pygame.time.get_ticks()
+
+        #draws the cameras if cameras are on
+        if camera_sys.camera_on:
+            camera_sys.update()
+            
+        
+
+
+
+        # don't forget the update, otherwise nothing will show up!
+        pygame.display.update()
+
+if __name__ == "__main__":
+    main()

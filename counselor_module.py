@@ -14,6 +14,7 @@ class Counselor:
         self.path = []
         self.times_ran = 0
         self.running = False
+        
     def movement(self,ethan):
         milli_seconds = pygame.time.get_ticks()
         seconds = milli_seconds//1000-self.times_ran
