@@ -6,14 +6,21 @@ class Start_Screen:
     def __init__(self, screen):
         self.screen = screen
         self.title_screen_font = pygame.font.SysFont("times new roman", 50, True, True)
-        self.title_screen_text = self.title_screen_font.render("FOUR NIGHTS AT CATAPULT", True, (200,0,0))
-        self.title_text_x = (self.screen.get_width() - self.title_screen_text.get_width())/2
-        self.start_button = button_module(self.screen, 400, 300, "images/button_test.png")
+        self.start_screen_text = self.title_screen_font.render("FOUR NIGHTS AT CATAPULT", True, (200,0,0))
+        self.game_over_screen_text = self.title_screen_font.render("YOU GOT FUNISHED!", True, (200,0,0))
+        self.start_screen_text_x = (self.screen.get_width() - self.start_screen_text.get_width())/2
+        self.game_over_screen_text_x = (self.screen.get_width() - self.game_over_screen_text.get_width())/2
+        self.start_button = button_module.Buttons(self.screen, 400, 300, "images/button_test.png")
+        self.game_over_button = button_module.Buttons(self.screen, 400, 300, "images/button_test.png")
     def draw_start_screen(self, title_text_y):
         self.screen.fill((0,0,0))
-        self.screen.blit(self.title_screen_text, (self.title_text_x, title_text_y))
+        self.screen.blit(self.start_screen_text, (self.start_screen_text_x, title_text_y))
         self.start_button.draw()
-        self.start_button.is_pressed()
+    def draw_game_over_screen(self, title_text_y):
+        self.screen.fill((0,0,0))
+        self.screen.blit(self.game_over_screen_text, (self.game_over_screen_text_x, title_text_y))
+        self.game_over_button.draw()
+             
         
 
 def main():
@@ -25,6 +32,16 @@ def main():
         for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     sys.exit()
+                if test.start_button.is_pressed(pygame.mouse.get_pos()):
+                    #event logic for mousebuttondown gives multiple
+                    if event.type == pygame.MOUSEBUTTONDOWN:
+                        print("START GAME LETTTSSSS GOOOOOOO YOOOOO YOOOO YOOOO")
+                        while True:
+                            test.draw_game_over_screen(100)
+                            if test.game_over_button.is_pressed(pygame.mouse.get_pos()):
+                                if event.type == pygame.MOUSEBUTTONDOWN:
+                                    print("exited game")
+                                    break
         pygame.display.update()
 
 
