@@ -37,7 +37,7 @@ class Camera_System:
         self.cameras.append(self.camera_6)
         self.jj = counselor_module.Counselor(None,'jj',2,5,20)
         self.carp = counselor_module.Counselor(None,'carp',2,5,20)
-        self.aiman = counselor_module.Aimen(20)
+        self.aiman = counselor_module.Aimen(10)
         self.ethan = counselor_module.Counselor(None,'ethan',2,5,20)
         self.andrew = counselor_module.Counselor(None,'andrew',2,5,20)
 
