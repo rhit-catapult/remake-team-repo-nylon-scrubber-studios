@@ -3,6 +3,7 @@ import random
 import time
 import button_module
 import sys
+import office_module
 
 class Counselor:
     def __init__(self,screen, movement_type,location,time_delay,difficulty):
@@ -14,7 +15,7 @@ class Counselor:
         self.path = []
         self.times_ran = 0
         self.running = False
-    def movement(self,ethan):
+    def movement(self,ethan,door,game_over = False):
         milli_seconds = pygame.time.get_ticks()
         seconds = milli_seconds//1000-self.times_ran
         #checks if the animatronic is Carp
@@ -28,8 +29,13 @@ class Counselor:
                 self.times_ran += self.time_delay
                 movement_chance = random.randint(1,20)
                 #return carp to his starting location if he has finished his path
-                if self.location == 4:
+                if self.location == 4 and door.is_closed() == False:
+                    game_over = True
+                    return
+                elif self.location == 4:
                     self.location = 0
+
+
                 #if carp as succeeded his movement chance
                 if movement_chance <= self.difficulty:
                     #move to next position in list
@@ -149,15 +155,13 @@ class Aimen:
         self.awake = False
         self.timer = timer
         self.start_time =0
-        self.aimen_awake = False
 
     def aimen_clock(self):
-        print(self.seconds)
         self.seconds = pygame.time.get_ticks()//1000 - self.start_time
         if self.seconds >= self.timer:
-            self.aimen_awake = True
-        else:
-            self.aimen_awake = False
+            aimen_awake = True
+        aimen_awake = False
+        return aimen_awake
     
     def aimen_button_pushed(self):
         self.start_time = pygame.time.get_ticks()//1000
@@ -167,6 +171,7 @@ def main():
     pygame.display.set_caption("One Night at Catapult")
     screen = pygame.display.set_mode((800,600))
     aimen_button = button_module.Buttons(screen,50,400,"images/button_test.png")
+    left_door = office_module.Door()
 
     # let's set the framerate
     aimen = Aimen(20)

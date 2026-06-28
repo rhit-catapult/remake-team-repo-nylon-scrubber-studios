@@ -8,6 +8,7 @@ class Office:
         self.image = pygame.image.load(image)
         self.x = -200
         self.cam_off = camera_off
+        self.door_closed = False
 
     def draw(self):
         if self.cam_off:
@@ -21,6 +22,13 @@ class Office:
             self.x -= 2
 
 
+class Door:
+    def __init__(self):
+        self.closed = False
+    def is_closed(self):
+        if self.closed == True:
+            return True
+        return False
 
 #test function
 def main():
