@@ -21,6 +21,8 @@ class Office:
         elif direction == "right" and self.x > -200:
             self.x -= 2
 
+    
+
 
 class Door:
     def __init__(self):

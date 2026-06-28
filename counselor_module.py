@@ -160,7 +160,8 @@ class Aimen:
         self.seconds = pygame.time.get_ticks()//1000 - self.start_time
         if self.seconds >= self.timer:
             aimen_awake = True
-        aimen_awake = False
+        else:
+            aimen_awake = False
         return aimen_awake
     
     def aimen_button_pushed(self):
