@@ -4,7 +4,7 @@ import camera_module
 import counselor_module
 
 class Camera_System:
-    def __init__(self, screen, camera_on):
+    def __init__(self, screen: pygame.Surface, camera_on):
         self.screen = screen
         self.current_camera = 0
         self.camera_on = camera_on
@@ -27,6 +27,11 @@ class Camera_System:
         self.cameras.append(self.camera_6)
         for i in self.cameras:
             i.load_images()
+        self.jj = counselor_module.Counselor(None,'jj',2,5,20)
+        self.carp = counselor_module.Counselor(None,'carp',2,5,20)
+        self.aiman = counselor_module.Counselor(None,'aiman',2,5,20)
+        self.ethan = counselor_module.Counselor(None,'ethan',2,5,20)
+        self.andrew = counselor_module.Counselor(None,'andrew',2,5,20)
 
 
     def draw_minimap(self, minimap_x, minimap_y):
@@ -34,6 +39,7 @@ class Camera_System:
 
     def camera_on_or_off(self):
         if self.camera_on:
+            self.draw_cameras()
             self.draw_minimap(400,400)
 
     def switch_camera(self, camera_to_switch_to):
@@ -44,52 +50,52 @@ class Camera_System:
         
         if self.current_camera == 0: #cam 1
             self.camera_1.draw()
-            if counselor_module.jj.location == "kitchen(start)":
+            if self.jj.location == "kitchen(start)":
                 self.camera_1.draw_counselor("jj", (30,30))
-            if counselor_module.jj.location == "kitchen(middle)":
+            if self.jj.location == "kitchen(middle)":
                 self.camera_1.draw_counselor("jj", (60,60))
-            if counselor_module.jj.location == "kitchen(end)":
+            if self.jj.location == "kitchen(end)":
                 self.camera_1.draw_counselor("jj", (90,90))
-            if counselor_module.ethan.location == "":
+            if self.ethan.location == "":
                 self.camera_1.draw_counselor("ethan", (50,50))
-            if counselor_module.andrew.location == "":
+            if self.andrew.location == "":
                 self.camera_1.draw_counselor("andrew", (70,70))
 
         elif self.current_camera == 1: #cam 2
             self.camera_2.draw()
-            if counselor_module.carp.location == "livingroom":
+            if self.carp.location == "livingroom":
                 self.camera_2.draw_counselor("carp", (50,50))
-            if counselor_module.ethan.location == "":
+            if self.ethan.location == "":
                 self.camera_2.draw_counselor("ethan", (50,50))
 
         elif self.current_camera == 2: #cam 3
             self.camera_3.draw()
-            if counselor_module.ethan.location == "":
+            if self.ethan.location == "":
                 self.camera_3.draw_counselor("ethan", (50,50))
-            if counselor_module.carp.location == "left_hallway":
+            if self.carp.location == "left_hallway":
                 self.camera_3.draw_counselor("carp", (50,50))
-            if counselor_module.carp.location == "peek":
+            if self.carp.location == "peek":
                 self.camera_3.draw_counselor("carp", (100,100))
 
         elif self.current_camera == 3: #cam 4
             self.camera_4.draw()
-            if counselor_module.ethan.location == "":
+            if self.ethan.location == "":
                 self.camera_4.draw_counselor("ethan", (50,50))
-            if counselor_module.andrew.location == "":
+            if self.andrew.location == "":
                 self.camera_4.draw_counselor("andrew", (70,70))
 
         elif self.current_camera == 4: #cam 5
             self.camera_5.draw()
-            if counselor_module.carp.location == "left_doorway":
+            if self.carp.location == "left_doorway":
                 self.camera_5.draw_counselor("carp", (100,100))
-            if counselor_module.ethan.location == "":
+            if self.ethan.location == "":
                 self.camera_5.draw_counselor("ethan", (40,40))
 
         else: #cam 6
             self.camera_6.draw()
-            if counselor_module.aiman.location == "":
+            if self.aiman.location == "":
                 self.camera_6.draw_counselor("aiman", (100,100))
     def draw(self):
-        self.draw_cameras()
-        self.draw_minimap()
+        #self.draw_cameras()
+        self.draw_minimap(400,400)
         
