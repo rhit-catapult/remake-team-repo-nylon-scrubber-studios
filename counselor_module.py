@@ -14,7 +14,6 @@ class Counselor:
         self.path = []
         self.times_ran = 0
         self.running = False
-        
     def movement(self,ethan):
         milli_seconds = pygame.time.get_ticks()
         seconds = milli_seconds//1000-self.times_ran
@@ -152,17 +151,14 @@ class Aimen:
         self.start_time =0
 
     def aimen_clock(self):
-        print(self.seconds)
         self.seconds = pygame.time.get_ticks()//1000 - self.start_time
         if self.seconds >= self.timer:
             aimen_awake = True
-            print('dead')
-            return aimen_awake
-        else:
-            aimen_awake = False
-            return aimen_awake
+        aimen_awake = False
+        return aimen_awake
+    
     def aimen_button_pushed(self):
-        self.start_time = self.seconds
+        self.start_time = pygame.time.get_ticks()//1000
 
 def main():
     pygame.init()
