@@ -7,26 +7,27 @@ class Buttons:
         self.screen = screen
         self.x = x
         self.y = y
-        self.image = pygame.image.load(image)
+        self.base_image = pygame.image.load(image).convert_alpha()
+        self.image = self.base_image
         self.rect = pygame.Rect(x,y,self.image.get_width(),self.image.get_height())
 
-    
-    def draw(self,scale_x,scale_y):
-        self.image = pygame.transform.scale(self.image,(scale_x,scale_y))
-        self.screen.blit(self.image,(self.x,self.y))
+    def draw(self, scale_x=None, scale_y=None):
+        if scale_x is not None and scale_y is not None:
+            self.image = pygame.transform.scale(self.base_image, (scale_x, scale_y))
+        else:
+            self.image = self.base_image
+
+        self.rect.size = self.image.get_size()
+        self.rect.topleft = (self.x, self.y)
+        self.screen.blit(self.image, (self.x, self.y))
 
     def is_pressed_display(self):
         mouse_pos = pygame.mouse.get_pos()
         mouse_press = pygame.mouse.get_pressed()[0]
+        return self.rect.collidepoint(mouse_pos) and mouse_press
 
-        if self.rect.collidepoint(mouse_pos) and mouse_press:
-            return True
-
-    #determine if button was pushed
-    def is_pressed(self,pos):
-        posx = pos[0]
-        posy = pos[1]
-        return (self.x < posx < self.width and self.y < posy < self.height)
+    def is_pressed(self, pos):
+        return self.rect.collidepoint(pos)
     
 
 

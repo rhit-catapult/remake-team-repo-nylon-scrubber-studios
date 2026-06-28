@@ -3,14 +3,20 @@ import pygame
 import camera_module
 import counselor_module
 import button_module
+import time
+from settings import *
 
 class Camera_System:
     def __init__(self, screen: pygame.Surface, camera_on):
+
         self.screen = screen
         self.current_camera = 0
+        self.count =0
         self.camera_on = camera_on
         self.minimap_image = pygame.image.load("images/test_picture.png")
         self.cameras = []
+        self.last_click = 0
+        self.delay = 200
         self.button = button_module.Buttons(screen,screen.get_width()/2-40,500,"images/button_test.png")
         self.camera_image_folders = ["images/cam1_images","images/cam2_images","images/cam3_images","images/cam4_images","images/cam5_images","images/cam6_images"]
 
@@ -51,6 +57,15 @@ class Camera_System:
             self.draw_cameras()
             self.draw_minimap(400,400)
             self.button.draw(200,50)
+
+    def update(self):
+        self.draw()
+        print(self.last_click)
+        if self.button.is_pressed_display() and pygame.time.get_ticks() - self.last_click > self.delay:
+            
+            self.last_click = pygame.time.get_ticks()
+            self.camera_on = False
+                    
             
 
     def switch_camera(self, camera_to_switch_to):
@@ -110,4 +125,5 @@ class Camera_System:
     def draw(self):
         self.draw_cameras()
         self.draw_minimap(400,400)
+        self.button.draw(200,50)
         
