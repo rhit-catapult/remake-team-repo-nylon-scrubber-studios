@@ -16,11 +16,11 @@ class Camera:
         camera_num = 0
 
     #loads the image files into a variable
-    def load_images(self):
-        self.ethan = pygame.image.load(self.folder[2])
-        self.carp = pygame.image.load(self.folder[1])
-        self.jj = pygame.image.load(self.folder[3])
-        self.andrew = pygame.image.load(self.folder[0])
+    # def load_images(self):
+    #     self.ethan = pygame.image.load(self.folder[2])
+    #     self.carp = pygame.image.load(self.folder[1])
+    #     self.jj = pygame.image.load(self.folder[3])
+    #     self.andrew = pygame.image.load(self.folder[0])
 
     #draws the camera
     def draw(self):
@@ -28,8 +28,9 @@ class Camera:
         self.screen.blit(self.camera_image,(0,0))
 
     #draws the counselors
-    def draw_counselor(self,file_path,pos):
+    def draw_counselor(self,file_path,pos,scale):
         image = pygame.image.load(file_path)
+        image = pygame.transform.scale(image,scale)
         self.screen.blit(image,pos)
         
         

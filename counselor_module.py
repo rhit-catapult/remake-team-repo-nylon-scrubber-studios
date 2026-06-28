@@ -151,8 +151,9 @@ class Aimen:
         self.start_time =0
 
     def aimen_clock(self):
+        print(self.seconds)
         self.seconds = pygame.time.get_ticks()//1000 - self.start_time
-        if self.seconds >= self.timer:
+        if self.seconds - self.start_time >= self.timer:
             aimen_awake = True
         aimen_awake = False
         return aimen_awake

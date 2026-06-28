@@ -36,7 +36,7 @@ def main():
             if camera_sys.camera_on == False:
                 if aiman_button.rect.collidepoint(mouse_pos):
                     if event.type == pygame.MOUSEBUTTONDOWN:
-                        print("clicked")
+                        camera_sys.aiman.aimen_button_pushed()
                 if camera_button_office.rect.collidepoint(mouse_pos):
                     if event.type == pygame.MOUSEBUTTONDOWN:
                         camera_sys.camera_on = True
@@ -60,9 +60,12 @@ def main():
         #draws the cameras if cameras are on
         if camera_sys.camera_on:
             camera_sys.update()
+
+        if camera_sys.aiman.awake:
+            pass
             
         
-
+        camera_sys.aiman.aimen_clock()
 
 
         # don't forget the update, otherwise nothing will show up!
