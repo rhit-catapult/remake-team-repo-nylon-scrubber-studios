@@ -48,18 +48,17 @@ def main():
         elif right_rect.collidepoint(pygame.mouse.get_pos()):
             office.move("right")     
         
-
         screen.fill((255, 255, 255))
 
-
+        #draws the office if cameras are off
         if camera_sys.camera_on == False:
             office.draw()
             aiman_button.draw(40,40)
             camera_button_office.draw(100,50)
             camera_sys.last_click = pygame.time.get_ticks()
 
+        #draws the cameras if cameras are on
         if camera_sys.camera_on:
-            
             camera_sys.update()
             
         
