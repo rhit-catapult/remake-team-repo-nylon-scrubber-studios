@@ -23,12 +23,12 @@ class Camera_System:
         self.camera_image_folders = ["images/cam1_images","images/cam2_images","images/cam3_images","images/cam4_images","images/cam5_images","images/cam6_images"]
 
     def load_everything(self):
-        self.camera_1 = camera_module.Camera(self.screen, "images/cam1_main.jpg", self.camera_image_folders[0],20,20)
-        self.camera_2 = camera_module.Camera(self.screen, "images/cam2_main.jpg", self.camera_image_folders[1],60,20)
-        self.camera_3 = camera_module.Camera(self.screen, "images/cam3_main.jpg", self.camera_image_folders[2],100,20)
-        self.camera_4 = camera_module.Camera(self.screen, "images/cam4_main.jpg", self.camera_image_folders[3],140,20)
-        self.camera_5 = camera_module.Camera(self.screen, "images/cam5_main.jpg", self.camera_image_folders[4],180,20)
-        self.camera_6 = camera_module.Camera(self.screen, "images/cam6_main.jpg", self.camera_image_folders[5],220,20)
+        self.camera_1 = camera_module.Camera(self.screen, "images/cam1_main.jpg", 20,20)
+        self.camera_2 = camera_module.Camera(self.screen, "images/cam2_main.jpg", 60,20)
+        self.camera_3 = camera_module.Camera(self.screen, "images/cam3_main.jpg", 100,20)
+        self.camera_4 = camera_module.Camera(self.screen, "images/cam4_main.jpg", 140,20)
+        self.camera_5 = camera_module.Camera(self.screen, "images/cam5_main.jpg", 180,20)
+        self.camera_6 = camera_module.Camera(self.screen, "images/cam6_main.jpg", 220,20)
         self.cameras.append(self.camera_1)
         self.cameras.append(self.camera_2)
         self.cameras.append(self.camera_3)
@@ -106,11 +106,11 @@ class Camera_System:
         if self.current_camera == 0: #cam 1
             self.camera_1.draw()
             if self.jj.location == "kitchen(start)":
-                self.camera_1.draw_counselor("jj", (30,30))
+                self.camera_1.draw_counselor("images/jj_pos1.png", (30,30))
             if self.jj.location == "kitchen(middle)":
-                self.camera_1.draw_counselor("jj", (60,60))
+                self.camera_1.draw_counselor("images/jj_pos2.png", (60,60))
             if self.jj.location == "kitchen(end)":
-                self.camera_1.draw_counselor("jj", (90,90))
+                self.camera_1.draw_counselor("images/jj_pos3.png", (90,90))
             if self.ethan.location == "":
                 self.camera_1.draw_counselor("ethan", (50,50))
             if self.andrew.location == "":
