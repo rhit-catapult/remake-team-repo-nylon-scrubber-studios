@@ -130,7 +130,16 @@ class Counselor:
             # if failed his movement chance, he stays where he was
             return self.path[self.location]
 
-
+    def aimen_clock(self):
+        milli_seconds = pygame.time.get_ticks()
+        seconds = milli_seconds//1000-self.times_ran
+        aimen_awake = bool
+        if seconds >= int(60/self.difficulty):
+            aimen_awake = True
+        else:
+            aimen_awake = False
+        
+            
     def get_counselor(self):
         return self.path[self.location]
 
