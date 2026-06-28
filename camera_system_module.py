@@ -101,15 +101,15 @@ class Camera_System:
         if self.current_camera == 0: #cam 1
             self.camera_1.draw()
             if self.jj.location == "kitchen(start)":
-                self.camera_1.draw_counselor("images/jj_pos1.png", (30,30),(800,600))
+                self.camera_1.draw_counselor("images/jj/jj_pos1.png", (30,30),(800,600))
             if self.jj.location == "kitchen(middle)":
-                self.camera_1.draw_counselor("images/jj_pos2.png", (60,60),(800,600))
+                self.camera_1.draw_counselor("images/jj/jj_pos2.png", (60,60),(800,600))
             if self.jj.location == "kitchen(end)":
-                self.camera_1.draw_counselor("images/jj_pos3.png", (90,90),(800,600))
+                self.camera_1.draw_counselor("images/jj/jj_pos3.png", (90,90),(800,600))
             if self.ethan.location == "":
                 self.camera_1.draw_counselor("images/eathen/ethan.jpg", (50,50),(800,600))
             if self.andrew.location == "":
-                self.camera_1.draw_counselor("images/andrew_cam1.png", (70,70),(800,600))
+                self.camera_1.draw_counselor("images/andrew/andrew_cam1.png", (70,70),(800,600))
 
         if self.current_camera == 1: #cam 2
             self.camera_2.draw()
@@ -132,7 +132,7 @@ class Camera_System:
             if self.ethan.location == "":
                 self.camera_4.draw_counselor("images/eathen/ethan.jpg", (50,50),(800,600))
             if self.andrew.location == "":
-                self.camera_4.draw_counselor("images/andrew_cam4_pos1.png", (70,70),(800,600))
+                self.camera_4.draw_counselor("images/andrew/andrew_cam4_pos1.png", (70,70),(800,600))
 
         elif self.current_camera == 4: #cam 5
             self.camera_5.draw()
@@ -143,7 +143,7 @@ class Camera_System:
 
         elif self.current_camera == 5: #cam 6
             self.camera_6.draw()
-            self.camera_6.draw_counselor("images/aiman_cam6.png", (0,0),(800,600))
+            self.camera_6.draw_counselor("images/aiman/aiman_cam6.png", (0,0),(800,600))
 
     def draw(self):
         self.draw_cameras()

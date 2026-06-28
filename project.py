@@ -34,7 +34,7 @@ def main():
     #Jumpscares
     jumpscare_delay = pygame.time.get_ticks() + 5000
     last_time = pygame.time.get_ticks()
-    aiman_jumpscare = pygame.image.load("images/aiman_jumpscare.png")
+    aiman_jumpscare = pygame.image.load("images/aiman/aiman_jumpscare.png")
     aiman_jumpscare = pygame.transform.scale(aiman_jumpscare,(WINDOW_WIDTH,WINDOW_HEIGHT))
 
     #Other screens
@@ -78,8 +78,8 @@ def main():
                 camera_sys.update()
 
             if camera_sys.aiman.aimen_awake:
+                pygame.draw.rect(screen,"black",(0,0,WINDOW_WIDTH,WINDOW_HEIGHT))
                 screen.blit(aiman_jumpscare,(0,0))
-                print(camera_sys.aiman.jump_time_start)
                 if pygame.time.get_ticks() >= camera_sys.aiman.jump_time_start:
                     game_over = True
                     run = False
