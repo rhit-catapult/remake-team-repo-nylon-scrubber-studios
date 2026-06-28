@@ -1,5 +1,4 @@
 import time
 
-CURRENT_TIME = time.time()
 WINDOW_WIDTH = 800
 WINDOW_HEIGHT = 600
