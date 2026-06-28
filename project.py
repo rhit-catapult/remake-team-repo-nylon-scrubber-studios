@@ -28,12 +28,15 @@ def main():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 sys.exit()
-            if aiman_button.rect.collidepoint(pygame.mouse.get_pos()):
-                if event.type == pygame.MOUSEBUTTONDOWN:
-                    print("clicked")
-            if camera_button.rect.collidepoint(pygame.mouse.get_pos()):
-                if event.type == pygame.MOUSEBUTTONDOWN and camera_sys.camera_on == False:
-                    camera_sys.camera_on = True
+            mouse_pos = pygame.mouse.get_pos()
+            if camera_sys.camera_on == False:
+                if aiman_button.rect.collidepoint(mouse_pos):
+                    if event.type == pygame.MOUSEBUTTONDOWN:
+                        print("clicked")
+                if camera_button.rect.collidepoint(mouse_pos):
+                    if event.type == pygame.MOUSEBUTTONDOWN:
+                        camera_sys.draw()
+                        print("cam click")
                 
 
         #office side scrolling
@@ -48,9 +51,8 @@ def main():
         screen.fill((255, 255, 255))
 
         office.draw()
-        aiman_button.draw()
-        camera_button.draw()
-        camera_sys.camera_on_or_off()
+        aiman_button.draw(40,40)
+        camera_button.draw(100,50)
 
 
 

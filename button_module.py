@@ -11,14 +11,22 @@ class Buttons:
         self.rect = pygame.Rect(x,y,self.image.get_width(),self.image.get_height())
 
     
-    def draw(self):
+    def draw(self,scale_x,scale_y):
+        self.image = pygame.transform.scale(self.image,(scale_x,scale_y))
         self.screen.blit(self.image,(self.x,self.y))
+
+    def is_pressed_display(self):
+        mouse_pos = pygame.mouse.get_pos()
+        mouse_press = pygame.mouse.get_pressed()[0]
+
+        if self.rect.collidepoint(mouse_pos) and mouse_press:
+            return True
 
     #determine if button was pushed
     def is_pressed(self,pos):
         posx = pos[0]
         posy = pos[1]
-        return (self.x < posx < self.x + self.image.get_width() and self.y < posy < self.y+self.image.get_height())
+        return (self.x < posx < self.width and self.y < posy < self.height)
     
 
 
@@ -35,7 +43,7 @@ def main():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 sys.exit()
-            if aiman_button.is_pressed(pygame.mouse.get_pos()):
+            if aiman_button.rect.collidepoint(pygame.mouse.get_pos()):
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     print("clicked")
 

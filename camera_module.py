@@ -2,15 +2,17 @@ import sys
 import pygame
 import os
 import counselor_module
+import button_module
 
 class Camera:
 
     #creates a camera
-    def __init__(self, screen: pygame.Surface, camera_image,image_folder):
+    def __init__(self, screen: pygame.Surface, camera_image,image_folder,x,y):
         self.screen = screen
         self.camera_image = pygame.image.load(camera_image)
         self.counselors_in_camera = []
         self.folder = []
+        self.button = button_module.Buttons(screen,x,y,"images/button_test.png")
         camera_num = 0
         for image in os.listdir(image_folder):
             camera_num+=1
