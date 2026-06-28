@@ -28,20 +28,24 @@ def main():
     screen = pygame.display.set_mode((1000, 600))
     test = Start_Screen(screen)
     while True:
-        test.draw_start_screen(100)
+        # test.draw_start_screen(100)
+        test.draw_game_over_screen(100)
         for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     sys.exit()
-                if test.start_button.is_pressed(pygame.mouse.get_pos()):
-                    #event logic for mousebuttondown gives multiple
+                if test.game_over_button.is_pressed(pygame.mouse.get_pos()):
                     if event.type == pygame.MOUSEBUTTONDOWN:
-                        print("START GAME LETTTSSSS GOOOOOOO YOOOOO YOOOO YOOOO")
-                        while True:
-                            test.draw_game_over_screen(100)
-                            if test.game_over_button.is_pressed(pygame.mouse.get_pos()):
-                                if event.type == pygame.MOUSEBUTTONDOWN:
-                                    print("exited game")
-                                    break
+                        print("returning to menu")
+                # if test.start_button.is_pressed(pygame.mouse.get_pos()):
+                    #event logic for mousebuttondown gives multiple
+                    # if event.type == pygame.MOUSEBUTTONDOWN:
+                        # print("START GAME LETTTSSSS GOOOOOOO YOOOOO YOOOO YOOOO")
+                        # while True:
+                        #     test.draw_game_over_screen(100)
+                        #     if test.game_over_button.is_pressed(pygame.mouse.get_pos()):
+                        #         if event.type == pygame.MOUSEBUTTONDOWN:
+                        #             print("exited game")
+                        #             break
         pygame.display.update()
 
 
