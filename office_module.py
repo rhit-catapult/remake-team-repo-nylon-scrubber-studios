@@ -29,7 +29,7 @@ def main():
     pygame.display.set_caption("One Night at Catapult")
     screen = pygame.display.set_mode((800,600))
     office = Office(screen,"images/office.jpg",False)
-
+    
     # let's set the framerate
     clock = pygame.time.Clock()
     while True:
