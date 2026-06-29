@@ -36,7 +36,6 @@ class Counselor:
                     print(pygame.time.get_ticks()//1000)
                     self.jump_time_start = pygame.time.get_ticks() + 5000
                     self.kill = True
-                    print('dead')
                     self.location = 0
 
 
