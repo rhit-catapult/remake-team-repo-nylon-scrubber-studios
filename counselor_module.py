@@ -22,6 +22,10 @@ class Counselor:
         self.seconds = 0
         self.last_start_time = time
 
+    def reset(self):
+        self.last_start_time = pygame.time.get_ticks()
+        
+
     def movement(self,ethan=None):
         milli_seconds= pygame.time.get_ticks() - self.last_start_time
         print(milli_seconds)
