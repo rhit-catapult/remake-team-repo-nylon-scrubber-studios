@@ -20,7 +20,6 @@ class Camera_System:
         self.last_click = 0
         self.delay = 200
         self.button = button_module.Buttons(screen,screen.get_width()/2-40,500,"images/button_test.png")
-        self.camera_image_folders = ["images/cam1_images","images/cam2_images","images/cam3_images","images/cam4_images","images/cam5_images","images/cam6_images"]
 
     def load_everything(self):
         self.camera_1 = camera_module.Camera(self.screen, "images/cam1_main.jpg", 20,20)
@@ -35,11 +34,11 @@ class Camera_System:
         self.cameras.append(self.camera_4)
         self.cameras.append(self.camera_5)
         self.cameras.append(self.camera_6)
-        self.jj = counselor_module.Counselor(None,'jj',2,5,20)
-        self.carp = counselor_module.Counselor(None,'carp',2,5,20)
+        self.jj = counselor_module.Counselor(None,'jj',0,5,5)
+        self.carp = counselor_module.Counselor(None,'carp',0,5,5)
         self.aiman = counselor_module.Aimen(50)
-        self.ethan = counselor_module.Counselor(None,'ethan',2,5,20)
-        self.andrew = counselor_module.Counselor(None,'andrew',2,5,20)
+        self.ethan = counselor_module.Counselor(None,'ethan',0,5,5)
+        self.andrew = counselor_module.Counselor(None,'andrew',0,5,5)
 
 
     def draw_minimap(self, minimap_x, minimap_y):
@@ -50,10 +49,6 @@ class Camera_System:
         self.camera_4.button.draw(40,40)
         self.camera_5.button.draw(40,40)
         self.camera_6.button.draw(40,40)
-
-
-    def constant_update(self):
-        pass
 
     def update(self):
         self.draw()
@@ -113,8 +108,8 @@ class Camera_System:
 
         if self.current_camera == 1: #cam 2
             self.camera_2.draw()
-            if self.carp.location == "livingroom":
-                self.camera_2.draw_counselor("images/carp/carp.jpg", (50,50),(800,600))
+            if self.carp.path[self.carp.location] == "livingroom":
+                self.camera_2.draw_counselor("images/carp/carp_cam2.png", (0,0),(800,600))
             if self.ethan.location == "":
                 self.camera_2.draw_counselor("images/eathen/ethan.jpg", (50,50),(800,600))
 
@@ -122,10 +117,10 @@ class Camera_System:
             self.camera_3.draw()
             if self.ethan.location == "":
                 self.camera_3.draw_counselor("images/eathen/ethan.jpg", (50,50),(800,600))
-            if self.carp.location == "left_hallway":
-                self.camera_3.draw_counselor("images/eathen/ethan.jpg", (50,50),(800,600))
-            if self.carp.location == "peek":
-                self.camera_3.draw_counselor("images/eathen/ethan.jpg", (100,100),(800,600))
+            if self.carp.path[self.carp.location] == "left_hallway":
+                self.camera_3.draw_counselor("images/carp/carp_cam3_pos1.png", (0,0),(800,600))
+            if self.carp.path[self.carp.location] == "peek":
+                self.camera_3.draw_counselor("images/carp/carp_cam3_pos2.png", (0,0),(800,600))
 
         elif self.current_camera == 3: #cam 4
             self.camera_4.draw()
@@ -144,6 +139,7 @@ class Camera_System:
         elif self.current_camera == 5: #cam 6
             self.camera_6.draw()
             self.camera_6.draw_counselor("images/aiman/aiman_cam6.png", (0,0),(800,600))
+            self.screen.blit(self.aiman.aiman_timer_text,(20,0))
 
     def draw(self):
         self.draw_cameras()
