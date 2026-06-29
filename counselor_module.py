@@ -54,15 +54,17 @@ class Counselor:
             #Carp's movement path
             if self.running == True:
                 print(seconds)
-                if seconds == self.time_delay+5:
-                    self.location = self.location +1
+                if seconds == 5:
+                    print(pygame.time.get_ticks()//1000)
+                    self.jump_time_start = pygame.time.get_ticks() + 5000
+                    self.kill = True
+                    self.location = 0
                     self.running = False
-                    return self.location
                 else:
                     return 'running'
 
 
-            self.path = ["kitchen(start)","kitchen(middle)","kitchen(end)","left_door"]
+            self.path = ["kitchen(start)","kitchen(middle)","kitchen(end)"]
             print(seconds)
             #if carp has stayed in his location for as long as his movement time
             if seconds == self.time_delay:
@@ -70,19 +72,16 @@ class Counselor:
                 self.times_ran +=5
                 movement_chance = random.randint(1,20)
                 #return carp to his starting location if he has finished his path
-                if self.location == 3:
-                    self.location = 0
                 #if carp as succeeded his movement chance
                 if movement_chance <= self.difficulty:
                     if self.location == 2:
                         self.running = True
                         print('Its Funishment Time')
-                        print(self.running)
                         #pygame.mixer.Sound("its_funishment_time.wav").play()
-                        
+                    else:
                         
                     #move to next position in list
-                    self.location = self.location+1
+                        self.location = self.location+1
                     #return his new location
                     return self.path[self.location]
                 
@@ -181,7 +180,7 @@ def main():
     aimen_button = button_module.Buttons(screen,50,400,"images/button_test.png")
 
     # let's set the framerate
-    carp = Counselor(None,'carp',4,5,20)
+    jj = Counselor(None,'jj',0,5,20)
     ethan = Counselor(None,'ethan',0,5,1)
     aimen = Aimen(20)
     clock = pygame.time.Clock()
@@ -202,7 +201,7 @@ def main():
         aimen_button.draw()
         aimen.aimen_clock()
         ethan.movement()
-        carp.movement(ethan)
+        print(jj.movement(ethan))
 
         pygame.display.update()
 if __name__ == '__main__':

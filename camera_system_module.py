@@ -35,11 +35,11 @@ class Camera_System:
         self.cameras.append(self.camera_4)
         self.cameras.append(self.camera_5)
         self.cameras.append(self.camera_6)
-        self.jj = counselor_module.Counselor(None,'jj',0,5,20)
-        self.carp = counselor_module.Counselor(None,'carp',0,5,20)
+        self.jj = counselor_module.Counselor(None,'jj',0,5,5)
+        self.carp = counselor_module.Counselor(None,'carp',0,5,5)
         self.aiman = counselor_module.Aimen(50)
-        self.ethan = counselor_module.Counselor(None,'ethan',0,5,20)
-        self.andrew = counselor_module.Counselor(None,'andrew',0,5,20)
+        self.ethan = counselor_module.Counselor(None,'ethan',0,5,5)
+        self.andrew = counselor_module.Counselor(None,'andrew',0,5,5)
 
 
     def draw_minimap(self, minimap_x, minimap_y):
