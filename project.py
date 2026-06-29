@@ -62,6 +62,7 @@ def main():
             if other_screen.start_button.is_pressed_display() and run == False:
                 run = True
                 camera_sys.load_everything()
+
                 
             if run:
                 if camera_sys.camera_on == False:
@@ -75,38 +76,39 @@ def main():
                         if event.type == pygame.MOUSEBUTTONDOWN:
                             camera_sys.carp.carp_button_pushed()
 
-        if run:
-            #office side scrolling
-            left_rect_collision = left_rect.collidepoint(pygame.mouse.get_pos())
-            right_rect_collision = right_rect.collidepoint(pygame.mouse.get_pos())
-
-            if not left_rect_collision:
-                left_true = False
-            if not right_rect_collision:
-                right_true = False
-
-            if left_rect_collision and office_main.here and not left_true:
-                office_main.here = False
-                office_left.here = True
-                left_true = True
-            elif left_rect_collision and office_right.here and not left_true:
-                office_right.here = False
-                office_main.here = True
-                left_true = True
-            if right_rect_collision and office_left.here and not right_true:
-                office_left.here = False
-                office_main.here = True
-                right_true = True
-            elif right_rect_collision and office_main.here and not right_true:
-                office_main.here = False
-                office_right.here = True
-                right_true = True
-            
+        if run:            
             #Background
             screen.fill((255, 255, 255))
 
             #draws the office if cameras are off
             if camera_sys.camera_on == False:
+                #office side scrolling
+                left_rect_collision = left_rect.collidepoint(pygame.mouse.get_pos())
+                right_rect_collision = right_rect.collidepoint(pygame.mouse.get_pos())
+
+                if not left_rect_collision:
+                    left_true = False
+                if not right_rect_collision:
+                    right_true = False
+
+                if left_rect_collision and office_main.here and not left_true:
+                    office_main.here = False
+                    office_left.here = True
+                    left_true = True
+                elif left_rect_collision and office_right.here and not left_true:
+                    office_right.here = False
+                    office_main.here = True
+                    left_true = True
+                if right_rect_collision and office_left.here and not right_true:
+                    office_left.here = False
+                    office_main.here = True
+                    right_true = True
+                elif right_rect_collision and office_main.here and not right_true:
+                    office_main.here = False
+                    office_right.here = True
+                    right_true = True
+
+                #updates office sides
                 office_left.update()
                 office_right.update()
                 if office_main.here:

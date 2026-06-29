@@ -12,7 +12,7 @@ class Start_Screen:
         self.game_over_screen_text = self.title_screen_font.render("YOU GOT FUNISHED!", True, (200,0,0))
         self.start_screen_text_x = (self.screen.get_width() - self.start_screen_text.get_width())/2
         self.game_over_screen_text_x = (self.screen.get_width() - self.game_over_screen_text.get_width())/2
-        self.start_button = button_module.Buttons(self.screen, 400, 300, "images/button_test.png")
+        self.start_button = button_module.Buttons(self.screen, 100, 300, "images/button_test.png")
         self.game_over_button = button_module.Buttons(self.screen, 400, 300, "images/button_test.png")
 
     def draw_start_screen(self, title_text_y):
