@@ -77,6 +77,7 @@ def main():
             if camera_sys.camera_on:
                 camera_sys.update()
 
+
             if camera_sys.aiman.aimen_awake:
                 pygame.draw.rect(screen,"black",(0,0,WINDOW_WIDTH,WINDOW_HEIGHT))
                 screen.blit(aiman_jumpscare,(0,0))
