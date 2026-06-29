@@ -14,7 +14,7 @@ class Camera_System:
         self.current_camera = 0
         self.count =0
         self.camera_on = camera_on
-        self.minimap_image = pygame.image.load("images/minimap.png")
+        self.minimap_image = pygame.image.load("images/mini_map.png")
         self.minimap_image = pygame.transform.scale(self.minimap_image,(300,300))
         self.cameras = []
         self.last_click = 0
@@ -22,6 +22,7 @@ class Camera_System:
         self.button = button_module.Buttons(screen,screen.get_width()/2-40,500,"images/button_test.png")
 
     def load_everything(self):
+        last_start_time = pygame.time.get_ticks()
         self.camera_1 = camera_module.Camera(self.screen, "images/cam1_main.jpg", 20,20)
         self.camera_2 = camera_module.Camera(self.screen, "images/cam2_main.jpg", 60,20)
         self.camera_3 = camera_module.Camera(self.screen, "images/cam3_main.jpg", 100,20)
@@ -34,11 +35,11 @@ class Camera_System:
         self.cameras.append(self.camera_4)
         self.cameras.append(self.camera_5)
         self.cameras.append(self.camera_6)
-        self.jj = counselor_module.Counselor(None,'jj',0,5,1)
-        self.carp = counselor_module.Counselor(None,'carp',0,5,1)
+        self.jj = counselor_module.Counselor(None,'jj',0,5,20,last_start_time)
+        self.carp = counselor_module.Counselor(None,'carp',0,5,1,last_start_time)
         self.aiman = counselor_module.Aimen(50)
-        self.ethan = counselor_module.Counselor(None,'ethan',0,5,1)
-        self.andrew = counselor_module.Counselor(None,'andrew',0,5,20)
+        self.ethan = counselor_module.Counselor(None,'ethan',0,5,1,last_start_time)
+        self.andrew = counselor_module.Counselor(None,'andrew',0,5,1,last_start_time)
 
 
     def draw_minimap(self, minimap_x, minimap_y):
