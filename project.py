@@ -97,12 +97,12 @@ def main():
             if camera_sys.camera_on == False:
                 if office_main.here:
                     office_main.draw()
+                    aiman_button.draw(40,40)
+                    carp_button.draw(40,40)
                 elif office_left.here:
                     office_left.draw()
                 elif office_right.here:
                     office_right.draw()
-                aiman_button.draw(40,40)
-                carp_button.draw(40,40)
                 camera_button_office.draw(100,50)
                 camera_sys.last_click = pygame.time.get_ticks()
 
