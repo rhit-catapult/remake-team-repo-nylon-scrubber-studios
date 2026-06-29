@@ -3,12 +3,13 @@ import sys
 import button_module
 
 class Office:
-    def __init__(self,screen: pygame.Surface,image,camera_off):
+    def __init__(self,screen: pygame.Surface,image,camera_off,is_here):
         self.screen = screen
         self.image = pygame.image.load(image)
         self.x = -200
         self.cam_off = camera_off
         self.door_closed = False
+        self.here = is_here
 
     def draw(self):
         if self.cam_off:
@@ -16,6 +17,8 @@ class Office:
             self.screen.blit(self.image,(self.x,0))
 
     def move(self,direction):
+        if direction == "main":
+            pass
         if direction == "left" and self.x < 0:
             self.x += 2
         elif direction == "right" and self.x > -200:

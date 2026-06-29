@@ -23,7 +23,9 @@ def main():
     camera_sys.load_everything()
 
     #The Office
-    office = office_module.Office(screen,"images/office.jpg",True)
+    office_main = office_module.Office(screen,"images/office_main.jpg",True,True)
+    office_left = office_module.Office(screen,"images/office_left_open.jpg",True,False)
+    office_right = office_module.Office(screen,"images/office_right_open.jpg",True,False)
     left_rect = pygame.Rect(0,0,40,WINDOW_HEIGHT)
     right_rect = pygame.Rect(760,0,40,WINDOW_HEIGHT)
 
@@ -62,16 +64,31 @@ def main():
 
         if run:
             #office side scrolling
-            if left_rect.collidepoint(pygame.mouse.get_pos()):
-                office.move("left")
-            elif right_rect.collidepoint(pygame.mouse.get_pos()):
-                office.move("right")     
+            left_rect_collision = left_rect.collidepoint(pygame.mouse.get_pos())
+            right_rect_collision = right_rect.collidepoint(pygame.mouse.get_pos())
+            if left_rect_collision and office_main.here:
+                office_main.here = False
+                office_left.here = True
+            elif left_rect_collision and office_right.here:
+                office_right.here = False
+                office_main.here = True
+            if right_rect_collision and office_left.here:
+                office_left.here = False
+                office_main.here = True
+            elif right_rect_collision and office_main.here:
+                office_main.here = False
+                office_right.here = True
             
             screen.fill((255, 255, 255))
 
             #draws the office if cameras are off
             if camera_sys.camera_on == False:
-                office.draw()
+                if office_main.here:
+                    office_main.draw()
+                elif office_left.here:
+                    office_left.draw()
+                elif office_right.here:
+                    office_right.draw()
                 aiman_button.draw(40,40)
                 carp_button.draw(40,40)
                 camera_button_office.draw(100,50)
@@ -97,13 +114,11 @@ def main():
                     game_over = True
                     run = False
 
-                
-
-                
             
             camera_sys.aiman.aimen_clock()
             ethan = camera_sys.ethan
             camera_sys.carp.movement(ethan)
+
         elif game_over:
             other_screen.draw_game_over_screen(100)
 
