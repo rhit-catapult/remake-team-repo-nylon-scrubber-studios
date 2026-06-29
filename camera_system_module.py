@@ -23,21 +23,29 @@ class Camera_System:
 
     def load_everything(self):
         last_start_time = pygame.time.get_ticks()
+        
+        #Setting up Camera's
         self.camera_1 = camera_module.Camera(self.screen, "images/cam1_main.jpg", 20,20)
         self.camera_2 = camera_module.Camera(self.screen, "images/cam2_main.jpg", 60,20)
         self.camera_3 = camera_module.Camera(self.screen, "images/cam3_main.jpg", 100,20)
         self.camera_4 = camera_module.Camera(self.screen, "images/cam4_main.jpg", 140,20)
         self.camera_5 = camera_module.Camera(self.screen, "images/cam5_main.jpg", 180,20)
         self.camera_6 = camera_module.Camera(self.screen, "images/cam6_main.jpg", 220,20)
+
+        #Setting up Counselors
         self.jj = counselor_module.Counselor(None,'jj',0,5,5,last_start_time)
         self.carp = counselor_module.Counselor(None,'carp',0,5,5,last_start_time)
         self.aiman = counselor_module.Aimen(50)
         self.ethan = counselor_module.Counselor(None,'ethan',0,5,5,last_start_time)
         self.andrew = counselor_module.Counselor(None,'andrew',0,5,5,last_start_time)
+
+        #Initializing the paths of counselors
         self.jj.get_counselor()
         self.carp.get_counselor()
         self.ethan.get_counselor()
         self.andrew.get_counselor()
+
+        #Resets their positions
         self.jj.reset()
         self.carp.reset()
         self.ethan.reset()

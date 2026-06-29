@@ -21,6 +21,7 @@ class Counselor:
         self.kill = False
         self.seconds = 0
         self.last_start_time = time
+        self.door = False
 
     def reset(self):
         self.last_start_time = pygame.time.get_ticks()
@@ -65,8 +66,9 @@ class Counselor:
                 self.location = 3
                 if self.seconds == 5:
                     # print(pygame.time.get_ticks()//1000)
-                    self.jump_time_start = pygame.time.get_ticks() + 5000
-                    self.kill = True
+                    if self.door == False:
+                        self.jump_time_start = pygame.time.get_ticks() + 5000
+                        self.kill = True
                     self.location = 0
                     self.running = False
                     return self.kill
@@ -110,8 +112,9 @@ class Counselor:
                 #return carp to his starting location if he has finished his path
                 if self.location == 4:
                     # print(pygame.time.get_ticks()//1000)
-                    self.jump_time_start = pygame.time.get_ticks() + 5000
-                    self.kill = True
+                    if self.door == False:
+                        self.jump_time_start = pygame.time.get_ticks() + 5000
+                        self.kill = True
                     self.location = 0
                 #if carp as succeeded his movement chance
                 if ethan == self.path[self.location]:
@@ -129,7 +132,7 @@ class Counselor:
             return self.path[self.location]
     
     def carp_button_pushed(self):
-        if self.location > 0 and self.location != 2:
+        if self.location > 2:
             self.location = 0
 
 

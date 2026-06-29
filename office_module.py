@@ -2,6 +2,7 @@ import pygame
 import sys
 import button_module
 
+
 from settings import *
 
 class Office:
@@ -27,9 +28,10 @@ class Office:
                 self.door_button.draw(40,40)
                 if self.door_closed:
                     self.door.draw()
+            
 
     def update(self):
-        if self.door_button.is_pressed_display() and self.door_closed == False:
+        if self.door_button.is_pressed_display():
             self.door_closed = True
         else:
             self.door_closed = False
