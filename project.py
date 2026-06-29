@@ -28,6 +28,8 @@ def main():
     office_right = office_module.Office(screen,"images/office_right_open.jpg",True,False)
     left_rect = pygame.Rect(0,0,40,WINDOW_HEIGHT)
     right_rect = pygame.Rect(760,0,40,WINDOW_HEIGHT)
+    left_true = False
+    right_true = False
 
     #Buttons
     aiman_button = button_module.Buttons(screen,50,450,"images/button_test.png")
@@ -66,18 +68,28 @@ def main():
             #office side scrolling
             left_rect_collision = left_rect.collidepoint(pygame.mouse.get_pos())
             right_rect_collision = right_rect.collidepoint(pygame.mouse.get_pos())
-            if left_rect_collision and office_main.here:
+
+            if not left_rect_collision:
+                left_true = False
+            if not right_rect_collision:
+                right_true = False
+
+            if left_rect_collision and office_main.here and not left_true:
                 office_main.here = False
                 office_left.here = True
-            elif left_rect_collision and office_right.here:
+                left_true = True
+            elif left_rect_collision and office_right.here and not left_true:
                 office_right.here = False
                 office_main.here = True
-            if right_rect_collision and office_left.here:
+                left_true = True
+            if right_rect_collision and office_left.here and not right_true:
                 office_left.here = False
                 office_main.here = True
-            elif right_rect_collision and office_main.here:
+                right_true = True
+            elif right_rect_collision and office_main.here and not right_true:
                 office_main.here = False
                 office_right.here = True
+                right_true = True
             
             screen.fill((255, 255, 255))
 
