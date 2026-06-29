@@ -39,6 +39,8 @@ def main():
     #Jumpscares
     carp_jumpscare = pygame.image.load("images/carp/carp_jumpscare.png")
     carp_jumpscare = pygame.transform.scale(carp_jumpscare,(WINDOW_WIDTH,WINDOW_HEIGHT))
+    jj_jumpscare = pygame.image.load("images/jj/jj_jumpscare.png")
+    jj_jumpscare = pygame.transform.scale(jj_jumpscare,(WINDOW_WIDTH,WINDOW_HEIGHT))
     aiman_jumpscare = pygame.image.load("images/aiman/aiman_jumpscare.png")
     aiman_jumpscare = pygame.transform.scale(aiman_jumpscare,(WINDOW_WIDTH,WINDOW_HEIGHT))
 
@@ -125,6 +127,15 @@ def main():
                     run = False
                     camera_sys.carp.kill = False
 
+            #jj jumpscare
+            if camera_sys.jj.kill:
+                pygame.draw.rect(screen,"black",(0,0,WINDOW_WIDTH,WINDOW_HEIGHT))
+                screen.blit(jj_jumpscare,(0,0))
+                if pygame.time.get_ticks() >= camera_sys.jj.jump_time_start:
+                    game_over = True
+                    run = False
+                    camera_sys.jj.kill = False
+
             #Aiman jumpscare
             if camera_sys.aiman.aimen_awake:
                 pygame.draw.rect(screen,"black",(0,0,WINDOW_WIDTH,WINDOW_HEIGHT))
@@ -137,7 +148,8 @@ def main():
             camera_sys.aiman.aimen_clock()
             ethan = camera_sys.ethan
             camera_sys.carp.movement(ethan)
-
+            
+            camera_sys.jj.movement(ethan)
         elif game_over:
             other_screen.draw_game_over_screen(100)
         else: 

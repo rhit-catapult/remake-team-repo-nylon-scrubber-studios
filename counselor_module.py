@@ -60,6 +60,7 @@ class Counselor:
                     self.kill = True
                     self.location = 0
                     self.running = False
+                    return self.kill
                 else:
                     return 'running'
 
