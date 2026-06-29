@@ -25,12 +25,17 @@ class Office:
 
 
 class Door:
-    def __init__(self):
+    def __init__(self,filename: str,screen: pygame.Surface,side):
         self.closed = False
+        self.screen = screen
+        self.image = pygame.image.load(filename)
+        self.side = side
+    
+    def draw(self):
+        pass
+
     def is_closed(self):
-        if self.closed == True:
-            return True
-        return False
+        return self.closed
 
 #test function
 def main():
