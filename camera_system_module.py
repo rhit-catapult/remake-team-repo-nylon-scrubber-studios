@@ -33,7 +33,7 @@ class Camera_System:
         self.camera_6 = camera_module.Camera(self.screen, "images/cam6_main.jpg", 220,20)
 
         #Setting up Counselors
-        self.jj = counselor_module.Counselor(None,'jj',0,5,5,last_start_time)
+        self.jj = counselor_module.Counselor(None,'jj',2,5,20,last_start_time)
         self.carp = counselor_module.Counselor(None,'carp',0,5,5,last_start_time)
         self.aiman = counselor_module.Aimen(50)
         self.ethan = counselor_module.Counselor(None,'ethan',0,5,5,last_start_time)
@@ -116,7 +116,7 @@ class Camera_System:
                 self.camera_1.draw_counselor("images/jj/jj_pos3.png", (90,90),(800,600))
             if self.ethan.location == "":
                 self.camera_1.draw_counselor("images/eathen/ethan.jpg", (50,50),(800,600))
-            if self.andrew.path[self.andrew.location] == "":
+            if self.andrew.path[self.andrew.location] == "kitchen":
                 self.camera_1.draw_counselor("images/andrew/andrew_cam1.png", (70,70),(800,600))
 
         if self.current_camera == 1: #cam 2

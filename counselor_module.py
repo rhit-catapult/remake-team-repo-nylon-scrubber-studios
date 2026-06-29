@@ -94,10 +94,8 @@ class Counselor:
                     #move to next position in list
                         self.location = self.location+1
                     #return his new location
-                    return self.path[self.location]
                 
             # if failed his movement chance, he stays where he was
-            return self.path[self.location]
         
 
         if self.movenment_type == 'andrew':
