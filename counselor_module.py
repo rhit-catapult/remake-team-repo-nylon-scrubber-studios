@@ -161,6 +161,14 @@ class Counselor:
         
             
     def get_counselor(self):
+        if self.movenment_type == 'carp':
+            self.path = ["livingroom","left_hallway","restroom","peek","left_doorway"]
+        if self.movenment_type == 'jj':
+            self.path = ["kitchen(start)","kitchen(middle)","kitchen(end)",'running']
+        if self.movenment_type == 'andrew':
+            self.path = ["stairway","kitchen","right_hall_far","right_hall_close","right_doorway"]
+        if self.movenment_type == 'ethan':
+            self.path = ["livingroom","kitchen","right_hall","left_hall","restroom"]
         return self.path[self.location]
 
 
