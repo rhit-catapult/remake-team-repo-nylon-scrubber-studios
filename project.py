@@ -56,10 +56,10 @@ def main():
             if event.type == pygame.QUIT:
                 sys.exit()
             mouse_pos = pygame.mouse.get_pos()
-            if other_screen.game_over_button.is_pressed_display():
+            if other_screen.game_over_button.is_pressed_display() and game_over == True:
                 game_over = False
                 run = False
-            if other_screen.start_button.is_pressed_display():
+            if other_screen.start_button.is_pressed_display() and run == False:
                 run = True
                 camera_sys.load_everything()
                 

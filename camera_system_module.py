@@ -40,6 +40,10 @@ class Camera_System:
         self.aiman = counselor_module.Aimen(50)
         self.ethan = counselor_module.Counselor(None,'ethan',0,5,1,last_start_time)
         self.andrew = counselor_module.Counselor(None,'andrew',0,5,1,last_start_time)
+        self.jj.get_counselor()
+        self.carp.get_counselor()
+        self.ethan.get_counselor()
+        self.andrew.get_counselor()
 
 
     def draw_minimap(self, minimap_x, minimap_y):
@@ -100,16 +104,16 @@ class Camera_System:
                 self.camera_1.draw_counselor("images/jj/jj_pos1.png", (30,30),(800,600))
             if self.jj.path[self.jj.location] == "kitchen(middle)":
                 self.camera_1.draw_counselor("images/jj/jj_pos2.png", (60,60),(800,600))
-            if self.jj.path[self.jj.location] == "kitchen(end)":
+            if self.jj.get_counselor() == "kitchen(end)":
                 self.camera_1.draw_counselor("images/jj/jj_pos3.png", (90,90),(800,600))
             if self.ethan.location == "":
                 self.camera_1.draw_counselor("images/eathen/ethan.jpg", (50,50),(800,600))
-            if self.andrew.location == "":
+            if self.andrew.path[self.andrew.location] == "":
                 self.camera_1.draw_counselor("images/andrew/andrew_cam1.png", (70,70),(800,600))
 
         if self.current_camera == 1: #cam 2
             self.camera_2.draw()
-            if self.carp.path[self.carp.location] == "livingroom":
+            if self.carp.get_counselor() == "livingroom":
                 self.camera_2.draw_counselor("images/carp/carp_cam2.png", (0,0),(800,600))
             if self.ethan.location == "":
                 self.camera_2.draw_counselor("images/eathen/ethan.jpg", (50,50),(800,600))
