@@ -18,7 +18,7 @@ class Counselor:
         self.jump_time_start =0
         self.kill_clock = 5
         self.kill = False
-    def movement(self,ethan=None,seconds2 = 0):
+    def movement(self,ethan=None):
         milli_seconds = pygame.time.get_ticks()
         seconds = milli_seconds//1000-self.times_ran
         #checks if the animatronic is Carp
@@ -26,22 +26,16 @@ class Counselor:
             #Carp's movement path
             self.path = ["livingroom","left_hallway","restroom","peek","left_doorway"]
             print(self.path[self.location])
-            if self.location == 4 and self.kill == False:
-                if seconds2 == 0:
-                    seconds2 = pygame.time.get_ticks()//1000
-                print('countdown')
-                print(seconds2+self.kill_clock)
-                print(pygame.time.get_ticks()//1000)
-                if pygame.time.get_ticks()//1000 >= seconds2 + self.kill_clock:
-                    self.jump_time_start = pygame.time.get_ticks() + 5000
-                    self.kill = True
-                    print('dead')
             #if carp has stayed in his location for as long as his movement time
             if seconds == self.time_delay:
                 #subtracts 5 seconds from seconds to prevent rerunning until next 5 seconds
                 self.times_ran += self.time_delay
                 movement_chance = random.randint(1,20)
                 if self.location == 4:
+                    print(pygame.time.get_ticks()//1000)
+                    self.jump_time_start = pygame.time.get_ticks() + 5000
+                    self.kill = True
+                    print('dead')
                     self.location = 0
 
 
@@ -141,6 +135,10 @@ class Counselor:
                 movement_chance = random.randint(1,20)
                 #return carp to his starting location if he has finished his path
                 #if carp as succeeded his movement chance
+
+
+
+
                 if movement_chance <= self.difficulty:
                     #move to next position in list
                     self.location = random.randint(0,4)
@@ -204,7 +202,7 @@ def main():
         aimen_button.draw()
         aimen.aimen_clock()
         ethan.movement()
-        carp.movement(ethan,0)
+        carp.movement(ethan)
 
         pygame.display.update()
 if __name__ == '__main__':
