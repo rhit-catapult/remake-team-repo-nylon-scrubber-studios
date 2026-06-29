@@ -18,6 +18,7 @@ class Counselor:
         self.jump_time_start =0
         self.kill_clock = 5
         self.kill = False
+        
     def movement(self,ethan=None):
         milli_seconds = pygame.time.get_ticks()
         seconds = milli_seconds//1000-self.times_ran
