@@ -95,11 +95,11 @@ class Camera_System:
         
         if self.current_camera == 0: #cam 1
             self.camera_1.draw()
-            if self.jj.location == "kitchen(start)":
+            if self.jj.path[self.jj.location] == "kitchen(start)":
                 self.camera_1.draw_counselor("images/jj/jj_pos1.png", (30,30),(800,600))
-            if self.jj.location == "kitchen(middle)":
+            if self.jj.path[self.jj.location] == "kitchen(middle)":
                 self.camera_1.draw_counselor("images/jj/jj_pos2.png", (60,60),(800,600))
-            if self.jj.location == "kitchen(end)":
+            if self.jj.path[self.jj.location] == "kitchen(end)":
                 self.camera_1.draw_counselor("images/jj/jj_pos3.png", (90,90),(800,600))
             if self.ethan.location == "":
                 self.camera_1.draw_counselor("images/eathen/ethan.jpg", (50,50),(800,600))
@@ -126,13 +126,14 @@ class Camera_System:
             self.camera_4.draw()
             if self.ethan.location == "":
                 self.camera_4.draw_counselor("images/eathen/ethan.jpg", (50,50),(800,600))
-            if self.andrew.location == "":
+            if self.andrew.path[self.andrew.location] == "right_hall_far":
                 self.camera_4.draw_counselor("images/andrew/andrew_cam4_pos1.png", (70,70),(800,600))
+            if self.andrew.path[self.andrew.location] == "right_hall_close":
+                self.camera_4.draw_counselor("images/andrew/andrew_cam4_pos2.png",(70,70),(800,600))
+            
 
         elif self.current_camera == 4: #cam 5
             self.camera_5.draw()
-            if self.carp.location == "left_doorway":
-                self.camera_5.draw_counselor("images/eathen/ethan.jpg", (100,100),(800,600))
             if self.ethan.location == "":
                 self.camera_5.draw_counselor("images/eathen/ethan.jpg", (40,40),(800,600))
 

@@ -54,6 +54,7 @@ class Counselor:
             #Carp's movement path
             if self.running == True:
                 # print(seconds)
+                self.location = 3
                 if seconds == 5:
                     # print(pygame.time.get_ticks()//1000)
                     self.jump_time_start = pygame.time.get_ticks() + 5000
@@ -65,7 +66,7 @@ class Counselor:
                     return 'running'
 
 
-            self.path = ["kitchen(start)","kitchen(middle)","kitchen(end)"]
+            self.path = ["kitchen(start)","kitchen(middle)","kitchen(end)",'running']
             # print(seconds)
             #if carp has stayed in his location for as long as his movement time
             if seconds == self.time_delay:

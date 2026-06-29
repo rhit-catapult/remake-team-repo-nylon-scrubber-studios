@@ -2,11 +2,13 @@ import pygame
 import sys
 import button_module
 
+from settings import *
+
 class Start_Screen:
-    def __init__(self, screen):
+    def __init__(self, screen: pygame.Surface):
         self.screen = screen
-        self.title_screen_font = pygame.font.SysFont("times new roman", 50, True, True)
-        self.start_screen_text = self.title_screen_font.render("FOUR NIGHTS AT CATAPULT", True, (200,0,0))
+        self.title_screen_font = pygame.font.SysFont("courier new", 50, True, True)
+        self.start_screen_text = self.title_screen_font.render("FOUR NIGHTS AT CATAPULTS", True, (200,0,0))
         self.game_over_screen_text = self.title_screen_font.render("YOU GOT FUNISHED!", True, (200,0,0))
         self.start_screen_text_x = (self.screen.get_width() - self.start_screen_text.get_width())/2
         self.game_over_screen_text_x = (self.screen.get_width() - self.game_over_screen_text.get_width())/2
