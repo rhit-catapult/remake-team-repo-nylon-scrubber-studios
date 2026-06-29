@@ -29,8 +29,10 @@ class Office:
                     self.door.draw()
 
     def update(self):
-        if self.door_button.is_pressed_display():
+        if self.door_button.is_pressed_display() and self.door_closed == False:
             self.door_closed = True
+        else:
+            self.door_closed = False
 
 
 class Door:

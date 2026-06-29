@@ -20,7 +20,6 @@ def main():
 
     #Camera System
     camera_sys = camera_system_module.Camera_System(screen,False)
-    camera_sys.load_everything()
 
     #The Office
     office_main = office_module.Office(screen,"images/office_main.jpg",True,True,None)
@@ -57,10 +56,13 @@ def main():
             if event.type == pygame.QUIT:
                 sys.exit()
             mouse_pos = pygame.mouse.get_pos()
-            if other_screen.game_over_button.is_pressed_display():
+            if other_screen.game_over_button.is_pressed_display() and game_over == True:
                 game_over = False
-            if other_screen.start_button.is_pressed_display():
+                run = False
+            if other_screen.start_button.is_pressed_display() and run == False:
                 run = True
+                camera_sys.load_everything()
+                
             if run:
                 if camera_sys.camera_on == False:
                     if aiman_button.rect.collidepoint(mouse_pos):
@@ -161,7 +163,7 @@ def main():
             camera_sys.aiman.aimen_clock()
             ethan = camera_sys.ethan
             camera_sys.carp.movement(ethan)
-            print(camera_sys.andrew.movement(ethan))
+            camera_sys.andrew.movement(ethan)
             camera_sys.jj.movement(ethan)
         elif game_over:
             other_screen.draw_game_over_screen(100)

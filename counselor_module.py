@@ -4,9 +4,10 @@ import time
 import button_module
 import sys
 import office_module
+import start_end_screen_module
 
 class Counselor:
-    def __init__(self,screen, movement_type,location: int,time_delay,difficulty):
+    def __init__(self,screen, movement_type,location: int,time_delay,difficulty,time):
         self.screen = screen
         self.movenment_type = movement_type
         self.location = location
@@ -18,18 +19,21 @@ class Counselor:
         self.jump_time_start =0
         self.kill_clock = 5
         self.kill = False
+        self.seconds = 0
+        self.last_start_time = time
 
     def movement(self,ethan=None):
-        milli_seconds = pygame.time.get_ticks()
-        seconds = milli_seconds//1000-self.times_ran
+        milli_seconds= pygame.time.get_ticks() - self.last_start_time
+        print(milli_seconds)
+        self.seconds= milli_seconds//1000-self.times_ran
         #checks if the animatronic is Carp
         if self.movenment_type == 'carp':
             #Carp's movement path
             self.path = ["livingroom","left_hallway","restroom","peek","left_doorway"]
             # print(self.path[self.location])
             #if carp has stayed in his location for as long as his movement time
-            if seconds == self.time_delay:
-                #subtracts 5 seconds from seconds to prevent rerunning until next 5 seconds
+            if self.seconds== self.time_delay:
+                #subtracts 5 self.secondsfrom self.secondsto prevent rerunning until next 5 seconds
                 self.times_ran += self.time_delay
                 movement_chance = random.randint(1,20)
                 if self.location == 4:
@@ -55,7 +59,7 @@ class Counselor:
             if self.running == True:
                 # print(seconds)
                 self.location = 3
-                if seconds == 5:
+                if self.seconds == 5:
                     # print(pygame.time.get_ticks()//1000)
                     self.jump_time_start = pygame.time.get_ticks() + 5000
                     self.kill = True
@@ -69,8 +73,8 @@ class Counselor:
             self.path = ["kitchen(start)","kitchen(middle)","kitchen(end)",'running']
             # print(seconds)
             #if carp has stayed in his location for as long as his movement time
-            if seconds == self.time_delay:
-                #subtracts 5 seconds from seconds to prevent rerunning until next 5 seconds
+            if self.seconds== self.time_delay:
+                #subtracts 5 self.secondsfrom self.secondsto prevent rerunning until next 5 seconds
                 self.times_ran +=5
                 movement_chance = random.randint(1,20)
                 #return carp to his starting location if he has finished his path
@@ -78,7 +82,6 @@ class Counselor:
                 if movement_chance <= self.difficulty:
                     if self.location == 2:
                         self.running = True
-                        print('Its Funishment Time')
                         #pygame.mixer.Sound("its_funishment_time.wav").play()
                     else:
                         
@@ -94,10 +97,10 @@ class Counselor:
         if self.movenment_type == 'andrew':
             #Carp's movement path
             self.path = ["stairway","kitchen","right_hall_far","right_hall_close","right_doorway"]
-            print(seconds)
+            print(self.seconds)
             #if carp has stayed in his location for as long as his movement time
-            if seconds == self.time_delay:
-                #subtracts 5 seconds from seconds to prevent rerunning until next 5 seconds
+            if self.seconds== self.time_delay:
+                #subtracts 5 self.secondsfrom self.secondsto prevent rerunning until next 5 seconds
                 self.times_ran +=5
                 movement_chance = random.randint(1,20)
                 #return carp to his starting location if he has finished his path
@@ -127,15 +130,15 @@ class Counselor:
 
 
     def ethan_movement(self):
-        milli_seconds = pygame.time.get_ticks()
-        seconds = milli_seconds//1000-self.times_ran
+        milli_seconds= pygame.time.get_ticks()
+        self.seconds= milli_seconds//1000-self.times_ran
         if self.movenment_type == 'ethan':
             #Carp's movement path
             self.path = ["livingroom","kitchen","right_hall","left_hall","restroom"]
-            print(seconds)
+            print(self.seconds)
             #if carp has stayed in his location for as long as his movement time
-            if seconds == self.time_delay:
-                #subtracts 5 seconds from seconds to prevent rerunning until next 5 seconds
+            if self.seconds== self.time_delay:
+                #subtracts 5 self.secondsfrom self.secondsto prevent rerunning until next 5 seconds
                 self.times_ran +=5
                 movement_chance = random.randint(1,20)
                 #return carp to his starting location if he has finished his path
@@ -158,12 +161,20 @@ class Counselor:
         
             
     def get_counselor(self):
+        if self.movenment_type == 'carp':
+            self.path = ["livingroom","left_hallway","restroom","peek","left_doorway"]
+        if self.movenment_type == 'jj':
+            self.path = ["kitchen(start)","kitchen(middle)","kitchen(end)",'running']
+        if self.movenment_type == 'andrew':
+            self.path = ["stairway","kitchen","right_hall_far","right_hall_close","right_doorway"]
+        if self.movenment_type == 'ethan':
+            self.path = ["livingroom","kitchen","right_hall","left_hall","restroom"]
         return self.path[self.location]
 
 
 class Aimen:
     def __init__(self,timer):
-        self.seconds = 0
+        self.seconds= 0
         self.aimen_awake = False
         self.timer = timer
         self.start_time =0
@@ -172,9 +183,9 @@ class Aimen:
         self.aiman_timer_text = self.aiman_timer_font.render(f"{50-self.seconds}", False, "White", "Black")
 
     def aimen_clock(self):
-        self.seconds = pygame.time.get_ticks()//1000 - self.start_time
+        self.seconds= pygame.time.get_ticks()//1000 - self.start_time
         self.aiman_timer_text = self.aiman_timer_font.render(f"{50-self.seconds}", False, "White", "Black")
-        if self.seconds >= self.timer and self.aimen_awake== False:
+        if self.seconds>= self.timer and self.aimen_awake== False:
             self.jump_time_start = pygame.time.get_ticks() + 5000
             self.aimen_awake = True
         

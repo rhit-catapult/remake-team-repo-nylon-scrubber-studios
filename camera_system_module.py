@@ -14,7 +14,7 @@ class Camera_System:
         self.current_camera = 0
         self.count =0
         self.camera_on = camera_on
-        self.minimap_image = pygame.image.load("images/minimap.png")
+        self.minimap_image = pygame.image.load("images/mini_map.png")
         self.minimap_image = pygame.transform.scale(self.minimap_image,(300,300))
         self.cameras = []
         self.last_click = 0
@@ -22,6 +22,7 @@ class Camera_System:
         self.button = button_module.Buttons(screen,screen.get_width()/2-40,500,"images/button_test.png")
 
     def load_everything(self):
+        last_start_time = pygame.time.get_ticks()
         self.camera_1 = camera_module.Camera(self.screen, "images/cam1_main.jpg", 20,20)
         self.camera_2 = camera_module.Camera(self.screen, "images/cam2_main.jpg", 60,20)
         self.camera_3 = camera_module.Camera(self.screen, "images/cam3_main.jpg", 100,20)
@@ -34,11 +35,15 @@ class Camera_System:
         self.cameras.append(self.camera_4)
         self.cameras.append(self.camera_5)
         self.cameras.append(self.camera_6)
-        self.jj = counselor_module.Counselor(None,'jj',0,5,1)
-        self.carp = counselor_module.Counselor(None,'carp',0,5,1)
+        self.jj = counselor_module.Counselor(None,'jj',0,5,20,last_start_time)
+        self.carp = counselor_module.Counselor(None,'carp',0,5,1,last_start_time)
         self.aiman = counselor_module.Aimen(50)
-        self.ethan = counselor_module.Counselor(None,'ethan',0,5,1)
-        self.andrew = counselor_module.Counselor(None,'andrew',0,5,20)
+        self.ethan = counselor_module.Counselor(None,'ethan',0,5,1,last_start_time)
+        self.andrew = counselor_module.Counselor(None,'andrew',0,5,1,last_start_time)
+        self.jj.get_counselor()
+        self.carp.get_counselor()
+        self.ethan.get_counselor()
+        self.andrew.get_counselor()
 
 
     def draw_minimap(self, minimap_x, minimap_y):
@@ -99,16 +104,16 @@ class Camera_System:
                 self.camera_1.draw_counselor("images/jj/jj_pos1.png", (30,30),(800,600))
             if self.jj.path[self.jj.location] == "kitchen(middle)":
                 self.camera_1.draw_counselor("images/jj/jj_pos2.png", (60,60),(800,600))
-            if self.jj.path[self.jj.location] == "kitchen(end)":
+            if self.jj.get_counselor() == "kitchen(end)":
                 self.camera_1.draw_counselor("images/jj/jj_pos3.png", (90,90),(800,600))
             if self.ethan.location == "":
                 self.camera_1.draw_counselor("images/eathen/ethan.jpg", (50,50),(800,600))
-            if self.andrew.location == "":
+            if self.andrew.path[self.andrew.location] == "":
                 self.camera_1.draw_counselor("images/andrew/andrew_cam1.png", (70,70),(800,600))
 
         if self.current_camera == 1: #cam 2
             self.camera_2.draw()
-            if self.carp.path[self.carp.location] == "livingroom":
+            if self.carp.get_counselor() == "livingroom":
                 self.camera_2.draw_counselor("images/carp/carp_cam2.png", (0,0),(800,600))
             if self.ethan.location == "":
                 self.camera_2.draw_counselor("images/eathen/ethan.jpg", (50,50),(800,600))
