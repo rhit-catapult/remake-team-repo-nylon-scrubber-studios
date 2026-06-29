@@ -26,14 +26,14 @@ class Counselor:
         if self.movenment_type == 'carp':
             #Carp's movement path
             self.path = ["livingroom","left_hallway","restroom","peek","left_doorway"]
-            print(self.path[self.location])
+            # print(self.path[self.location])
             #if carp has stayed in his location for as long as his movement time
             if seconds == self.time_delay:
                 #subtracts 5 seconds from seconds to prevent rerunning until next 5 seconds
                 self.times_ran += self.time_delay
                 movement_chance = random.randint(1,20)
                 if self.location == 4:
-                    print(pygame.time.get_ticks()//1000)
+                    # print(pygame.time.get_ticks()//1000)
                     self.jump_time_start = pygame.time.get_ticks() + 5000
                     self.kill = True
                     self.location = 0
@@ -53,9 +53,9 @@ class Counselor:
         if self.movenment_type == 'jj':
             #Carp's movement path
             if self.running == True:
-                print(seconds)
+                # print(seconds)
                 if seconds == 5:
-                    print(pygame.time.get_ticks()//1000)
+                    # print(pygame.time.get_ticks()//1000)
                     self.jump_time_start = pygame.time.get_ticks() + 5000
                     self.kill = True
                     self.location = 0
@@ -66,7 +66,7 @@ class Counselor:
 
 
             self.path = ["kitchen(start)","kitchen(middle)","kitchen(end)"]
-            print(seconds)
+            # print(seconds)
             #if carp has stayed in his location for as long as his movement time
             if seconds == self.time_delay:
                 #subtracts 5 seconds from seconds to prevent rerunning until next 5 seconds
@@ -101,11 +101,15 @@ class Counselor:
                 movement_chance = random.randint(1,20)
                 #return carp to his starting location if he has finished his path
                 if self.location == 4:
-                    self.location = 1
+                    # print(pygame.time.get_ticks()//1000)
+                    self.jump_time_start = pygame.time.get_ticks() + 5000
+                    self.kill = True
+                    self.location = 0
                 #if carp as succeeded his movement chance
                 if ethan == self.path[self.location]:
                     self.location = self.location + 1
-                    return self.path[self.location]
+                    print(self.path[self.location])
+                    return
                 
                 if movement_chance <= self.difficulty:
                     #move to next position in list
@@ -184,7 +188,7 @@ def main():
     aimen_button = button_module.Buttons(screen,50,400,"images/button_test.png")
 
     # let's set the framerate
-    jj = Counselor(None,'jj',0,5,20)
+    andrew = Counselor(None,'andrew',0,5,20)
     ethan = Counselor(None,'ethan',0,5,1)
     aimen = Aimen(20)
     clock = pygame.time.Clock()
@@ -205,7 +209,7 @@ def main():
         aimen_button.draw()
         aimen.aimen_clock()
         ethan.movement()
-        print(jj.movement(ethan))
+        print(andrew.movement(ethan))
 
         pygame.display.update()
 if __name__ == '__main__':

@@ -43,6 +43,8 @@ def main():
     jj_jumpscare = pygame.transform.scale(jj_jumpscare,(WINDOW_WIDTH,WINDOW_HEIGHT))
     aiman_jumpscare = pygame.image.load("images/aiman/aiman_jumpscare.png")
     aiman_jumpscare = pygame.transform.scale(aiman_jumpscare,(WINDOW_WIDTH,WINDOW_HEIGHT))
+    andrew_jumpscare = pygame.image.load("images/andrew/andrew_jumpscare.png")
+    andrew_jumpscare = pygame.transform.scale(andrew_jumpscare,(WINDOW_WIDTH,WINDOW_HEIGHT))
 
     #Other screens
     other_screen = start_end_screen_module.Start_Screen(screen)
@@ -136,6 +138,15 @@ def main():
                     run = False
                     camera_sys.jj.kill = False
 
+            #andrew jumpscare
+            if camera_sys.andrew.kill:
+                pygame.draw.rect(screen,"black",(0,0,WINDOW_WIDTH,WINDOW_HEIGHT))
+                screen.blit(andrew_jumpscare,(0,0))
+                if pygame.time.get_ticks() >= camera_sys.andrew.jump_time_start:
+                    game_over = True
+                    run = False
+                    camera_sys.andrew.kill = False
+
             #Aiman jumpscare
             if camera_sys.aiman.aimen_awake:
                 pygame.draw.rect(screen,"black",(0,0,WINDOW_WIDTH,WINDOW_HEIGHT))
@@ -148,7 +159,7 @@ def main():
             camera_sys.aiman.aimen_clock()
             ethan = camera_sys.ethan
             camera_sys.carp.movement(ethan)
-            
+            print(camera_sys.andrew.movement(ethan))
             camera_sys.jj.movement(ethan)
         elif game_over:
             other_screen.draw_game_over_screen(100)
