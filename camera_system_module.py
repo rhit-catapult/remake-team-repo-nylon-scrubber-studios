@@ -20,7 +20,6 @@ class Camera_System:
         self.last_click = 0
         self.delay = 200
         self.button = button_module.Buttons(screen,screen.get_width()/2-40,500,"images/button_test.png")
-        self.camera_image_folders = ["images/cam1_images","images/cam2_images","images/cam3_images","images/cam4_images","images/cam5_images","images/cam6_images"]
 
     def load_everything(self):
         self.camera_1 = camera_module.Camera(self.screen, "images/cam1_main.jpg", 20,20)
@@ -50,10 +49,6 @@ class Camera_System:
         self.camera_4.button.draw(40,40)
         self.camera_5.button.draw(40,40)
         self.camera_6.button.draw(40,40)
-
-
-    def constant_update(self):
-        pass
 
     def update(self):
         self.draw()
@@ -144,6 +139,7 @@ class Camera_System:
         elif self.current_camera == 5: #cam 6
             self.camera_6.draw()
             self.camera_6.draw_counselor("images/aiman/aiman_cam6.png", (0,0),(800,600))
+            self.screen.blit(self.aiman.aiman_timer_text,(20,0))
 
     def draw(self):
         self.draw_cameras()
