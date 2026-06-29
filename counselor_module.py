@@ -152,7 +152,6 @@ class Counselor:
 class Aimen:
     def __init__(self,timer):
         self.seconds = 0
-        self.awake = False
         self.aimen_awake = False
         self.timer = timer
         self.start_time =0
@@ -163,6 +162,7 @@ class Aimen:
         if self.seconds >= self.timer and self.aimen_awake == False:
             self.jump_time_start = pygame.time.get_ticks() + 5000
             self.aimen_awake = True
+        
     
     def aimen_button_pushed(self):
         self.start_time = pygame.time.get_ticks()//1000
