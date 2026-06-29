@@ -78,6 +78,14 @@ def main():
                 camera_sys.update()
 
 
+            if camera_sys.carp.kill:
+                pygame.draw.rect(screen,"blue",(0,0,WINDOW_WIDTH,WINDOW_HEIGHT))
+                screen.blit(aiman_jumpscare,(0,0))
+                if pygame.time.get_ticks() >= camera_sys.carp.jump_time_start:
+                    game_over = True
+                    run = False
+
+
             if camera_sys.aiman.aimen_awake:
                 pygame.draw.rect(screen,"black",(0,0,WINDOW_WIDTH,WINDOW_HEIGHT))
                 screen.blit(aiman_jumpscare,(0,0))
@@ -90,6 +98,8 @@ def main():
                 
             
             camera_sys.aiman.aimen_clock()
+            ethan = camera_sys.ethan
+            camera_sys.carp.movement(ethan)
         elif game_over:
             other_screen.draw_game_over_screen(100)
 
