@@ -54,7 +54,7 @@ class Counselor:
             #Carp's movement path
             if self.running == True:
                 print(seconds)
-                if seconds == self.time_delay+5:
+                if seconds >= self.time_delay+5:
                     self.location = self.location +1
                     self.running = False
                     return self.location
@@ -163,9 +163,12 @@ class Aimen:
         self.timer = timer
         self.start_time =0
         self.jump_time_start =0
+        self.aiman_timer_font = pygame.font.SysFont("courier new", 20)
+        self.aiman_timer_text = self.aiman_timer_font.render(f"{50-self.seconds}", False, "White", "Black")
 
     def aimen_clock(self):
         self.seconds = pygame.time.get_ticks()//1000 - self.start_time
+        self.aiman_timer_text = self.aiman_timer_font.render(f"{50-self.seconds}", False, "White", "Black")
         if self.seconds >= self.timer and self.aimen_awake== False:
             self.jump_time_start = pygame.time.get_ticks() + 5000
             self.aimen_awake = True

@@ -15,7 +15,7 @@ def main():
     pygame.display.set_caption("One Night at Catapult")
     screen = pygame.display.set_mode((WINDOW_WIDTH,WINDOW_HEIGHT))
     #screen = pygame.display.set_mode((800, 600), pygame.FULLSCREEN | pygame.SCALED)
-    run = True
+    run = False
     game_over = False
 
     #Camera System
@@ -53,16 +53,21 @@ def main():
             if event.type == pygame.QUIT:
                 sys.exit()
             mouse_pos = pygame.mouse.get_pos()
-            if camera_sys.camera_on == False:
-                if aiman_button.rect.collidepoint(mouse_pos):
-                    if event.type == pygame.MOUSEBUTTONDOWN and camera_sys.aiman.aimen_awake == False:
-                        camera_sys.aiman.aimen_button_pushed()
-                if camera_button_office.rect.collidepoint(mouse_pos):
-                    if event.type == pygame.MOUSEBUTTONDOWN:
-                        camera_sys.camera_on = True
-                if carp_button.rect.collidepoint(mouse_pos):
-                    if event.type == pygame.MOUSEBUTTONDOWN:
-                        camera_sys.carp.carp_button_pushed()
+            if other_screen.game_over_button.is_pressed_display():
+                game_over = False
+            if other_screen.start_button.is_pressed_display():
+                run = True
+            if run:
+                if camera_sys.camera_on == False:
+                    if aiman_button.rect.collidepoint(mouse_pos):
+                        if event.type == pygame.MOUSEBUTTONDOWN and camera_sys.aiman.aimen_awake == False:
+                            camera_sys.aiman.aimen_button_pushed()
+                    if camera_button_office.rect.collidepoint(mouse_pos):
+                        if event.type == pygame.MOUSEBUTTONDOWN:
+                            camera_sys.camera_on = True
+                    if carp_button.rect.collidepoint(mouse_pos):
+                        if event.type == pygame.MOUSEBUTTONDOWN:
+                            camera_sys.carp.carp_button_pushed()
 
         if run:
             #office side scrolling
@@ -91,6 +96,7 @@ def main():
                 office_right.here = True
                 right_true = True
             
+            #Background
             screen.fill((255, 255, 255))
 
             #draws the office if cameras are off
@@ -99,26 +105,27 @@ def main():
                     office_main.draw()
                     aiman_button.draw(40,40)
                     carp_button.draw(40,40)
+                    camera_button_office.draw(100,50)
                 elif office_left.here:
                     office_left.draw()
                 elif office_right.here:
                     office_right.draw()
-                camera_button_office.draw(100,50)
                 camera_sys.last_click = pygame.time.get_ticks()
 
             #draws the cameras if cameras are on
             if camera_sys.camera_on:
                 camera_sys.update()
 
-
+            #carp jumpscare
             if camera_sys.carp.kill:
                 pygame.draw.rect(screen,"black",(0,0,WINDOW_WIDTH,WINDOW_HEIGHT))
                 screen.blit(carp_jumpscare,(0,0))
                 if pygame.time.get_ticks() >= camera_sys.carp.jump_time_start:
                     game_over = True
                     run = False
+                    camera_sys.carp.kill = False
 
-
+            #Aiman jumpscare
             if camera_sys.aiman.aimen_awake:
                 pygame.draw.rect(screen,"black",(0,0,WINDOW_WIDTH,WINDOW_HEIGHT))
                 screen.blit(aiman_jumpscare,(0,0))
@@ -133,7 +140,8 @@ def main():
 
         elif game_over:
             other_screen.draw_game_over_screen(100)
-
+        else: 
+            other_screen.draw_start_screen(100)
 
         # don't forget the update, otherwise nothing will show up!
         pygame.display.update()
