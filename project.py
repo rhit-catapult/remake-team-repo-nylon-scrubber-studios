@@ -30,10 +30,11 @@ def main():
     #Buttons
     aiman_button = button_module.Buttons(screen,50,450,"images/button_test.png")
     camera_button_office = button_module.Buttons(screen,WINDOW_WIDTH/2,500,"images/button_test.png")
+    carp_button = button_module.Buttons(screen,300,450, "images/button_test.png")
     
     #Jumpscares
-    jumpscare_delay = pygame.time.get_ticks() + 5000
-    last_time = pygame.time.get_ticks()
+    carp_jumpscare = pygame.image.load("images/carp/carp_jumpscare.png")
+    carp_jumpscare = pygame.transform.scale(carp_jumpscare,(WINDOW_WIDTH,WINDOW_HEIGHT))
     aiman_jumpscare = pygame.image.load("images/aiman/aiman_jumpscare.png")
     aiman_jumpscare = pygame.transform.scale(aiman_jumpscare,(WINDOW_WIDTH,WINDOW_HEIGHT))
 
@@ -55,7 +56,9 @@ def main():
                 if camera_button_office.rect.collidepoint(mouse_pos):
                     if event.type == pygame.MOUSEBUTTONDOWN:
                         camera_sys.camera_on = True
-                        print("cam click")
+                if carp_button.rect.collidepoint(mouse_pos):
+                    if event.type == pygame.MOUSEBUTTONDOWN:
+                        camera_sys.carp.carp_button_pushed()
 
         if run:
             #office side scrolling
@@ -70,6 +73,7 @@ def main():
             if camera_sys.camera_on == False:
                 office.draw()
                 aiman_button.draw(40,40)
+                carp_button.draw(40,40)
                 camera_button_office.draw(100,50)
                 camera_sys.last_click = pygame.time.get_ticks()
 
@@ -79,8 +83,8 @@ def main():
 
 
             if camera_sys.carp.kill:
-                pygame.draw.rect(screen,"blue",(0,0,WINDOW_WIDTH,WINDOW_HEIGHT))
-                screen.blit(aiman_jumpscare,(0,0))
+                pygame.draw.rect(screen,"black",(0,0,WINDOW_WIDTH,WINDOW_HEIGHT))
+                screen.blit(carp_jumpscare,(0,0))
                 if pygame.time.get_ticks() >= camera_sys.carp.jump_time_start:
                     game_over = True
                     run = False

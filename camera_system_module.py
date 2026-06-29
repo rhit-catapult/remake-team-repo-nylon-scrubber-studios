@@ -113,8 +113,8 @@ class Camera_System:
 
         if self.current_camera == 1: #cam 2
             self.camera_2.draw()
-            if self.carp.location == "livingroom":
-                self.camera_2.draw_counselor("images/carp/carp.jpg", (50,50),(800,600))
+            if self.carp.path[self.carp.location] == "livingroom":
+                self.camera_2.draw_counselor("images/carp/carp_cam2.png", (0,0),(800,600))
             if self.ethan.location == "":
                 self.camera_2.draw_counselor("images/eathen/ethan.jpg", (50,50),(800,600))
 
@@ -122,10 +122,10 @@ class Camera_System:
             self.camera_3.draw()
             if self.ethan.location == "":
                 self.camera_3.draw_counselor("images/eathen/ethan.jpg", (50,50),(800,600))
-            if self.carp.location == "left_hallway":
-                self.camera_3.draw_counselor("images/eathen/ethan.jpg", (50,50),(800,600))
-            if self.carp.location == "peek":
-                self.camera_3.draw_counselor("images/eathen/ethan.jpg", (100,100),(800,600))
+            if self.carp.path[self.carp.location] == "left_hallway":
+                self.camera_3.draw_counselor("images/carp/carp_cam3_pos1.png", (0,0),(800,600))
+            if self.carp.path[self.carp.location] == "peek":
+                self.camera_3.draw_counselor("images/carp/carp_cam3_pos2.png", (0,0),(800,600))
 
         elif self.current_camera == 3: #cam 4
             self.camera_4.draw()

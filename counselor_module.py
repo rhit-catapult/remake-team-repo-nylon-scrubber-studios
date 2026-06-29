@@ -6,7 +6,7 @@ import sys
 import office_module
 
 class Counselor:
-    def __init__(self,screen, movement_type,location,time_delay,difficulty):
+    def __init__(self,screen, movement_type,location: int,time_delay,difficulty):
         self.screen = screen
         self.movenment_type = movement_type
         self.location = location
@@ -18,7 +18,7 @@ class Counselor:
         self.jump_time_start =0
         self.kill_clock = 5
         self.kill = False
-        
+
     def movement(self,ethan=None):
         milli_seconds = pygame.time.get_ticks()
         seconds = milli_seconds//1000-self.times_ran
@@ -117,7 +117,7 @@ class Counselor:
             return self.path[self.location]
     
     def carp_button_pushed(self):
-        if self.location > 2:
+        if self.location > 0 and self.location != 2:
             self.location = 0
 
 
