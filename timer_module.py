@@ -22,19 +22,20 @@ class Timer:
         self.screen.blit(self.image,(self.x,self.y))
         seconds_left = self.time_length//1000
         hour = 12
-        if seconds_left > 600:
+        if seconds_left > 300:
             hour = 12
-        elif seconds_left > 480:
-            hour = 1
-        elif seconds_left > 360:
-            hour = 2
         elif seconds_left > 240:
-            hour = 3
+            hour = 1
+        elif seconds_left > 180:
+            hour = 2
         elif seconds_left > 120:
+            hour = 3
+        elif seconds_left > 60:
             hour = 4
         elif seconds_left > 0:
             hour = 5
         else:
+            pygame.mixer.music.stop()
             pygame.mixer.Sound('sounds/victory.wav').play()
             self.win_condition = True
         self.timer_text = self.timer_font.render(f"{hour:02}:00",False,(255,255,255))
