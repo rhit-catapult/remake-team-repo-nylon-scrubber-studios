@@ -155,6 +155,7 @@ def main():
 
             #carp jumpscare
             if camera_sys.carp.kill:
+                pygame.mixer.Sound.stop()
                 pygame.draw.rect(screen,"black",(0,0,WINDOW_WIDTH,WINDOW_HEIGHT))
                 screen.blit(carp_jumpscare,(0,0))
                 if pygame.time.get_ticks() >= camera_sys.carp.jump_time_start:
@@ -164,6 +165,7 @@ def main():
 
             #jj jumpscare
             if camera_sys.jj.kill:
+                pygame.mixer.stop()
                 pygame.draw.rect(screen,"black",(0,0,WINDOW_WIDTH,WINDOW_HEIGHT))
                 screen.blit(jj_jumpscare,(0,0))
                 if pygame.time.get_ticks() >= camera_sys.jj.jump_time_start:
@@ -173,6 +175,7 @@ def main():
 
             #andrew jumpscare
             if camera_sys.andrew.kill:
+                pygame.mixer.stop()
                 pygame.draw.rect(screen,"black",(0,0,WINDOW_WIDTH,WINDOW_HEIGHT))
                 screen.blit(andrew_jumpscare,(0,0))
                 if pygame.time.get_ticks() >= camera_sys.andrew.jump_time_start:
@@ -182,6 +185,7 @@ def main():
 
             #Aiman jumpscare
             if camera_sys.aiman.aimen_awake:
+                pygame.mixer.stop()
                 pygame.draw.rect(screen,"black",(0,0,WINDOW_WIDTH,WINDOW_HEIGHT))
                 screen.blit(aiman_jumpscare,(0,0))
                 if pygame.time.get_ticks() >= camera_sys.aiman.jump_time_start:

@@ -24,17 +24,17 @@ class Camera_System:
         last_start_time = pygame.time.get_ticks()
         
         #Setting up Camera's
-        self.camera_1 = camera_module.Camera(self.screen, "images/cam1_main.jpg", 20,20)
-        self.camera_2 = camera_module.Camera(self.screen, "images/cam2_main.jpg", 60,20)
-        self.camera_3 = camera_module.Camera(self.screen, "images/cam3_main.jpg", 100,20)
-        self.camera_4 = camera_module.Camera(self.screen, "images/cam4_main.jpg", 140,20)
-        self.camera_5 = camera_module.Camera(self.screen, "images/cam5_main.jpg", 180,20)
-        self.camera_6 = camera_module.Camera(self.screen, "images/cam6_main.jpg", 220,20)
+        self.camera_1 = camera_module.Camera(self.screen, "images/cam1_main.jpg", 730,535)
+        self.camera_2 = camera_module.Camera(self.screen, "images/cam2_main.jpg", 640,470)
+        self.camera_3 = camera_module.Camera(self.screen, "images/cam3_main.jpg", 662,350)
+        self.camera_4 = camera_module.Camera(self.screen, "images/cam4_main.jpg", 733,350)
+        self.camera_5 = camera_module.Camera(self.screen, "images/cam5_main.jpg", 662,300)
+        self.camera_6 = camera_module.Camera(self.screen, "images/cam6_main.jpg", 733,310)
 
         #Setting up Counselors
         self.jj = counselor_module.Counselor(None,'jj',0,5,5,last_start_time)
         self.carp = counselor_module.Counselor(None,'carp',0,5,5,last_start_time)
-        self.aiman = counselor_module.Aimen(50)
+        self.aiman = counselor_module.Aimen(10)
         self.ethan = counselor_module.Counselor(None,'ethan',0,5,5,last_start_time)
         self.andrew = counselor_module.Counselor(None,'andrew',0,5,5,last_start_time)
 
@@ -95,7 +95,7 @@ class Camera_System:
             self.switch_camera(5)
 
         if self.button.is_pressed_display() and pygame.time.get_ticks() - self.last_click > self.delay:
-            camera_up = pygame.mixer.Sound('sounds/camera_up.wav')
+            camera_up = pygame.mixer.Sound('sounds/camera_down.wav')
             pygame.mixer.music.set_volume(2.0)
             camera_up.play()
             self.last_click = pygame.time.get_ticks()
@@ -159,7 +159,7 @@ class Camera_System:
 
     def draw(self):
         self.draw_cameras()
-        self.draw_minimap(400,400)
+        self.draw_minimap(530,300)
         self.button.draw(200,50)
         
 
