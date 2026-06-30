@@ -36,6 +36,9 @@ class Counselor:
             self.path = ["livingroom","left_hallway","restroom","peek","left_doorway"]
             # print(self.path[self.location])
             #if carp has stayed in his location for as long as his movement time
+            if ethan.path[ethan.location] == self.path[self.location]:
+                    self.location = self.location + 1
+                    return
             if self.seconds== self.time_delay:
                 #subtracts 5 self.secondsfrom self.secondsto prevent rerunning until next 5 seconds
                 self.times_ran += self.time_delay
@@ -86,6 +89,9 @@ class Counselor:
                 movement_chance = random.randint(1,20)
                 #return carp to his starting location if he has finished his path
                 #if carp as succeeded his movement chance
+                if ethan.path[ethan.location] == self.path[self.location]:
+                    self.location = self.location + 1
+                    return
                 if movement_chance <= self.difficulty:
                     if self.location == 2:
                         self.running = True
@@ -120,7 +126,7 @@ class Counselor:
                         pygame.mixer.Sound('sounds/banging_door.wav').play()
                     self.location = 0
                 #if carp as succeeded his movement chance
-                if ethan == self.path[self.location]:
+                if ethan.path[ethan.location] == self.path[self.location]:
                     self.location = self.location + 1
                     return
                 
