@@ -117,7 +117,7 @@ class Camera_System:
             if self.ethan.location == "":
                 self.camera_1.draw_counselor("images/eathen/ethan.jpg", (0,0),(800,600))
             if self.andrew.path[self.andrew.location] == "kitchen":
-                self.camera_1.draw_counselor("images/andrew/andrew_cam1.png", (60,-10),(800,600))
+                self.camera_1.draw_counselor("images/andrew/andrew_cam1.png", (-60,-10),(800,600))
 
         if self.current_camera == 1: #cam 2
             self.camera_2.draw()
