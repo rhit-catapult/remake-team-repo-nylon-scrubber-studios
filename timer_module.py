@@ -15,7 +15,7 @@ class Timer:
         self.timer_text = ""
         self.win_condition = False
 
-    def reset_clock(self,time):
+    def reset_clock(self):
         self.time_length = 360000
 
     def draw(self):

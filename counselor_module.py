@@ -145,6 +145,7 @@ class Counselor:
         if self.movenment_type == 'ethan':
             #Carp's movement path
             self.path = ["livingroom","kitchen","right_hall","left_hall","restroom"]
+            print(self.path[self.location])
             #if carp has stayed in his location for as long as his movement time
             if self.seconds== self.time_delay:
                 #subtracts 5 self.secondsfrom self.secondsto prevent rerunning until next 5 seconds
