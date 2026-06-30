@@ -15,6 +15,7 @@ class Office:
         self.door_closed = False
         self.here = is_here
         self.current_color = (0,0,0)
+        self.is_counselor_here = False
         if door_side != None:
             if door_side == "left":
                 self.rect = pygame.Rect(278,0,182,520)
