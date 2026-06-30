@@ -30,6 +30,7 @@ class Start_Screen:
         self.game_over_button.draw()
 
     def draw_win_screen(self,title_text_y):
+        pygame.mixer.Sound('sounds/victory.wav').play()
         self.screen.fill((0,0,0))
         self.screen.blit(self.win_screen_text, (self.win_screen_text_x,title_text_y))
         self.win_button.draw()
