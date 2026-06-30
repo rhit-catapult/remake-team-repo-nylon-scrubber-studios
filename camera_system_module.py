@@ -34,7 +34,7 @@ class Camera_System:
         #Setting up Counselors
         self.jj = counselor_module.Counselor(None,'jj',0,5,5,last_start_time)
         self.carp = counselor_module.Counselor(None,'carp',0,5,5,last_start_time)
-        self.aiman = counselor_module.Aimen(50)
+        self.aiman = counselor_module.Aimen(10)
         self.ethan = counselor_module.Counselor(None,'ethan',0,5,5,last_start_time)
         self.andrew = counselor_module.Counselor(None,'andrew',0,5,5,last_start_time)
 
@@ -95,7 +95,7 @@ class Camera_System:
             self.switch_camera(5)
 
         if self.button.is_pressed_display() and pygame.time.get_ticks() - self.last_click > self.delay:
-            camera_up = pygame.mixer.Sound('sounds/camera_up.wav')
+            camera_up = pygame.mixer.Sound('sounds/camera_down.wav')
             pygame.mixer.music.set_volume(2.0)
             camera_up.play()
             self.last_click = pygame.time.get_ticks()
