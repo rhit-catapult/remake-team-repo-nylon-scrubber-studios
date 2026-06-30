@@ -139,9 +139,9 @@ def main():
                     timer.draw()
                     camera_button_office.draw(100,50)
                 elif office_left.here:
-                    office_left.draw()
+                    office_left.draw("left")
                 elif office_right.here:
-                    office_right.draw()
+                    office_right.draw("left")
                 camera_sys.last_click = pygame.time.get_ticks()
 
             #draws the cameras if cameras are on
