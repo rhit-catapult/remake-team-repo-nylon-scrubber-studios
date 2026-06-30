@@ -218,10 +218,6 @@ def main():
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     aimen.aimen_button_pushed()
 
-        
-
-        
-
         screen.fill((255, 255, 255))
         aimen_button.draw()
         aimen.aimen_clock()
