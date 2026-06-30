@@ -68,6 +68,8 @@ class Counselor:
                     if self.door == False:
                         self.jump_time_start = pygame.time.get_ticks() + 5000
                         self.kill = True
+                    else:
+                        pygame.mixer.Sound('sounds/banging_door.wav').play()
                     self.location = 0
                     self.running = False
                     return self.kill
@@ -114,6 +116,8 @@ class Counselor:
                     if self.door == False:
                         self.jump_time_start = pygame.time.get_ticks() + 5000
                         self.kill = True
+                    else:
+                        pygame.mixer.Sound('sounds/banging_door.wav').play()
                     self.location = 0
                 #if carp as succeeded his movement chance
                 if ethan == self.path[self.location]:
@@ -131,7 +135,6 @@ class Counselor:
     
     def carp_button_pushed(self):
         pygame.mixer.Sound('sounds/button_click.wav').play()
-        print('carp')
         if self.location > 2:
             self.location = 0
 
@@ -203,7 +206,6 @@ class Aimen:
     
     def aimen_button_pushed(self):
         pygame.mixer.Sound('sounds/button_click.wav').play()
-        print('aimen')
         self.start_time = pygame.time.get_ticks()//1000
         self.alarm = False
 
