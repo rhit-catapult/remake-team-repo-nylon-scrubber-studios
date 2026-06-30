@@ -196,7 +196,7 @@ class Aimen:
         self.seconds= pygame.time.get_ticks()//1000 - self.start_time
         print(self.seconds)
         self.aiman_timer_text = self.aiman_timer_font.render(f"{self.timer-self.seconds}", False, "White", "Black")
-        if self.alarm == False and self.timer == self.seconds+3:
+        if self.alarm == False and self.timer == self.seconds+5:
             pygame.mixer.Sound('sounds/alarm.wav').play()
             self.alarm = True
         if self.seconds>= self.timer and self.aimen_awake== False:
