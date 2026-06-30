@@ -16,6 +16,7 @@ class Office:
         self.here = is_here
         self.current_color = (0,0,0)
         self.is_counselor_here = False
+        self.button_pos = door_button_position
         if door_side != None:
             if door_side == "left":
                 self.rect = pygame.Rect(278,0,182,520)
@@ -23,7 +24,8 @@ class Office:
                 self.rect = pygame.Rect(320,0,210,520)
                 pygame.draw.rect(screen,(0,0,0),(320,0,210,520))
             self.door = Door(f"images/office_{door_side}door_closed.png",screen,door_side)
-            self.door_button = button_module.Buttons(screen,door_button_position[0],door_button_position[1],"images/button_test.png")
+            self.door_button = button_module.Buttons(screen,door_button_position[0],door_button_position[1],"images/door_button_off.png")
+            self.button_color = (255,0,0)
         else:
             self.door = None
         
@@ -37,9 +39,10 @@ class Office:
                 pygame.draw.rect(self.screen,self.current_color,(300,0,240,520))
             self.screen.blit(self.image,(self.x,0))
             if self.door != None:
+                pygame.draw.rect(self.screen,self.button_color,(self.button_pos[0],self.button_pos[1],40,40))
                 self.door_button.draw(40,40)
                 if self.rect.collidepoint(pygame.mouse.get_pos()) and pygame.mouse.get_pressed()[0]:
-                    self.current_color = (120,120,120)
+                    self.current_color = (160,160,160)
                     self.is_counselor_here = True
                 else:
                     self.current_color = (0,0,0)
@@ -52,8 +55,11 @@ class Office:
     def update(self):
         if self.door_button.is_pressed_display():
             self.door_closed = True
+            self.button_color = (0,255,0)
         else:
             self.door_closed = False
+            self.button_color = (255,0,0)
+            
             
 
 
