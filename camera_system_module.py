@@ -122,7 +122,7 @@ class Camera_System:
         if self.current_camera == 1: #cam 2
             self.camera_2.draw()
             if self.carp.get_counselor() == "livingroom":
-                self.camera_2.draw_counselor("images/carp/carp_cam2.png", (0,0),(800,600))
+                self.camera_2.draw_counselor("images/carp/carp_cam2.png", (-100,70),(800,600))
             if self.ethan.location == "":
                 self.camera_2.draw_counselor("images/eathen/ethan.jpg", (0,0),(800,600))
 
@@ -131,18 +131,18 @@ class Camera_System:
             if self.ethan.location == "":
                 self.camera_3.draw_counselor("images/eathen/ethan.jpg", (0,0),(800,600))
             if self.carp.path[self.carp.location] == "left_hallway":
-                self.camera_3.draw_counselor("images/carp/carp_cam3_pos1.png", (0,0),(800,600))
+                self.camera_3.draw_counselor("images/carp/carp_cam3_pos1.png", (0,150),(800,600))
             if self.carp.path[self.carp.location] == "peek":
-                self.camera_3.draw_counselor("images/carp/carp_cam3_pos2.png", (0,0),(800,600))
+                self.camera_3.draw_counselor("images/carp/carp_cam3_pos2.png", (5,150),(800,600))
 
         elif self.current_camera == 3: #cam 4
             self.camera_4.draw()
             if self.ethan.location == "":
                 self.camera_4.draw_counselor("images/eathen/ethan.jpg", (0,0),(800,600))
             if self.andrew.path[self.andrew.location] == "right_hall_far":
-                self.camera_4.draw_counselor("images/andrew/andrew_cam4_pos1.png", (0,0),(800,600))
+                self.camera_4.draw_counselor("images/andrew/andrew_cam4_pos1.png", (0,15),(800,600))
             if self.andrew.path[self.andrew.location] == "right_hall_close":
-                self.camera_4.draw_counselor("images/andrew/andrew_cam4_pos2.png",(0,0),(800,600))
+                self.camera_4.draw_counselor("images/andrew/andrew_cam4_pos2.png",(-10,25),(800,600))
             
 
         elif self.current_camera == 4: #cam 5
@@ -152,7 +152,7 @@ class Camera_System:
 
         elif self.current_camera == 5: #cam 6
             self.camera_6.draw()
-            self.camera_6.draw_counselor("images/aiman/aiman_cam6.png", (0,0),(800,600))
+            self.camera_6.draw_counselor("images/aiman/aiman_cam6.png", (-30,100),(800,600))
             self.screen.blit(self.aiman.aiman_timer_text,(20,0))
 
     def draw(self):
