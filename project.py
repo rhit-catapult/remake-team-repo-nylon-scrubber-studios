@@ -80,6 +80,15 @@ def main():
             #Background
             screen.fill((255, 255, 255))
 
+            if office_left.door_closed == True:
+                camera_sys.jj.door = True
+            else:
+                camera_sys.jj.door = False
+            if office_right.door_closed == True:
+                camera_sys.andrew.door = True
+            else:
+                camera_sys.andrew.door = False
+
             #draws the office if cameras are off
             if camera_sys.camera_on == False:
                 #office side scrolling
@@ -110,6 +119,7 @@ def main():
 
                 #updates office sides
                 office_left.update()
+                print(office_left.door_closed)
                 office_right.update()
                 if office_main.here:
                     office_main.draw()
