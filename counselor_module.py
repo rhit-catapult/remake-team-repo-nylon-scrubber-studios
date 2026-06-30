@@ -130,6 +130,8 @@ class Counselor:
             return self.path[self.location]
     
     def carp_button_pushed(self):
+        pygame.mixer.Sound('sounds/button_click.wav').play()
+        print('carp')
         if self.location > 2:
             self.location = 0
 
@@ -200,6 +202,8 @@ class Aimen:
         
     
     def aimen_button_pushed(self):
+        pygame.mixer.Sound('sounds/button_click.wav').play()
+        print('aimen')
         self.start_time = pygame.time.get_ticks()//1000
         self.alarm = False
 

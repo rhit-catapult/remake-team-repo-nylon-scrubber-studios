@@ -52,6 +52,7 @@ class Office:
             self.door_closed = True
         else:
             self.door_closed = False
+            
 
 
 class Door:
@@ -103,6 +104,7 @@ def main():
                 right_rect_collision = right_rect.collidepoint(pygame.mouse.get_pos())
 
                 if not left_rect_collision:
+                    pygame.mixer.Sound('sounds/door_open.wav').play()
                     left_true = False
                 if not right_rect_collision:
                     right_true = False
