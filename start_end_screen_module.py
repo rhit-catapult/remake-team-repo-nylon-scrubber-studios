@@ -15,8 +15,8 @@ class Start_Screen:
         self.game_over_screen_text_x = (self.screen.get_width() - self.game_over_screen_text.get_width())/2
         self.win_screen_text_x = (self.screen.get_width() - self.game_over_screen_text.get_width())/2
         self.start_button = button_module.Buttons(self.screen, 250, 300, "images/play_button.png")
-        self.game_over_button = button_module.Buttons(self.screen, 600, 300, "images/play_button.png")
-        self.win_button = button_module.Buttons(self.screen,100,300,"images/button_test.png")
+        self.game_over_button = button_module.Buttons(self.screen, 600, 300, "images/menu_button.png")
+        self.win_button = button_module.Buttons(self.screen,100,300,"images/menu_button.png")
 
     def draw_start_screen(self):
         self.screen.blit(self.start_screen_image, (0,0))

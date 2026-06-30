@@ -7,12 +7,12 @@ import button_module
 class Camera:
 
     #creates a camera
-    def __init__(self, screen: pygame.Surface, camera_image,x,y):
+    def __init__(self, screen: pygame.Surface, camera_image,x,y,cam_num):
         self.screen = screen
         self.camera_image = pygame.image.load(camera_image)
         self.counselors_in_camera = []
         self.folder = []
-        self.button = button_module.Buttons(screen,x,y,"images/cam_button/cam_1_button.png")
+        self.button = button_module.Buttons(screen,x,y,f"images/cam_button/cam_{cam_num}_button.png")
         camera_num = 0
 
     #loads the image files into a variable
