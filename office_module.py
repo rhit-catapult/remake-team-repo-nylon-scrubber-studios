@@ -3,6 +3,7 @@ import sys
 import button_module
 
 
+
 from settings import *
 
 class Office:
@@ -28,6 +29,7 @@ class Office:
                 self.door_button.draw(40,40)
                 if self.door_closed:
                     self.door.draw()
+                
             
 
     def update(self):
@@ -42,13 +44,12 @@ class Door:
         self.closed = False
         self.screen = screen
         self.image = pygame.image.load(filename)
+        self.rect = pygame.Rect(100,100,self.image.get_width(),self.image.get_height())
     
     def draw(self):
         self.image = pygame.transform.scale(self.image,(WINDOW_WIDTH,WINDOW_HEIGHT))
         self.screen.blit(self.image,(0,0))
 
-    def is_closed(self):
-        return self.closed
 
 #test function
 def main():
