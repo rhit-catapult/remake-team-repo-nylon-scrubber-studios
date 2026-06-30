@@ -20,7 +20,7 @@ def main():
     win = False
 
     #Timer
-    timer = timer_module.Timer(screen,100,200,"images/clock.png",100,50,72000)
+    timer = timer_module.Timer(screen,150,400,"images/clock.png",100,50,72000)
 
     #Camera System
     camera_sys = camera_system_module.Camera_System(screen,False)
@@ -36,10 +36,10 @@ def main():
 
     #Buttons
     aiman_button = button_module.Buttons(screen,50,450,"images/aiman_alarm_button.png")
-    aiman_button_activated = (255,0,0)
-    
+    aiman_button_activated = (255,0,0)    
     camera_button_office = button_module.Buttons(screen,200,550,"images/camera_button_up.png.png")
     carp_button = button_module.Buttons(screen,300,450, "images/carp_recall_button.png")
+    carp_button_activated = (255,0,0)
 
     #Doorway images
     carp_door = pygame.image.load("images/carp/carp_door.png")
@@ -84,7 +84,10 @@ def main():
                 if camera_sys.camera_on == False:
                     if aiman_button.rect.collidepoint(mouse_pos):
                         if event.type == pygame.MOUSEBUTTONDOWN and camera_sys.aiman.aimen_awake == False:
+                            aiman_button_activated = (0,255,0)
                             camera_sys.aiman.aimen_button_pushed()
+                        else:
+                            aiman_button_activated = (255,0,0)
                     if camera_button_office.rect.collidepoint(mouse_pos):
                         if event.type == pygame.MOUSEBUTTONDOWN:
                             camera_up = pygame.mixer.Sound('sounds/camera_up.wav')
@@ -93,7 +96,10 @@ def main():
                             camera_sys.camera_on = True
                     if carp_button.rect.collidepoint(mouse_pos):
                         if event.type == pygame.MOUSEBUTTONDOWN:
+                            carp_button_activated = (0,255,0)
                             camera_sys.carp.carp_button_pushed()
+                        else:
+                            carp_button_activated = (255,0,0)
 
         if run:            
             #Background
@@ -142,6 +148,8 @@ def main():
                 office_right.update()
                 if office_main.here:
                     office_main.draw()
+                    pygame.draw.rect(screen,aiman_button_activated,(50,450,40,40))
+                    pygame.draw.rect(screen,carp_button_activated,(300,450,40,40))
                     aiman_button.draw(40,40)
                     carp_button.draw(40,40)
                     timer.draw()

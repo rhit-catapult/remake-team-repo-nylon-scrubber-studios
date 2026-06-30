@@ -11,7 +11,7 @@ class Timer:
         self.x = x
         self.y = y
         self.time_length = 720000
-        self.timer_font = pygame.font.SysFont("Courier new",20)
+        self.timer_font = pygame.font.SysFont("Courier new",20,True)
         self.timer_text = ""
         self.win_condition = False
 
@@ -36,5 +36,5 @@ class Timer:
             hour = 5
         else:
             self.win_condition = True
-        self.timer_text = self.timer_font.render(f"{hour:02}:00",False,(255,0,0))
-        self.screen.blit(self.timer_text,(self.x,self.y))
+        self.timer_text = self.timer_font.render(f"{hour:02}:00",False,(255,255,255))
+        self.screen.blit(self.timer_text,(self.x+20,self.y+18))
