@@ -1,7 +1,7 @@
 import pygame
 import sys
 import random
-import time
+import timer_module
 import camera_system_module
 import button_module
 import office_module
@@ -17,6 +17,10 @@ def main():
     #screen = pygame.display.set_mode((800, 600), pygame.FULLSCREEN | pygame.SCALED)
     run = False
     game_over = False
+    win = False
+
+    #Timer
+    timer = timer_module.Timer(screen,100,200,"images/clock.png",100,50,5000)
 
     #Camera System
     camera_sys = camera_system_module.Camera_System(screen,False)
@@ -51,7 +55,7 @@ def main():
     # let's set the framerate
     clock = pygame.time.Clock()
     while True:
-        clock.tick(60)  # this sets the framerate of your game
+        dt = clock.tick(60)  # this sets the framerate of your game
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 sys.exit()
@@ -62,6 +66,10 @@ def main():
             if other_screen.start_button.is_pressed_display() and run == False:
                 run = True
                 camera_sys.load_everything()
+            if other_screen.win_button.is_pressed_display() and win == True:
+                win = False
+                timer.win_condition = False
+                timer.reset_clock(5000)
 
                 
             if run:
@@ -80,6 +88,7 @@ def main():
             #Background
             screen.fill((255, 255, 255))
 
+            #checks and stops counselors from jumpscaring if the door is closed
             if office_left.door_closed == True:
                 camera_sys.jj.door = True
             else:
@@ -119,12 +128,12 @@ def main():
 
                 #updates office sides
                 office_left.update()
-                print(office_left.door_closed)
                 office_right.update()
                 if office_main.here:
                     office_main.draw()
                     aiman_button.draw(40,40)
                     carp_button.draw(40,40)
+                    timer.draw()
                     camera_button_office.draw(100,50)
                 elif office_left.here:
                     office_left.draw()
@@ -135,6 +144,11 @@ def main():
             #draws the cameras if cameras are on
             if camera_sys.camera_on:
                 camera_sys.update()
+
+            timer.time_length -= dt
+            if timer.win_condition:
+                win = True
+                run = False
 
             #carp jumpscare
             if camera_sys.carp.kill:
@@ -179,6 +193,8 @@ def main():
             camera_sys.jj.movement(ethan)
         elif game_over:
             other_screen.draw_game_over_screen(100)
+        elif win:
+            other_screen.draw_win_screen(100)
         else: 
             other_screen.draw_start_screen(100)
 

@@ -10,10 +10,13 @@ class Start_Screen:
         self.title_screen_font = pygame.font.SysFont("courier new", 50, True, True)
         self.start_screen_text = self.title_screen_font.render("FOUR NIGHTS AT CATAPULTS", True, (200,0,0))
         self.game_over_screen_text = self.title_screen_font.render("YOU GOT FUNISHED!", True, (200,0,0))
+        self.win_screen_text = self.title_screen_font.render("YOU WON", True, (200,0,0))
         self.start_screen_text_x = (self.screen.get_width() - self.start_screen_text.get_width())/2
         self.game_over_screen_text_x = (self.screen.get_width() - self.game_over_screen_text.get_width())/2
+        self.win_screen_text_x = (self.screen.get_width() - self.game_over_screen_text.get_width())/2
         self.start_button = button_module.Buttons(self.screen, 100, 300, "images/button_test.png")
         self.game_over_button = button_module.Buttons(self.screen, 400, 300, "images/button_test.png")
+        self.win_button = button_module.Buttons(self.screen,200,300,"images/button_test.png")
 
     def draw_start_screen(self, title_text_y):
         self.screen.fill((0,0,0))
@@ -24,6 +27,11 @@ class Start_Screen:
         self.screen.fill((0,0,0))
         self.screen.blit(self.game_over_screen_text, (self.game_over_screen_text_x, title_text_y))
         self.game_over_button.draw()
+
+    def draw_win_screen(self,title_text_y):
+        self.screen.fill((0,0,0))
+        self.screen.blit(self.win_screen_text, (self.win_screen_text_x,title_text_y))
+        self.win_button.draw()
              
         
 
