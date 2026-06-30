@@ -7,21 +7,20 @@ from settings import *
 class Start_Screen:
     def __init__(self, screen: pygame.Surface):
         self.screen = screen
+        self.start_screen_image = pygame.image.load("images/title_screen.png")
+        self.start_screen_image = pygame.transform.scale(self.start_screen_image,(WINDOW_WIDTH,WINDOW_HEIGHT))
         self.title_screen_font = pygame.font.SysFont("courier new", 50, True, True)
-        self.start_screen_text = self.title_screen_font.render("ONE NIGHT AT CATAPULTS", True, (200,0,0))
         self.game_over_screen_text = self.title_screen_font.render("YOU GOT FUNISHED!", True, (200,0,0))
         self.win_screen_text = self.title_screen_font.render("YOU WON", True, (200,0,0))
-        self.start_screen_text_x = (self.screen.get_width() - self.start_screen_text.get_width())/2
         self.game_over_screen_text_x = (self.screen.get_width() - self.game_over_screen_text.get_width())/2
         self.win_screen_text_x = (self.screen.get_width() - self.game_over_screen_text.get_width())/2
-        self.start_button = button_module.Buttons(self.screen, 100, 300, "images/button_test.png")
-        self.game_over_button = button_module.Buttons(self.screen, 400, 300, "images/button_test.png")
-        self.win_button = button_module.Buttons(self.screen,200,300,"images/button_test.png")
+        self.start_button = button_module.Buttons(self.screen, 250, 300, "images/play_button.png")
+        self.game_over_button = button_module.Buttons(self.screen, 600, 300, "images/menu_button.png")
+        self.win_button = button_module.Buttons(self.screen,100,300,"images/menu_button.png")
 
-    def draw_start_screen(self, title_text_y):
-        self.screen.fill((0,0,0))
-        self.screen.blit(self.start_screen_text, (self.start_screen_text_x, title_text_y))
-        self.start_button.draw()
+    def draw_start_screen(self):
+        self.screen.blit(self.start_screen_image, (0,0))
+        self.start_button.draw(280,120)
         
     def draw_game_over_screen(self, title_text_y):
         pygame.mixer.stop()
@@ -30,7 +29,6 @@ class Start_Screen:
         self.game_over_button.draw()
 
     def draw_win_screen(self,title_text_y):
-        pygame.mixer.Sound('sounds/victory.wav').play()
         self.screen.fill((0,0,0))
         self.screen.blit(self.win_screen_text, (self.win_screen_text_x,title_text_y))
         self.win_button.draw()

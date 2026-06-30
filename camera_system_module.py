@@ -24,12 +24,12 @@ class Camera_System:
         last_start_time = pygame.time.get_ticks()
         
         #Setting up Camera's
-        self.camera_1 = camera_module.Camera(self.screen, "images/cam1_main.jpg", 730,535)
-        self.camera_2 = camera_module.Camera(self.screen, "images/cam2_main.jpg", 640,470)
-        self.camera_3 = camera_module.Camera(self.screen, "images/cam3_main.jpg", 662,350)
-        self.camera_4 = camera_module.Camera(self.screen, "images/cam4_main.jpg", 733,350)
-        self.camera_5 = camera_module.Camera(self.screen, "images/cam5_main.jpg", 662,300)
-        self.camera_6 = camera_module.Camera(self.screen, "images/cam6_main.jpg", 733,310)
+        self.camera_1 = camera_module.Camera(self.screen, "images/cam1_main.jpg", 730,535,1)
+        self.camera_2 = camera_module.Camera(self.screen, "images/cam2_main.jpg", 640,470,2)
+        self.camera_3 = camera_module.Camera(self.screen, "images/cam3_main.jpg", 662,350,3)
+        self.camera_4 = camera_module.Camera(self.screen, "images/cam4_main.jpg", 733,350,4)
+        self.camera_5 = camera_module.Camera(self.screen, "images/cam5_main.jpg", 662,300,5)
+        self.camera_6 = camera_module.Camera(self.screen, "images/cam6_main.jpg", 733,310,6)
 
         #Setting up Counselors
         self.jj = counselor_module.Counselor(None,'jj',0,5,5,last_start_time)
@@ -55,12 +55,12 @@ class Camera_System:
 
     def draw_minimap(self, minimap_x, minimap_y):
         self.screen.blit(self.minimap_image, (minimap_x, minimap_y))
-        self.camera_1.button.draw(40,40)
-        self.camera_2.button.draw(40,40)
-        self.camera_3.button.draw(40,40)
-        self.camera_4.button.draw(40,40)
-        self.camera_5.button.draw(40,40)
-        self.camera_6.button.draw(40,40)
+        self.camera_1.button.draw(25,20)
+        self.camera_2.button.draw(40,32)
+        self.camera_3.button.draw(40,32)
+        self.camera_4.button.draw(40,32)
+        self.camera_5.button.draw(40,32)
+        self.camera_6.button.draw(40,32)
 
     def update(self):
         self.draw()
