@@ -9,12 +9,12 @@ class Office:
     def __init__(self,screen: pygame.Surface,image,camera_off,is_here,door_side = None,door_button_position = (-100,-100)):
         self.screen = screen
         self.image = pygame.image.load(image)
-        self.x = -200
+        self.x = 0
         self.cam_off = camera_off
         self.door_closed = False
         self.here = is_here
         if door_side != None:
-            self.door = Door(f"images/office_{door_side}_closed.jpg",screen)
+            self.door = Door(f"images/office_{door_side}_closed.png",screen)
             self.door_button = button_module.Buttons(screen,door_button_position[0],door_button_position[1],"images/button_test.png")
         else:
             self.door = None
@@ -22,7 +22,7 @@ class Office:
 
     def draw(self):
         if self.cam_off:
-            self.image = pygame.transform.scale(self.image,(1200,600))
+            self.image = pygame.transform.scale(self.image,(800,600))
             self.screen.blit(self.image,(self.x,0))
             if self.door != None:
                 self.door_button.draw(40,40)
@@ -45,7 +45,7 @@ class Door:
     
     def draw(self):
         self.image = pygame.transform.scale(self.image,(WINDOW_WIDTH,WINDOW_HEIGHT))
-        self.screen.blit(self.image,(40,80))
+        self.screen.blit(self.image,(0,0))
 
     def is_closed(self):
         return self.closed

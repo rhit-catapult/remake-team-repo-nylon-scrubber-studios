@@ -33,8 +33,8 @@ class Camera_System:
         self.camera_6 = camera_module.Camera(self.screen, "images/cam6_main.jpg", 220,20)
 
         #Setting up Counselors
-        self.jj = counselor_module.Counselor(None,'jj',2,5,5,last_start_time)
-        self.carp = counselor_module.Counselor(None,'carp',0,5,0,last_start_time)
+        self.jj = counselor_module.Counselor(None,'jj',0,5,5,last_start_time)
+        self.carp = counselor_module.Counselor(None,'carp',0,5,5,last_start_time)
         self.aiman = counselor_module.Aimen(50)
         self.ethan = counselor_module.Counselor(None,'ethan',0,5,0,last_start_time)
         self.andrew = counselor_module.Counselor(None,'andrew',0,5,0,last_start_time)

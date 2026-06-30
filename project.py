@@ -24,7 +24,7 @@ def main():
     #The Office
     office_main = office_module.Office(screen,"images/office_main.jpg",True,True,None)
     office_left = office_module.Office(screen,"images/office_left_open.jpg",True,False,"left",(30,300))
-    office_right = office_module.Office(screen,"images/office_right_open.jpg",True,False,"right",(400,300))
+    office_right = office_module.Office(screen,"images/office_right_open.jpg",True,False,"right",(500,300))
     left_rect = pygame.Rect(0,0,40,WINDOW_HEIGHT)
     right_rect = pygame.Rect(760,0,40,WINDOW_HEIGHT)
     left_true = False
