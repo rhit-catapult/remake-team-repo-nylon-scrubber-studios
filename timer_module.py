@@ -10,13 +10,13 @@ class Timer:
         self.image = pygame.transform.scale(self.image,(scale_x,scale_y))
         self.x = x
         self.y = y
-        self.time_length = 720000
-        self.timer_font = pygame.font.SysFont("Courier new",20)
+        self.time_length = 360000
+        self.timer_font = pygame.font.SysFont("Courier new",20,True)
         self.timer_text = ""
         self.win_condition = False
 
     def reset_clock(self,time):
-        self.time_length = time
+        self.time_length = 360000
 
     def draw(self):
         self.screen.blit(self.image,(self.x,self.y))
@@ -36,5 +36,5 @@ class Timer:
             hour = 5
         else:
             self.win_condition = True
-        self.timer_text = self.timer_font.render(f"{hour:02}:00",False,(255,0,0))
-        self.screen.blit(self.timer_text,(self.x,self.y))
+        self.timer_text = self.timer_font.render(f"{hour:02}:00",False,(255,255,255))
+        self.screen.blit(self.timer_text,(self.x+20,self.y+18))
