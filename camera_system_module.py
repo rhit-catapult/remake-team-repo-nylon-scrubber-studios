@@ -16,7 +16,6 @@ class Camera_System:
         self.camera_on = camera_on
         self.minimap_image = pygame.image.load("images/mini_map.png")
         self.minimap_image = pygame.transform.scale(self.minimap_image,(300,300))
-        self.timer = 12000
         self.last_click = 0
         self.delay = 200
         self.button = button_module.Buttons(screen,screen.get_width()/2-40,500,"images/button_test.png")
@@ -116,44 +115,44 @@ class Camera_System:
             if self.jj.get_counselor() == "kitchen(end)":
                 self.camera_1.draw_counselor("images/jj/jj_pos3.png", (15,-29),(800,600))
             if self.ethan.location == "":
-                self.camera_1.draw_counselor("images/eathen/ethan.jpg", (0,0),(800,600))
+                self.camera_1.draw_counselor("images/eathen/ethan.png", (0,0),(800,600))
             if self.andrew.path[self.andrew.location] == "kitchen":
-                self.camera_1.draw_counselor("images/andrew/andrew_cam1.png", (-60,-10),(800,600))
+                self.camera_1.draw_counselor("images/andrew/andrew_cam1.png", (60,-10),(800,600))
 
         if self.current_camera == 1: #cam 2
             self.camera_2.draw()
             if self.carp.get_counselor() == "livingroom":
-                self.camera_2.draw_counselor("images/carp/carp_cam2.png", (-100,70),(800,600))
+                self.camera_2.draw_counselor("images/carp/carp_cam2.png", (0,0),(800,600))
             if self.ethan.location == "":
-                self.camera_2.draw_counselor("images/eathen/ethan.jpg", (0,0),(800,600))
+                self.camera_2.draw_counselor("images/eathen/ethan.png", (0,0),(800,600))
 
         elif self.current_camera == 2: #cam 3
             self.camera_3.draw()
             if self.ethan.location == "":
-                self.camera_3.draw_counselor("images/eathen/ethan.jpg", (0,0),(800,600))
+                self.camera_3.draw_counselor("images/eathen/ethan.png", (0,0),(800,600))
             if self.carp.path[self.carp.location] == "left_hallway":
-                self.camera_3.draw_counselor("images/carp/carp_cam3_pos1.png", (0,150),(800,600))
+                self.camera_3.draw_counselor("images/carp/carp_cam3_pos1.png", (0,0),(800,600))
             if self.carp.path[self.carp.location] == "peek":
-                self.camera_3.draw_counselor("images/carp/carp_cam3_pos2.png", (5,150),(800,600))
+                self.camera_3.draw_counselor("images/carp/carp_cam3_pos2.png", (0,0),(800,600))
 
         elif self.current_camera == 3: #cam 4
             self.camera_4.draw()
             if self.ethan.location == "":
-                self.camera_4.draw_counselor("images/eathen/ethan.jpg", (0,0),(800,600))
+                self.camera_4.draw_counselor("images/eathen/ethan.png", (0,0),(800,600))
             if self.andrew.path[self.andrew.location] == "right_hall_far":
-                self.camera_4.draw_counselor("images/andrew/andrew_cam4_pos1.png", (0,15),(800,600))
+                self.camera_4.draw_counselor("images/andrew/andrew_cam4_pos1.png", (0,0),(800,600))
             if self.andrew.path[self.andrew.location] == "right_hall_close":
-                self.camera_4.draw_counselor("images/andrew/andrew_cam4_pos2.png",(-10,25),(800,600))
+                self.camera_4.draw_counselor("images/andrew/andrew_cam4_pos2.png",(0,0),(800,600))
             
 
         elif self.current_camera == 4: #cam 5
             self.camera_5.draw()
             if self.ethan.location == "":
-                self.camera_5.draw_counselor("images/eathen/ethan.jpg", (0,0),(800,600))
+                self.camera_5.draw_counselor("images/eathen/ethan.png", (0,0),(800,600))
 
         elif self.current_camera == 5: #cam 6
             self.camera_6.draw()
-            self.camera_6.draw_counselor("images/aiman/aiman_cam6.png", (-30,100),(800,600))
+            self.camera_6.draw_counselor("images/aiman/aiman_cam6.png", (0,0),(800,600))
             self.screen.blit(self.aiman.aiman_timer_text,(20,0))
 
     def draw(self):

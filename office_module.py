@@ -15,7 +15,7 @@ class Office:
         self.door_closed = False
         self.here = is_here
         if door_side != None:
-            self.door = Door(f"images/office_{door_side}_closed.png",screen)
+            self.door = Door(f"images/office_{door_side}door_closed.png",screen)
             self.door_button = button_module.Buttons(screen,door_button_position[0],door_button_position[1],"images/button_test.png")
         else:
             self.door = None

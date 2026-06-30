@@ -20,15 +20,15 @@ def main():
     win = False
 
     #Timer
-    timer = timer_module.Timer(screen,100,200,"images/clock.png",100,50,5000)
+    timer = timer_module.Timer(screen,100,200,"images/clock.png",100,50,72000)
 
     #Camera System
     camera_sys = camera_system_module.Camera_System(screen,False)
 
     #The Office
     office_main = office_module.Office(screen,"images/office_main.jpg",True,True,None)
-    office_left = office_module.Office(screen,"images/office_left_open.jpg",True,False,"left",(30,300))
-    office_right = office_module.Office(screen,"images/office_right_open.jpg",True,False,"right",(500,300))
+    office_left = office_module.Office(screen,"images/office_left.png",True,False,"left",(30,300))
+    office_right = office_module.Office(screen,"images/office_right.png",True,False,"right",(500,300))
     left_rect = pygame.Rect(0,0,40,WINDOW_HEIGHT)
     right_rect = pygame.Rect(760,0,40,WINDOW_HEIGHT)
     left_true = False
@@ -69,7 +69,7 @@ def main():
             if other_screen.win_button.is_pressed_display() and win == True:
                 win = False
                 timer.win_condition = False
-                timer.reset_clock(5000)
+                timer.reset_clock(720000)
 
                 
             if run:

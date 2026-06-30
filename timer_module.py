@@ -10,7 +10,7 @@ class Timer:
         self.image = pygame.transform.scale(self.image,(scale_x,scale_y))
         self.x = x
         self.y = y
-        self.time_length = time_length_ms
+        self.time_length = 720000
         self.timer_font = pygame.font.SysFont("Courier new",20)
         self.timer_text = ""
         self.win_condition = False
