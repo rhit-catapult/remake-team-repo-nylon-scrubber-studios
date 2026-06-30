@@ -24,8 +24,8 @@ class Start_Screen:
         
     def draw_transition_screen(self):
         self.screen.fill((255, 255, 255))
-        self.screen.blit(self.title_screen_font.render("Night Started!", True, (200,0,0)))
-    
+        self.screen.blit(self.title_screen_font.render("Night Started!", True, (200,0,0)),(0,0))
+
 
     def draw_game_over_screen(self, title_text_y):
         pygame.mixer.stop()
