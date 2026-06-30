@@ -95,6 +95,9 @@ class Camera_System:
             self.switch_camera(5)
 
         if self.button.is_pressed_display() and pygame.time.get_ticks() - self.last_click > self.delay:
+            camera_up = pygame.mixer.Sound('sounds/camera_up.wav')
+            pygame.mixer.music.set_volume(2.0)
+            camera_up.play()
             self.last_click = pygame.time.get_ticks()
             self.camera_on = False
                     
@@ -105,7 +108,6 @@ class Camera_System:
 
     def draw_cameras(self):
         #current_camera 0 corresponds to camera 1
-        
         if self.current_camera == 0: #cam 1
             self.camera_1.draw()
             if self.jj.path[self.jj.location] == "kitchen(start)":

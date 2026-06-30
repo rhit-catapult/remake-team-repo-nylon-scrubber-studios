@@ -87,6 +87,9 @@ class Counselor:
                 if movement_chance <= self.difficulty:
                     if self.location == 2:
                         self.running = True
+                        funisment_time = pygame.mixer.Sound("sounds/ItsFunishmentTime.wav")
+                        pygame.mixer.music.set_volume(2.5)
+                        funisment_time.play()
                         #pygame.mixer.Sound("its_funishment_time.wav").play()
                     else:
                         
@@ -201,8 +204,8 @@ def main():
     aimen_button = button_module.Buttons(screen,50,400,"images/button_test.png")
 
     # let's set the framerate
-    andrew = Counselor(None,'andrew',0,5,20)
-    ethan = Counselor(None,'ethan',0,5,1)
+    jj = Counselor(None,'jj',0,5,20,pygame.time.get_ticks())
+    ethan = Counselor(None,'ethan',0,5,1,pygame.time.get_ticks())
     aimen = Aimen(20)
     clock = pygame.time.Clock()
     while True:
@@ -218,7 +221,7 @@ def main():
         aimen_button.draw()
         aimen.aimen_clock()
         ethan.movement()
-        print(andrew.movement(ethan))
+        print(jj.movement(ethan))
 
         pygame.display.update()
 if __name__ == '__main__':

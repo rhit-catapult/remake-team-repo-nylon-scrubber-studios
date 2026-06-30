@@ -24,6 +24,7 @@ class Start_Screen:
         self.start_button.draw()
         
     def draw_game_over_screen(self, title_text_y):
+        pygame.mixer.stop()
         self.screen.fill((0,0,0))
         self.screen.blit(self.game_over_screen_text, (self.game_over_screen_text_x, title_text_y))
         self.game_over_button.draw()

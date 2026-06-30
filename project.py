@@ -79,6 +79,9 @@ def main():
                             camera_sys.aiman.aimen_button_pushed()
                     if camera_button_office.rect.collidepoint(mouse_pos):
                         if event.type == pygame.MOUSEBUTTONDOWN:
+                            camera_up = pygame.mixer.Sound('sounds/camera_up.wav')
+                            pygame.mixer.music.set_volume(2.0)
+                            camera_up.play()
                             camera_sys.camera_on = True
                     if carp_button.rect.collidepoint(mouse_pos):
                         if event.type == pygame.MOUSEBUTTONDOWN:
