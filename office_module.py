@@ -24,7 +24,7 @@ class Office:
                 self.rect = pygame.Rect(320,0,210,520)
                 pygame.draw.rect(screen,(0,0,0),(320,0,210,520))
             self.door = Door(f"images/office_{door_side}door_closed.png",screen,door_side)
-            self.door_button = button_module.Buttons(screen,door_button_position[0],door_button_position[1],"images/door_button_off.png")
+            self.door_button = button_module.Buttons(screen,door_button_position[0],door_button_position[1],"images/door_button_on.png")
             self.button_color = (255,0,0)
         else:
             self.door = None

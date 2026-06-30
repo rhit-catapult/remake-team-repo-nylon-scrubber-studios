@@ -223,7 +223,7 @@ def main():
         elif win:
             other_screen.draw_win_screen(100)
         else: 
-            other_screen.draw_start_screen(100)
+            other_screen.draw_start_screen()
 
         # don't forget the update, otherwise nothing will show up!
         pygame.display.update()
