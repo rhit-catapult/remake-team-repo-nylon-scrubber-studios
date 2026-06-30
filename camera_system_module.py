@@ -104,6 +104,7 @@ class Camera_System:
             
 
     def switch_camera(self, camera_to_switch_to):
+        pygame.mixer.Sound('sounds/camera_switch.wav').play()
         self.current_camera = camera_to_switch_to
 
     def draw_cameras(self):
