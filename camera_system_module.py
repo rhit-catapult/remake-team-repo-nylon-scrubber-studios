@@ -109,15 +109,15 @@ class Camera_System:
         if self.current_camera == 0: #cam 1
             self.camera_1.draw()
             if self.jj.path[self.jj.location] == "kitchen(start)":
-                self.camera_1.draw_counselor("images/jj/jj_pos1.png", (0,0),(800,600))
+                self.camera_1.draw_counselor("images/jj/jj_pos1.png", (0,-1.9),(800,600))
             if self.jj.path[self.jj.location] == "kitchen(middle)":
-                self.camera_1.draw_counselor("images/jj/jj_pos2.png", (0,0),(800,600))
+                self.camera_1.draw_counselor("images/jj/jj_pos2.png", (14,-35),(800,600))
             if self.jj.get_counselor() == "kitchen(end)":
                 self.camera_1.draw_counselor("images/jj/jj_pos3.png", (15,-29),(800,600))
             if self.ethan.location == "":
                 self.camera_1.draw_counselor("images/eathen/ethan.jpg", (0,0),(800,600))
             if self.andrew.path[self.andrew.location] == "kitchen":
-                self.camera_1.draw_counselor("images/andrew/andrew_cam1.png", (0,0),(800,600))
+                self.camera_1.draw_counselor("images/andrew/andrew_cam1.png", (60,-10),(800,600))
 
         if self.current_camera == 1: #cam 2
             self.camera_2.draw()
