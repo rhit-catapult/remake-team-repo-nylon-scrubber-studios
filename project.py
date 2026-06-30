@@ -18,9 +18,11 @@ def main():
     run = False
     game_over = False
     win = False
+    transition = False
 
     #Timer
     timer = timer_module.Timer(screen,150,400,"images/clock.png",100,50,72000)
+    seconds_transition = pygame.time.get_ticks()
 
     #Camera System
     camera_sys = camera_system_module.Camera_System(screen,False)
@@ -72,8 +74,9 @@ def main():
                 game_over = False
                 run = False
             if other_screen.start_button.is_pressed_display() and run == False:
-                run = True
-                camera_sys.load_everything()
+                transition = True
+                seconds_transition = pygame.time.get_ticks() +5000
+                
             if other_screen.win_button.is_pressed_display() and win == True:
                 win = False
                 timer.win_condition = False
@@ -223,6 +226,14 @@ def main():
             other_screen.draw_game_over_screen(100)
         elif win:
             other_screen.draw_win_screen(100)
+        elif transition:
+            other_screen.draw_transition_screen()
+            print(f"ticks: {pygame.time.get_ticks()}, seconds till transition: {seconds_transition}")
+            if pygame.time.get_ticks() >= seconds_transition:
+                    print("worked")
+                    transition = False
+                    run = True
+                    camera_sys.load_everything()
         else: 
             other_screen.draw_start_screen()
 
