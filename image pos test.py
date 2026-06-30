@@ -42,3 +42,11 @@ while True:
 # draw_counselor("images/andrew/andrew_cam4_pos2.png",(-10,30),(800,600))
 
 # draw_counselor("images/aiman/aiman_cam6.png", (-30,100),(800,600))
+
+
+# camera_module.Camera(self.screen, "images/cam1_main.jpg", 730,535)
+# camera_module.Camera(self.screen, "images/cam2_main.jpg", 640,470)
+# camera_module.Camera(self.screen, "images/cam3_main.jpg", 662,350)
+# camera_module.Camera(self.screen, "images/cam4_main.jpg", 733,350)
+# camera_module.Camera(self.screen, "images/cam5_main.jpg", 662,300)
+# camera_module.Camera(self.screen, "images/cam6_main.jpg", 733,310)
