@@ -24,12 +24,12 @@ class Camera_System:
         last_start_time = pygame.time.get_ticks()
         
         #Setting up Camera's
-        self.camera_1 = camera_module.Camera(self.screen, "images/cam1_main.jpg", 730,535,1)
-        self.camera_2 = camera_module.Camera(self.screen, "images/cam2_main.jpg", 640,470,2)
-        self.camera_3 = camera_module.Camera(self.screen, "images/cam3_main.jpg", 662,350,3)
-        self.camera_4 = camera_module.Camera(self.screen, "images/cam4_main.jpg", 733,350,4)
-        self.camera_5 = camera_module.Camera(self.screen, "images/cam5_main.jpg", 662,300,5)
-        self.camera_6 = camera_module.Camera(self.screen, "images/cam6_main.jpg", 733,310,6)
+        self.camera_1 = camera_module.Camera(self.screen, "images/cam1_main.jpg", 735,542,1)
+        self.camera_2 = camera_module.Camera(self.screen, "images/cam2_main.jpg", 647,483,2)
+        self.camera_3 = camera_module.Camera(self.screen, "images/cam3_main.jpg", 670,358,3)
+        self.camera_4 = camera_module.Camera(self.screen, "images/cam4_main.jpg", 740,358,4)
+        self.camera_5 = camera_module.Camera(self.screen, "images/cam5_main.jpg", 668,308,5)
+        self.camera_6 = camera_module.Camera(self.screen, "images/cam6_main.jpg", 740,323,6)
 
         #Setting up Counselors
         self.jj = counselor_module.Counselor(None,'jj',0,5,5,last_start_time)
@@ -56,11 +56,11 @@ class Camera_System:
     def draw_minimap(self, minimap_x, minimap_y):
         self.screen.blit(self.minimap_image, (minimap_x, minimap_y))
         self.camera_1.button.draw(25,20)
-        self.camera_2.button.draw(40,32)
-        self.camera_3.button.draw(40,32)
-        self.camera_4.button.draw(40,32)
-        self.camera_5.button.draw(40,32)
-        self.camera_6.button.draw(40,32)
+        self.camera_2.button.draw(25,20)
+        self.camera_3.button.draw(25,20)
+        self.camera_4.button.draw(25,20)
+        self.camera_5.button.draw(25,20)
+        self.camera_6.button.draw(25,20)
 
     def update(self):
         self.draw()
@@ -117,8 +117,8 @@ class Camera_System:
                 self.camera_1.draw_counselor("images/jj/jj_pos2.png", (14,-35),(800,600))
             if self.jj.get_counselor() == "kitchen(end)":
                 self.camera_1.draw_counselor("images/jj/jj_pos3.png", (15,-29),(800,600))
-            if self.ethan.location == "":
-                self.camera_1.draw_counselor("images/eathen/ethan.png", (0,0),(800,600))
+            if self.ethan.path[self.ethan.location] == "kitchen":
+                self.camera_1.draw_counselor("images/eathen/ethan.png", (0,0),(80,60))
             if self.andrew.path[self.andrew.location] == "kitchen":
                 self.camera_1.draw_counselor("images/andrew/andrew_cam1.png", (-60,-10),(800,600))
 
@@ -126,12 +126,12 @@ class Camera_System:
             self.camera_2.draw()
             if self.carp.get_counselor() == "livingroom":
                 self.camera_2.draw_counselor("images/carp/carp_cam2.png", (-100,70),(800,600))
-            if self.ethan.location == "":
+            if self.ethan.path[self.ethan.location] == "livingroom":
                 self.camera_2.draw_counselor("images/eathen/ethan.png", (0,0),(800,600))
 
         elif self.current_camera == 2: #cam 3
             self.camera_3.draw()
-            if self.ethan.location == "":
+            if self.ethan.path[self.ethan.location] == "left_hall":
                 self.camera_3.draw_counselor("images/eathen/ethan.png", (0,0),(800,600))
             if self.carp.path[self.carp.location] == "left_hallway":
                 self.camera_3.draw_counselor("images/carp/carp_cam3_pos1.png", (-5,140),(800,600))
@@ -140,7 +140,7 @@ class Camera_System:
 
         elif self.current_camera == 3: #cam 4
             self.camera_4.draw()
-            if self.ethan.location == "":
+            if self.ethan.path[self.ethan.location] == "right_hall":
                 self.camera_4.draw_counselor("images/eathen/ethan.png", (0,0),(800,600))
             if self.andrew.path[self.andrew.location] == "right_hall_far":
                 self.camera_4.draw_counselor("images/andrew/andrew_cam4_pos1.png", (0,15),(800,600))
@@ -150,7 +150,7 @@ class Camera_System:
 
         elif self.current_camera == 4: #cam 5
             self.camera_5.draw()
-            if self.ethan.location == "":
+            if self.ethan.path[self.ethan.location] == "restroom":
                 self.camera_5.draw_counselor("images/eathen/ethan.png", (0,0),(800,600))
 
         elif self.current_camera == 5: #cam 6

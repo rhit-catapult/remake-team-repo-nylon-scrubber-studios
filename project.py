@@ -77,7 +77,7 @@ def main():
             if other_screen.win_button.is_pressed_display() and win == True:
                 win = False
                 timer.win_condition = False
-                timer.reset_clock(720000)
+                timer.reset_clock()
 
                 
             if run:
@@ -215,6 +215,7 @@ def main():
             
             camera_sys.aiman.aimen_clock()
             ethan = camera_sys.ethan
+            camera_sys.ethan.ethan_movement()
             camera_sys.carp.movement(ethan)
             camera_sys.andrew.movement(ethan)
             camera_sys.jj.movement(ethan)
