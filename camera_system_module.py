@@ -16,7 +16,7 @@ class Camera_System:
         self.camera_on = camera_on
         self.minimap_image = pygame.image.load("images/mini_map.png")
         self.minimap_image = pygame.transform.scale(self.minimap_image,(300,300))
-        self.cameras = []
+        self.timer = 12000
         self.last_click = 0
         self.delay = 200
         self.button = button_module.Buttons(screen,screen.get_width()/2-40,500,"images/button_test.png")
@@ -66,6 +66,7 @@ class Camera_System:
     def update(self):
         self.draw()
         
+
 
         #Cam 1
         if self.camera_1.button.is_pressed_display() and pygame.time.get_ticks() - self.last_click > self.delay:
