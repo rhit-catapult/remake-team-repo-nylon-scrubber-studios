@@ -40,8 +40,10 @@ class Office:
                 self.door_button.draw(40,40)
                 if self.rect.collidepoint(pygame.mouse.get_pos()) and pygame.mouse.get_pressed()[0]:
                     self.current_color = (120,120,120)
+                    self.is_counselor_here = True
                 else:
                     self.current_color = (0,0,0)
+                    self.is_counselor_here = False
                 if self.door_closed:
                     self.door.draw()
                 

@@ -38,6 +38,10 @@ def main():
     aiman_button = button_module.Buttons(screen,50,450,"images/button_test.png")
     camera_button_office = button_module.Buttons(screen,WINDOW_WIDTH/2,500,"images/button_test.png")
     carp_button = button_module.Buttons(screen,300,450, "images/button_test.png")
+
+    #Doorway images
+    carp_door = pygame.image.load("images/carp/carp_door.png")
+    carp_door = pygame.transform.scale(carp_door,(WINDOW_WIDTH,WINDOW_HEIGHT))
     
     #Jumpscares
     carp_jumpscare = pygame.image.load("images/carp/carp_jumpscare.png")
@@ -140,6 +144,9 @@ def main():
                     camera_button_office.draw(100,50)
                 elif office_left.here:
                     office_left.draw("left")
+                    if camera_sys.carp.path[camera_sys.carp.location] == "left_hallway":
+                        print("IM HERE")
+                        screen.blit(carp_door,(0,0))
                 elif office_right.here:
                     office_right.draw("left")
                 camera_sys.last_click = pygame.time.get_ticks()
@@ -155,7 +162,7 @@ def main():
 
             #carp jumpscare
             if camera_sys.carp.kill:
-                pygame.mixer.Sound.stop()
+                pygame.mixer.stop()
                 pygame.draw.rect(screen,"black",(0,0,WINDOW_WIDTH,WINDOW_HEIGHT))
                 screen.blit(carp_jumpscare,(0,0))
                 if pygame.time.get_ticks() >= camera_sys.carp.jump_time_start:
