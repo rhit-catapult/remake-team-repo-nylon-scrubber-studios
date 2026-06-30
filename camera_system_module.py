@@ -140,12 +140,13 @@ class Camera_System:
 
         elif self.current_camera == 3: #cam 4
             self.camera_4.draw()
-            if self.ethan.path[self.ethan.location] == "right_hall":
-                self.camera_4.draw_counselor("images/eathen/ethan.png", (370,200),(216,288))
+            
             if self.andrew.path[self.andrew.location] == "right_hall_far":
                 self.camera_4.draw_counselor("images/andrew/andrew_cam4_pos1.png", (0,15),(800,600))
             if self.andrew.path[self.andrew.location] == "right_hall_close":
                 self.camera_4.draw_counselor("images/andrew/andrew_cam4_pos2.png",(-10,30),(800,600))
+            if self.ethan.path[self.ethan.location] == "right_hall":
+                self.camera_4.draw_counselor("images/eathen/ethan.png", (370,200),(216,288))
             
 
         elif self.current_camera == 4: #cam 5
