@@ -35,6 +35,7 @@ class Timer:
         elif seconds_left > 0:
             hour = 5
         else:
+            pygame.mixer.Sound('sounds/victory.wav').play()
             self.win_condition = True
         self.timer_text = self.timer_font.render(f"{hour:02}:00",False,(255,255,255))
         self.screen.blit(self.timer_text,(self.x+20,self.y+18))
