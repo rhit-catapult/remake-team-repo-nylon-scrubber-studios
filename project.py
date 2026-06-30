@@ -75,7 +75,7 @@ def main():
                 run = False
             if other_screen.start_button.is_pressed_display() and run == False:
                 transition = True
-                seconds_transition = pygame.time.get_ticks() +5000
+                seconds_transition = pygame.time.get_ticks() + 2000
                 
             if other_screen.win_button.is_pressed_display() and win == True:
                 win = False

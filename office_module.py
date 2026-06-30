@@ -14,6 +14,7 @@ class Office:
         self.cam_off = camera_off
         self.door_closed = False
         self.here = is_here
+        self.count_sound = 0
         self.current_color = (0,0,0)
         self.is_counselor_here = False
         self.button_pos = door_button_position
@@ -55,12 +56,18 @@ class Office:
     def update(self):
         if self.door_button.is_pressed_display():
             self.door_closed = True
+            self.count_sound+=1
             self.button_color = (0,255,0)
+            if self.count_sound == 1:
+                pygame.mixer.Sound("sounds/door_close.wav").play()
         else:
             self.door_closed = False
             self.button_color = (255,0,0)
+            if self.count_sound > 1:
+                pygame.mixer.Sound("sounds/door_open.wav").play()
+                self.count_sound = 0
             
-            
+
 
 
 class Door:
