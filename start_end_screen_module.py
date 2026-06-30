@@ -22,6 +22,9 @@ class Start_Screen:
         self.screen.blit(self.start_screen_image, (0,0))
         self.start_button.draw(280,120)
         
+    def draw_transition_screen(self):
+        self.screen.fill((255, 255, 255))
+        self.screen.blit('')
     def draw_game_over_screen(self, title_text_y):
         pygame.mixer.stop()
         self.screen.fill((0,0,0))
