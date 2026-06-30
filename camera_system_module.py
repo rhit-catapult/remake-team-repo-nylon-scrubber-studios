@@ -18,7 +18,7 @@ class Camera_System:
         self.minimap_image = pygame.transform.scale(self.minimap_image,(300,300))
         self.last_click = 0
         self.delay = 200
-        self.button = button_module.Buttons(screen,screen.get_width()/2-40,500,"images/button_test.png")
+        self.button = button_module.Buttons(screen,200,550,"images/camera_button_down.png.png")
 
     def load_everything(self):
         last_start_time = pygame.time.get_ticks()
@@ -36,7 +36,7 @@ class Camera_System:
         self.carp = counselor_module.Counselor(None,'carp',0,5,5,last_start_time)
         self.aiman = counselor_module.Aimen(50)
         self.ethan = counselor_module.Counselor(None,'ethan',0,5,5,last_start_time)
-        self.andrew = counselor_module.Counselor(None,'andrew',0,5,5,last_start_time)
+        self.andrew = counselor_module.Counselor(None,'andrew',0,5,20,last_start_time)
 
         #Initializing the paths of counselors
         self.jj.get_counselor()
@@ -160,7 +160,7 @@ class Camera_System:
     def draw(self):
         self.draw_cameras()
         self.draw_minimap(530,300)
-        self.button.draw(200,50)
+        self.button.draw(400,50)
         
 
 def main():

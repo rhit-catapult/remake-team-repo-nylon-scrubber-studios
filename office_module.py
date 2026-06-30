@@ -34,7 +34,7 @@ class Office:
             if side == "left":
                 pygame.draw.rect(self.screen,self.current_color,(240,0,250,530))
             elif side == "right":
-                pygame.draw.rect(self.screen,self.current_color,(320,0,230,520))
+                pygame.draw.rect(self.screen,self.current_color,(300,0,240,520))
             self.screen.blit(self.image,(self.x,0))
             if self.door != None:
                 self.door_button.draw(40,40)

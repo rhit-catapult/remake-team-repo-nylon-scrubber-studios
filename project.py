@@ -35,13 +35,17 @@ def main():
     right_true = False
 
     #Buttons
-    aiman_button = button_module.Buttons(screen,50,450,"images/button_test.png")
-    camera_button_office = button_module.Buttons(screen,WINDOW_WIDTH/2,500,"images/button_test.png")
-    carp_button = button_module.Buttons(screen,300,450, "images/button_test.png")
+    aiman_button = button_module.Buttons(screen,50,450,"images/aiman_alarm_button.png")
+    aiman_button_activated = (255,0,0)
+    
+    camera_button_office = button_module.Buttons(screen,200,550,"images/camera_button_up.png.png")
+    carp_button = button_module.Buttons(screen,300,450, "images/carp_recall_button.png")
 
     #Doorway images
     carp_door = pygame.image.load("images/carp/carp_door.png")
     carp_door = pygame.transform.scale(carp_door,(WINDOW_WIDTH,WINDOW_HEIGHT))
+    andrew_door = pygame.image.load("images/andrew/andrew_door.png")
+    andrew_door = pygame.transform.scale(andrew_door,(WINDOW_WIDTH,WINDOW_HEIGHT))
     
     #Jumpscares
     carp_jumpscare = pygame.image.load("images/carp/carp_jumpscare.png")
@@ -141,14 +145,15 @@ def main():
                     aiman_button.draw(40,40)
                     carp_button.draw(40,40)
                     timer.draw()
-                    camera_button_office.draw(100,50)
+                    camera_button_office.draw(400,50)
                 elif office_left.here:
                     office_left.draw("left")
-                    if camera_sys.carp.path[camera_sys.carp.location] == "left_hallway":
-                        print("IM HERE")
-                        screen.blit(carp_door,(0,0))
+                    if camera_sys.carp.path[camera_sys.carp.location] == "left_doorway" and office_left.is_counselor_here:
+                        screen.blit(carp_door,(-44,-30))
                 elif office_right.here:
-                    office_right.draw("left")
+                    office_right.draw("right")
+                    if camera_sys.andrew.path[camera_sys.andrew.location] == "right_doorway" and office_right.is_counselor_here:
+                        screen.blit(andrew_door,(27,0))
                 camera_sys.last_click = pygame.time.get_ticks()
 
             #draws the cameras if cameras are on

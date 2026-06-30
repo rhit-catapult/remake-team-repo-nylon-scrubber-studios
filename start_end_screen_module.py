@@ -8,7 +8,7 @@ class Start_Screen:
     def __init__(self, screen: pygame.Surface):
         self.screen = screen
         self.title_screen_font = pygame.font.SysFont("courier new", 50, True, True)
-        self.start_screen_text = self.title_screen_font.render("FOUR NIGHTS AT CATAPULTS", True, (200,0,0))
+        self.start_screen_text = self.title_screen_font.render("ONE NIGHT AT CATAPULTS", True, (200,0,0))
         self.game_over_screen_text = self.title_screen_font.render("YOU GOT FUNISHED!", True, (200,0,0))
         self.win_screen_text = self.title_screen_font.render("YOU WON", True, (200,0,0))
         self.start_screen_text_x = (self.screen.get_width() - self.start_screen_text.get_width())/2
