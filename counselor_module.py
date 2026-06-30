@@ -183,12 +183,17 @@ class Aimen:
         self.timer = timer
         self.start_time =0
         self.jump_time_start =0
+        self.alarm = False
         self.aiman_timer_font = pygame.font.SysFont("courier new", 20)
         self.aiman_timer_text = self.aiman_timer_font.render(f"{50-self.seconds}", False, "White", "Black")
 
     def aimen_clock(self):
         self.seconds= pygame.time.get_ticks()//1000 - self.start_time
-        self.aiman_timer_text = self.aiman_timer_font.render(f"{50-self.seconds}", False, "White", "Black")
+        print(self.seconds)
+        self.aiman_timer_text = self.aiman_timer_font.render(f"{self.timer-self.seconds}", False, "White", "Black")
+        if self.alarm == False and self.timer == self.seconds+3:
+            pygame.mixer.Sound('sounds/alarm.wav').play()
+            self.alarm = True
         if self.seconds>= self.timer and self.aimen_awake== False:
             self.jump_time_start = pygame.time.get_ticks() + 5000
             self.aimen_awake = True
@@ -196,6 +201,7 @@ class Aimen:
     
     def aimen_button_pushed(self):
         self.start_time = pygame.time.get_ticks()//1000
+        self.alarm = False
 
 def main():
     pygame.init()
@@ -206,7 +212,7 @@ def main():
     # let's set the framerate
     jj = Counselor(None,'jj',0,5,20,pygame.time.get_ticks())
     ethan = Counselor(None,'ethan',0,5,1,pygame.time.get_ticks())
-    aimen = Aimen(20)
+    aimen = Aimen(10)
     clock = pygame.time.Clock()
     while True:
         clock.tick(60)  # this sets the framerate of your game
@@ -221,7 +227,7 @@ def main():
         aimen_button.draw()
         aimen.aimen_clock()
         ethan.movement()
-        print(jj.movement(ethan))
+        jj.movement(ethan)
 
         pygame.display.update()
 if __name__ == '__main__':
