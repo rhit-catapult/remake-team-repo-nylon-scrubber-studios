@@ -12,7 +12,7 @@ class Camera:
         self.camera_image = pygame.image.load(camera_image)
         self.counselors_in_camera = []
         self.folder = []
-        self.button = button_module.Buttons(screen,x,y,"images/cam_1_button.png")
+        self.button = button_module.Buttons(screen,x,y,"images/cam_button/cam_1_button.png")
         camera_num = 0
 
     #loads the image files into a variable
