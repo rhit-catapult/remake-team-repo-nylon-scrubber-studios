@@ -36,7 +36,7 @@ class Camera_System:
         self.carp = counselor_module.Counselor(None,'carp',0,5,5,last_start_time)
         self.aiman = counselor_module.Aimen(50)
         self.ethan = counselor_module.Counselor(None,'ethan',0,5,5,last_start_time)
-        self.andrew = counselor_module.Counselor(None,'andrew',0,10,5,last_start_time)
+        self.andrew = counselor_module.Counselor(None,'andrew',0,10,20,last_start_time)
 
         #Initializing the paths of counselors
         self.jj.get_counselor()

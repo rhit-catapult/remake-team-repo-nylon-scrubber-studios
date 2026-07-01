@@ -114,7 +114,7 @@ class Counselor:
             #if carp has stayed in his location for as long as his movement time
             if self.seconds== self.time_delay:
                 #subtracts 5 self.secondsfrom self.secondsto prevent rerunning until next 5 seconds
-                self.times_ran +=5
+                self.times_ran += self.time_delay
                 movement_chance = random.randint(1,20)
                 #return carp to his starting location if he has finished his path
                 if self.location == 4:

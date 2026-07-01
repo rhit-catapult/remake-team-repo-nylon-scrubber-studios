@@ -37,7 +37,7 @@ def main():
     right_true = False
 
     #Buttons
-    aiman_button = button_module.Buttons(screen,50,450,"images/aiman_alarm_button.png")
+    aiman_button = button_module.Buttons(screen,100,450,"images/aiman_alarm_button.png")
     aiman_button_activated = (255,0,0)    
     camera_button_office = button_module.Buttons(screen,200,550,"images/camera_button_up.png.png")
     carp_button = button_module.Buttons(screen,300,450, "images/carp_recall_button.png")
@@ -152,7 +152,7 @@ def main():
                 office_right.update()
                 if office_main.here:
                     office_main.draw()
-                    pygame.draw.rect(screen,aiman_button_activated,(50,450,40,40))
+                    pygame.draw.rect(screen,aiman_button_activated,(100,450,40,40))
                     pygame.draw.rect(screen,carp_button_activated,(300,450,40,40))
                     aiman_button.draw(40,40)
                     carp_button.draw(40,40)
