@@ -22,6 +22,7 @@ class Counselor:
         self.seconds = 0
         self.last_start_time = time
         self.door = False
+        self.andrew_here = False
 
     def reset(self):
         self.last_start_time = pygame.time.get_ticks()
@@ -112,6 +113,9 @@ class Counselor:
             #Carp's movement path
             self.path = ["stairway","kitchen","right_hall_far","right_hall_close","right_doorway"]
             #if carp has stayed in his location for as long as his movement time
+            if self.location == 4 and self.andrew_here == False and self.door == False:
+                self.times_ran += self.time_delay
+                self.andrew_here = True
             if self.seconds== self.time_delay:
                 #subtracts 5 self.secondsfrom self.secondsto prevent rerunning until next 5 seconds
                 self.times_ran += self.time_delay
@@ -119,11 +123,14 @@ class Counselor:
                 #return carp to his starting location if he has finished his path
                 if self.location == 4:
                     # print(pygame.time.get_ticks()//1000)
+                    
                     if self.door == False:
                         self.jump_time_start = pygame.time.get_ticks() + 5000
                         self.kill = True
                     else:
                         pygame.mixer.Sound('sounds/banging_door.wav').play()
+                        self.times_ran -= self.time_delay
+                        self.andrew_here = False
                     self.location = 0
                 #if carp as succeeded his movement chance
                 if ethan.path[ethan.location] == self.path[self.location]:

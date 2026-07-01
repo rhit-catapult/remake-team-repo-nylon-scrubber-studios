@@ -15,6 +15,7 @@ class Office:
         self.door_closed = False
         self.here = is_here
         self.count_sound = 0
+        self.count_light = 0
         self.current_color = (0,0,0)
         self.is_counselor_here = False
         self.button_pos = door_button_position
@@ -43,11 +44,18 @@ class Office:
                 pygame.draw.rect(self.screen,self.button_color,(self.button_pos[0],self.button_pos[1],40,40))
                 self.door_button.draw(40,40)
                 if self.rect.collidepoint(pygame.mouse.get_pos()) and pygame.mouse.get_pressed()[0]:
+                    self.count_light +=1
                     self.current_color = (160,160,160)
                     self.is_counselor_here = True
+                    if self.count_light == 1:
+                        pygame.mixer.Sound("sounds/button_click.wav").play()
                 else:
                     self.current_color = (0,0,0)
                     self.is_counselor_here = False
+                    if self.count_light > 1:
+                        pygame.mixer.Sound("sounds/button_click.wav").play()
+                        self.count_light = 0
+                    
                 if self.door_closed:
                     self.door.draw()
                 

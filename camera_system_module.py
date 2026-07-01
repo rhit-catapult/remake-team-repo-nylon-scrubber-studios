@@ -32,11 +32,11 @@ class Camera_System:
         self.camera_6 = camera_module.Camera(self.screen, "images/cam6_main.jpg", 740,323,6)
 
         #Setting up Counselors
-        self.jj = counselor_module.Counselor(None,'jj',0,5,5,last_start_time)
-        self.carp = counselor_module.Counselor(None,'carp',0,5,5,last_start_time)
+        self.jj = counselor_module.Counselor(None,'jj',0,5,1,last_start_time)
+        self.carp = counselor_module.Counselor(None,'carp',0,5,1,last_start_time)
         self.aiman = counselor_module.Aimen(50)
-        self.ethan = counselor_module.Counselor(None,'ethan',0,5,5,last_start_time)
-        self.andrew = counselor_module.Counselor(None,'andrew',0,10,20,last_start_time)
+        self.ethan = counselor_module.Counselor(None,'ethan',0,5,1,last_start_time)
+        self.andrew = counselor_module.Counselor(None,'andrew',0,5,20,last_start_time)
 
         #Initializing the paths of counselors
         self.jj.get_counselor()
@@ -157,7 +157,7 @@ class Camera_System:
         elif self.current_camera == 5: #cam 6
             self.camera_6.draw()
             self.camera_6.draw_counselor("images/aiman/aiman_cam6.png", (-30,100),(800,600))
-            self.screen.blit(self.aiman.aiman_timer_text,(20,0))
+            self.screen.blit(self.aiman.aiman_timer_text,(300,350))
 
     def draw(self):
         self.draw_cameras()

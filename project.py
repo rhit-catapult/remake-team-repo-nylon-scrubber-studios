@@ -15,6 +15,8 @@ def main():
     pygame.display.set_caption("One Night at Catapult")
     screen = pygame.display.set_mode((WINDOW_WIDTH,WINDOW_HEIGHT))
     #screen = pygame.display.set_mode((800, 600), pygame.FULLSCREEN | pygame.SCALED)
+
+    #True false statements for the screen
     run = False
     game_over = False
     win = False
@@ -26,6 +28,12 @@ def main():
 
     #Camera System
     camera_sys = camera_system_module.Camera_System(screen,False)
+
+    #Tutorial
+    tutorial = False
+    tutorial_main = pygame.image.load("images/button_test.png")
+    tutorial_left = pygame.image.load("images/button_test.png")
+    tutorial_right = pygame.image.load("images/button_test.png")
 
     #The Office
     office_main = office_module.Office(screen,"images/office_main.jpg",True,True,None)
@@ -105,7 +113,7 @@ def main():
                         else:
                             carp_button_activated = (255,0,0)
 
-        if run:            
+        if run:
             #Background
             screen.fill((255, 255, 255))
 
@@ -158,14 +166,20 @@ def main():
                     carp_button.draw(40,40)
                     timer.draw()
                     camera_button_office.draw(400,50)
+                    if tutorial:
+                        screen.blit(tutorial_main,(0,0))
                 elif office_left.here:
                     office_left.draw("left")
                     if camera_sys.carp.path[camera_sys.carp.location] == "left_doorway" and office_left.is_counselor_here:
                         screen.blit(carp_door,(-44,-30))
+                    if tutorial:
+                        screen.blit(tutorial_left,(0,0))
                 elif office_right.here:
                     office_right.draw("right")
                     if camera_sys.andrew.path[camera_sys.andrew.location] == "right_doorway" and office_right.is_counselor_here:
                         screen.blit(andrew_door,(27,0))
+                    if tutorial:
+                        screen.blit(tutorial_right,(0,0))
                 camera_sys.last_click = pygame.time.get_ticks()
 
             #draws the cameras if cameras are on
@@ -176,6 +190,7 @@ def main():
             if timer.win_condition:
                 win = True
                 run = False
+
 
             #carp jumpscare
             if camera_sys.carp.kill:
