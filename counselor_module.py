@@ -47,6 +47,8 @@ class Counselor:
                 if self.location == 4:
                     # print(pygame.time.get_ticks()//1000)
                     self.jump_time_start = pygame.time.get_ticks() + 5000
+                    pygame.mixer.stop()
+                    pygame.mixer.Sound('sounds/carp_jumpscare.wav').play()
                     self.kill = True
                     self.location = 0
 
@@ -155,15 +157,12 @@ class Counselor:
     def ethan_movement(self):
         milli_seconds= pygame.time.get_ticks() - self.last_start_time
         self.seconds= milli_seconds//1000-self.times_ran
-        print(self.seconds)
         if self.movenment_type == 'ethan':
             #Carp's movement path
             self.path = ["livingroom","kitchen","right_hall","left_hall","restroom"]
-            print(self.path[self.location])
             #if carp has stayed in his location for as long as his movement time
             if self.seconds== self.time_delay:
                 #subtracts 5 self.secondsfrom self.secondsto prevent rerunning until next 5 seconds
-                print('move chance made')
                 self.times_ran +=5
                 movement_chance = random.randint(1,20)
                 #return carp to his starting location if he has finished his path
@@ -173,7 +172,6 @@ class Counselor:
 
 
                 if movement_chance <= self.difficulty:
-                    print('moved')
                     #move to next position in list
                     self.location = random.randint(0,4)
                     #return his new location
@@ -216,6 +214,8 @@ class Aimen:
             pygame.mixer.Sound('sounds/alarm.wav').play()
             self.alarm = True
         if self.seconds>= self.timer and self.aimen_awake== False:
+            pygame.mixer.stop()
+            pygame.mixer.Sound('sounds/aiman_jumpscare.wav').play()
             self.jump_time_start = pygame.time.get_ticks() + 5000
             self.aimen_awake = True
         
