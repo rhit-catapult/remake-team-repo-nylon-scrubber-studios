@@ -90,9 +90,10 @@ def main():
 
             if other_screen.difficulty_button.is_pressed_display() and run == False:
                 pygame.mixer.Sound('sounds/button_click.wav').play()
-                if other_screen.difficulty_slider > 19:
-                    other_screen.difficulty_slider = 0
-                other_screen.difficulty_slider += 1
+                if other_screen.difficulty_slider >= 20:
+                    other_screen.difficulty_slider = 1
+                else:
+                    other_screen.difficulty_slider += 1
                 
             if other_screen.win_button.is_pressed_display() and win == True:
                 pygame.mixer.Sound('sounds/menu_button.wav').play()
@@ -260,7 +261,7 @@ def main():
                     transition = False
                     run = True
                     timer.reset_clock()
-                    camera_sys.load_everything(5)
+                    camera_sys.load_everything(other_screen.difficulty_slider)
         else: 
             other_screen.draw_start_screen()
 
