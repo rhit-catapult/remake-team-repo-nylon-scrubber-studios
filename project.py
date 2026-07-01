@@ -79,14 +79,17 @@ def main():
                 sys.exit()
             mouse_pos = pygame.mouse.get_pos()
             if other_screen.game_over_button.is_pressed_display() and game_over == True:
+                pygame.mixer.Sound('sounds/menu_button.wav').play()
                 game_over = False
                 run = False
             if other_screen.start_button.is_pressed_display() and run == False:
                 transition = True
+                pygame.mixer.Sound('sounds/menu_button.wav').play()
                 pygame.mixer.Sound('sounds/transition.wav').play()
                 seconds_transition = pygame.time.get_ticks() + 4000
                 
             if other_screen.win_button.is_pressed_display() and win == True:
+                pygame.mixer.Sound('sounds/menu_button.wav').play()
                 win = False
                 timer.win_condition = False
                 timer.reset_clock()
