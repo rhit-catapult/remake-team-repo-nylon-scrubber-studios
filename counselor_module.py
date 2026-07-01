@@ -146,7 +146,7 @@ class Counselor:
 
 
     def ethan_movement(self):
-        milli_seconds= pygame.time.get_ticks()
+        milli_seconds= pygame.time.get_ticks() - self.last_start_time
         self.seconds= milli_seconds//1000-self.times_ran
         print(self.seconds)
         if self.movenment_type == 'ethan':
