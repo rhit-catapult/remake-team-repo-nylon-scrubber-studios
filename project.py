@@ -87,6 +87,12 @@ def main():
                 pygame.mixer.Sound('sounds/menu_button.wav').play()
                 pygame.mixer.Sound('sounds/transition.wav').play()
                 seconds_transition = pygame.time.get_ticks() + 4000
+
+            if other_screen.difficulty_button.is_pressed_display() and run == False:
+                pygame.mixer.Sound('sounds/button_click.wav').play()
+                if other_screen.difficulty_slider > 19:
+                    other_screen.difficulty_slider = 0
+                other_screen.difficulty_slider += 1
                 
             if other_screen.win_button.is_pressed_display() and win == True:
                 pygame.mixer.Sound('sounds/menu_button.wav').play()
@@ -244,9 +250,9 @@ def main():
             camera_sys.andrew.movement(ethan)
             camera_sys.jj.movement(ethan)
         elif game_over:
-            other_screen.draw_game_over_screen(100)
+            other_screen.draw_game_over_screen()
         elif win:
-            other_screen.draw_win_screen(100)
+            other_screen.draw_win_screen()
         elif transition:
             other_screen.draw_transition_screen()
             print(f"ticks: {pygame.time.get_ticks()}, seconds till transition: {seconds_transition}")
@@ -254,7 +260,7 @@ def main():
                     transition = False
                     run = True
                     timer.reset_clock()
-                    camera_sys.load_everything()
+                    camera_sys.load_everything(5)
         else: 
             other_screen.draw_start_screen()
 

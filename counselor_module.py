@@ -31,6 +31,7 @@ class Counselor:
     def movement(self,ethan=None):
         milli_seconds= pygame.time.get_ticks() - self.last_start_time
         self.seconds= milli_seconds//1000-self.times_ran
+        print(self.difficulty)
         #checks if the animatronic is Carp
         if self.movenment_type == 'carp':
             #Carp's movement path
