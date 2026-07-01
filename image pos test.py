@@ -7,16 +7,18 @@ pygame.init()
 screen = pygame.display.set_mode((800, 600))
 pygame.display.set_caption("Image Test")
 
-camera_object = camera_module.Camera(screen, "images/cam5_main.jpg", 668,308,5)
-image_test = pygame.image.load("images/cam5_main.jpg")
+# camera_object = camera_module.Camera(screen, "images/cam5_main.jpg", 668,308,5)
+image_test = pygame.image.load("images/tutorial_overlay.png")
+image_test2 = pygame.image.load("images/office_main.jpg")
 image_test = pygame.transform.scale(image_test, (800, 600))
-
+image_test2 = pygame.transform.scale(image_test2, (800, 600))
 
 while True:
     screen.fill((0, 0, 0))
+    screen.blit(image_test2, (0, 0))
     screen.blit(image_test, (0, 0))
     # camera_object.draw_counselor("images/andrew/andrew_cam4_pos2.png",(-10,30),(800,600))
-    camera_object.draw_counselor("images/eathen/ethan.png", (400,140),(216,288))
+    # camera_object.draw_counselor("images/eathen/ethan.png", (400,140),(216,288))
     pygame.display.update()
 
     for event in pygame.event.get():

@@ -87,13 +87,6 @@ def main():
                 pygame.mixer.Sound('sounds/menu_button.wav').play()
                 pygame.mixer.Sound('sounds/transition.wav').play()
                 seconds_transition = pygame.time.get_ticks() + 4000
-
-            if other_screen.difficulty_button.is_pressed_display() and run == False:
-                pygame.mixer.Sound('sounds/button_click.wav').play()
-                if other_screen.difficulty_slider >= 20:
-                    other_screen.difficulty_slider = 1
-                else:
-                    other_screen.difficulty_slider += 1
                 
             if other_screen.win_button.is_pressed_display() and win == True:
                 pygame.mixer.Sound('sounds/menu_button.wav').play()
@@ -204,6 +197,8 @@ def main():
 
             #carp jumpscare
             if camera_sys.carp.kill:
+                pygame.mixer.stop()
+                pygame.mixer.Sound('sounds/carp_jumpscare.wav').play()
                 pygame.draw.rect(screen,"black",(0,0,WINDOW_WIDTH,WINDOW_HEIGHT))
                 screen.blit(carp_jumpscare,(0,0))
                 if pygame.time.get_ticks() >= camera_sys.carp.jump_time_start:
@@ -233,6 +228,8 @@ def main():
 
             #Aiman jumpscare
             if camera_sys.aiman.aimen_awake:
+                pygame.mixer.stop()
+                pygame.mixer.Sound('sounds/aiman_jumpscare.wav').play()
                 pygame.draw.rect(screen,"black",(0,0,WINDOW_WIDTH,WINDOW_HEIGHT))
                 screen.blit(aiman_jumpscare,(0,0))
                 if pygame.time.get_ticks() >= camera_sys.aiman.jump_time_start:
@@ -247,9 +244,9 @@ def main():
             camera_sys.andrew.movement(ethan)
             camera_sys.jj.movement(ethan)
         elif game_over:
-            other_screen.draw_game_over_screen()
+            other_screen.draw_game_over_screen(100)
         elif win:
-            other_screen.draw_win_screen()
+            other_screen.draw_win_screen(100)
         elif transition:
             other_screen.draw_transition_screen()
             print(f"ticks: {pygame.time.get_ticks()}, seconds till transition: {seconds_transition}")
@@ -257,7 +254,7 @@ def main():
                     transition = False
                     run = True
                     timer.reset_clock()
-                    camera_sys.load_everything(other_screen.difficulty_slider)
+                    camera_sys.load_everything()
         else: 
             other_screen.draw_start_screen()
 
