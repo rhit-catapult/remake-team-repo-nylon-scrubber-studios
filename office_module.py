@@ -18,6 +18,10 @@ class Office:
         self.count_light = 0
         self.current_color = (0,0,0)
         self.is_counselor_here = False
+        self.hover_left = pygame.image.load("images/hover_left.png")
+        self.hover_right = pygame.image.load("images/hover_right.png")
+        self.hover_left = pygame.transform.scale(self.hover_left,(60,WINDOW_HEIGHT))
+        self.hover_right = pygame.transform.scale(self.hover_right,(60,WINDOW_HEIGHT))
         self.button_pos = door_button_position
         if door_side != None:
             if door_side == "left":
@@ -37,8 +41,10 @@ class Office:
             self.image = pygame.transform.scale(self.image,(800,600))
             if side == "left":
                 pygame.draw.rect(self.screen,self.current_color,(240,0,250,530))
+                self.screen.blit(self.hover_right,(WINDOW_WIDTH-self.hover_right.get_width(),0))
             elif side == "right":
                 pygame.draw.rect(self.screen,self.current_color,(300,0,240,520))
+                self.screen.blit(self.hover_left,(0,0))
             self.screen.blit(self.image,(self.x,0))
             if self.door != None:
                 pygame.draw.rect(self.screen,self.button_color,(self.button_pos[0],self.button_pos[1],40,40))
@@ -58,6 +64,8 @@ class Office:
                     
                 if self.door_closed:
                     self.door.draw()
+            self.screen.blit(self.hover_left,(0,0))
+            self.screen.blit(self.hover_right,(WINDOW_WIDTH-self.hover_right.get_width(),0))
                 
             
 
