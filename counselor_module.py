@@ -114,7 +114,7 @@ class Counselor:
             self.path = ["stairway","kitchen","right_hall_far","right_hall_close","right_doorway"]
             #if carp has stayed in his location for as long as his movement time
             if self.location == 4 and self.andrew_here == False and self.door == False:
-                self.times_ran += self.time_delay
+                self.times_ran += 2
                 self.andrew_here = True
             if self.seconds== self.time_delay:
                 #subtracts 5 self.secondsfrom self.secondsto prevent rerunning until next 5 seconds
