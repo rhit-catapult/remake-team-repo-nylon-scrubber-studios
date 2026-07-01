@@ -231,9 +231,9 @@ def main():
             other_screen.draw_transition_screen()
             print(f"ticks: {pygame.time.get_ticks()}, seconds till transition: {seconds_transition}")
             if pygame.time.get_ticks() >= seconds_transition:
-                    print("worked")
                     transition = False
                     run = True
+                    timer.reset_clock()
                     camera_sys.load_everything()
         else: 
             other_screen.draw_start_screen()
