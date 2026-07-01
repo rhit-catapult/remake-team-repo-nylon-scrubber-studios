@@ -9,12 +9,12 @@ class Start_Screen:
         self.screen = screen
         self.start_screen_image = pygame.image.load("images/title_screen.png")
         self.start_screen_image = pygame.transform.scale(self.start_screen_image,(WINDOW_WIDTH,WINDOW_HEIGHT))
+        self.win_screen_image = pygame.image.load("images/win_screen.png")
+        self.win_screen_image = pygame.transform.scale(self.win_screen_image,(WINDOW_WIDTH,WINDOW_HEIGHT))
         self.title_screen_font = pygame.font.SysFont("courier new", 50, True, True)
         self.game_over_screen_text = self.title_screen_font.render("YOU GOT FUNISHED!", True, (200,0,0))
-        self.win_screen_text = self.title_screen_font.render("YOU WON", True, (200,0,0))
         self.transition_screen_image = self.title_screen_font.render("Night Starting!", True, (200,0,0))
         self.game_over_screen_text_x = (self.screen.get_width() - self.game_over_screen_text.get_width())/2
-        self.win_screen_text_x = (self.screen.get_width() - self.game_over_screen_text.get_width())/2
         self.start_button = button_module.Buttons(self.screen, 250, 300, "images/play_button.png")
         self.game_over_button = button_module.Buttons(self.screen, 600, 300, "images/menu_button.png")
         self.win_button = button_module.Buttons(self.screen,100,300,"images/menu_button.png")
@@ -35,8 +35,7 @@ class Start_Screen:
         self.game_over_button.draw()
 
     def draw_win_screen(self,title_text_y):
-        self.screen.fill((0,0,0))
-        self.screen.blit(self.win_screen_text, (self.win_screen_text_x,title_text_y))
+        self.screen.blit(self.win_screen_image,(0,0))
         self.win_button.draw()
              
         
