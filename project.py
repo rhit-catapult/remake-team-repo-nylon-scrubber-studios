@@ -268,6 +268,8 @@ def main():
             other_screen.draw_transition_screen()
             if pygame.time.get_ticks() >= seconds_transition:
                     transition = False
+                    tutorial = True
+                    tutorial_timer_bool = False
                     run = True
                     timer.reset_clock()
                     camera_sys.load_everything(other_screen.difficulty_slider)
