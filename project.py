@@ -13,8 +13,8 @@ def main():
     # turn on pygame
     pygame.init()
     pygame.display.set_caption("One Night at Catapult")
-    screen = pygame.display.set_mode((WINDOW_WIDTH,WINDOW_HEIGHT))
-    #screen = pygame.display.set_mode((800, 600), pygame.FULLSCREEN | pygame.SCALED)
+    #screen = pygame.display.set_mode((WINDOW_WIDTH,WINDOW_HEIGHT))
+    screen = pygame.display.set_mode((800, 600), pygame.FULLSCREEN | pygame.SCALED)
 
     #True false statements for the screen
     run = False
