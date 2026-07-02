@@ -266,7 +266,6 @@ def main():
             other_screen.draw_win_screen()
         elif transition:
             other_screen.draw_transition_screen()
-            print(f"ticks: {pygame.time.get_ticks()}, seconds till transition: {seconds_transition}")
             if pygame.time.get_ticks() >= seconds_transition:
                     transition = False
                     run = True

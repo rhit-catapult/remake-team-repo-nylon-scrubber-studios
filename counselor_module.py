@@ -31,7 +31,7 @@ class Counselor:
     def movement(self,ethan=None):
         milli_seconds= pygame.time.get_ticks() - self.last_start_time
         self.seconds= milli_seconds//1000-self.times_ran
-        print(self.difficulty)
+
         #checks if the animatronic is Carp
         if self.movenment_type == 'carp':
             #Carp's movement path
@@ -118,9 +118,10 @@ class Counselor:
             #Carp's movement path
             self.path = ["stairway","kitchen","right_hall_far","right_hall_close","right_doorway"]
             #if carp has stayed in his location for as long as his movement time
-            if self.location == 4 and self.andrew_here == False and self.door == False:
-                self.times_ran += 2
-                self.andrew_here = True
+            if self.location == 4 and self.door == True:
+                pygame.mixer.Sound('sounds/banging_door.wav').play()
+                self.location = 0
+                self.times_ran += self.time_delay
             if self.seconds== self.time_delay:
                 #subtracts 5 self.secondsfrom self.secondsto prevent rerunning until next 5 seconds
                 self.times_ran += self.time_delay
