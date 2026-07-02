@@ -73,6 +73,8 @@ class Counselor:
                 if self.seconds == 5:
                     # print(pygame.time.get_ticks()//1000)
                     if self.door == False:
+                        pygame.mixer.stop()
+                        pygame.mixer.Sound('sounds/jj_jumpscare.wav').play()
                         self.jump_time_start = pygame.time.get_ticks() + 5000
                         self.kill = True
                     else:
@@ -128,6 +130,8 @@ class Counselor:
                     # print(pygame.time.get_ticks()//1000)
                     
                     if self.door == False:
+                        pygame.mixer.stop()
+                        pygame.mixer.Sound('sounds/andrew_jumpscare.wav').play()
                         self.jump_time_start = pygame.time.get_ticks() + 5000
                         self.kill = True
                     else:
