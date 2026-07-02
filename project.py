@@ -30,10 +30,17 @@ def main():
     camera_sys = camera_system_module.Camera_System(screen,False)
 
     #Tutorial
-    tutorial = False
-    tutorial_main = pygame.image.load("images/button_test.png")
-    tutorial_left = pygame.image.load("images/button_test.png")
-    tutorial_right = pygame.image.load("images/button_test.png")
+    tutorial = True
+    tutorial_timer = pygame.time.get_ticks()
+    tutorial_timer_bool = False
+    tutorial_main = pygame.image.load("images/tutorial_overlay.png")
+    tutorial_main = pygame.transform.scale(tutorial_main,(WINDOW_WIDTH,WINDOW_HEIGHT))
+    tutorial_left = pygame.image.load("images/office_left_tutorial.png")
+    tutorial_left = pygame.transform.scale(tutorial_left,(WINDOW_WIDTH,WINDOW_HEIGHT))
+    tutorial_right = pygame.image.load("images/office_right_tutorial_1.png")
+    tutorial_right = pygame.transform.scale(tutorial_right,(WINDOW_WIDTH,WINDOW_HEIGHT))
+    tutorial_right_2 = pygame.image.load("images/office_right_tutorial.png")
+    tutorial_right_2 = pygame.transform.scale(tutorial_right_2,(WINDOW_WIDTH,WINDOW_HEIGHT))
 
     #The Office
     office_main = office_module.Office(screen,"images/office_main.jpg",True,True,None)
@@ -45,7 +52,7 @@ def main():
     right_true = False
 
     #Buttons
-    aiman_button = button_module.Buttons(screen,100,450,"images/aiman_alarm_button.png")
+    aiman_button = button_module.Buttons(screen,150,450,"images/aiman_alarm_button.png")
     aiman_button_activated = (255,0,0)    
     camera_button_office = button_module.Buttons(screen,200,550,"images/camera_button_up.png.png")
     carp_button = button_module.Buttons(screen,300,450, "images/carp_recall_button.png")
@@ -87,6 +94,13 @@ def main():
                 pygame.mixer.Sound('sounds/menu_button.wav').play()
                 pygame.mixer.Sound('sounds/transition.wav').play()
                 seconds_transition = pygame.time.get_ticks() + 4000
+
+            if other_screen.difficulty_button.is_pressed_display() and run == False:
+                pygame.mixer.Sound('sounds/menu_button.wav').play()
+                if other_screen.difficulty_slider >= 20:
+                    other_screen.difficulty_slider = 1
+                else:
+                    other_screen.difficulty_slider += 1
                 
             if other_screen.win_button.is_pressed_display() and win == True:
                 pygame.mixer.Sound('sounds/menu_button.wav').play()
@@ -117,6 +131,14 @@ def main():
                             carp_button_activated = (255,0,0)
 
         if run:
+
+            if tutorial_timer_bool == False:
+                tutorial_timer = pygame.time.get_ticks() + 15000
+                tutorial_timer_bool = True
+
+            if tutorial and pygame.time.get_ticks() >= tutorial_timer:
+                tutorial = False
+
             #Background
             screen.fill((255, 255, 255))
 
@@ -163,7 +185,7 @@ def main():
                 office_right.update()
                 if office_main.here:
                     office_main.draw()
-                    pygame.draw.rect(screen,aiman_button_activated,(100,450,40,40))
+                    pygame.draw.rect(screen,aiman_button_activated,(150,450,40,40))
                     pygame.draw.rect(screen,carp_button_activated,(300,450,40,40))
                     aiman_button.draw(40,40)
                     carp_button.draw(40,40)
@@ -183,6 +205,7 @@ def main():
                         screen.blit(andrew_door,(27,0))
                     if tutorial:
                         screen.blit(tutorial_right,(0,0))
+                        screen.blit(tutorial_right_2,(-20,0))
                 camera_sys.last_click = pygame.time.get_ticks()
 
             #draws the cameras if cameras are on
@@ -254,7 +277,7 @@ def main():
                     transition = False
                     run = True
                     timer.reset_clock()
-                    camera_sys.load_everything()
+                    camera_sys.load_everything(other_screen.difficulty_slider)
         else: 
             other_screen.draw_start_screen()
 

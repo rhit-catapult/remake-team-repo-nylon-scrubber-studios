@@ -206,11 +206,12 @@ class Aimen:
         self.jump_time_start =0
         self.alarm = False
         self.aiman_timer_font = pygame.font.SysFont("courier new", 20)
-        self.aiman_timer_text = self.aiman_timer_font.render(f"{50-self.seconds}", False, "White", "Black")
+        self.aiman_timer_text = self.aiman_timer_font.render(f"{50-self.seconds}", False, "Black")
+        self.aiman_timer_image = pygame.image.load("images/aiman_alarm_clock.png")
 
     def aimen_clock(self):
         self.seconds= pygame.time.get_ticks()//1000 - self.start_time
-        self.aiman_timer_text = self.aiman_timer_font.render(f"{self.timer-self.seconds}", False, "White", "Black")
+        self.aiman_timer_text = self.aiman_timer_font.render(f"{self.timer-self.seconds}", False, "Black")
         if self.alarm == False and self.timer == self.seconds+5:
             pygame.mixer.Sound('sounds/alarm.wav').play()
             self.alarm = True

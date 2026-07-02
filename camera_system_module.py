@@ -157,7 +157,8 @@ class Camera_System:
         elif self.current_camera == 5: #cam 6
             self.camera_6.draw()
             self.camera_6.draw_counselor("images/aiman/aiman_cam6.png", (-30,100),(800,600))
-            self.screen.blit(self.aiman.aiman_timer_text,(300,350))
+            self.screen.blit(self.aiman.aiman_timer_image,(300,350))
+            self.screen.blit(self.aiman.aiman_timer_text,(309,370))
 
     def draw(self):
         self.draw_cameras()
@@ -173,7 +174,7 @@ def main():
 
     #screen = pygame.display.set_mode((800, 600), pygame.FULLSCREEN | pygame.SCALED)
     camera_sys = Camera_System(screen,False)
-    camera_sys.load_everything()
+    camera_sys.load_everything(1)
     aiman_button = button_module.Buttons(screen,50,450,"images/button_test.png")
     camera_button_office = button_module.Buttons(screen,screen.get_width()/2,500,"images/button_test.png")
 
